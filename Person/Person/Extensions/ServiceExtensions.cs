@@ -16,5 +16,10 @@ namespace Person.Extensions
         {
             DotNetEnv.Env.Load("saqib-laptop.env");
         }
+
+        public static void ConfigureAutoMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(MappingProfile));
+        }
     }
 }
