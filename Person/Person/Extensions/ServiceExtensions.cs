@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Person.Common;
 using Person.Data;
+using Person.Repository;
+using Person.Services;
 
 namespace Person.Extensions
 {
@@ -20,6 +22,16 @@ namespace Person.Extensions
         public static void ConfigureAutoMapper(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MappingProfile));
+        }
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+        }
+
+        public static void ConfigureServices(this IServiceCollection services)
+        {
+            services.AddScoped<IPersonService, PersonService>();
         }
     }
 }

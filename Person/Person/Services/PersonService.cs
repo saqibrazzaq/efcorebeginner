@@ -17,7 +17,9 @@ namespace Person.Services
 
         public int Count()
         {
-            throw new NotImplementedException();
+            var count = _repositoryManager.PersonRepository.FindAll(false)
+                .Count();
+            return count;
         }
 
         public PersonRes Create(PersonReqCreate dto)
@@ -30,22 +32,41 @@ namespace Person.Services
 
         public void Delete(int personId)
         {
-            throw new NotImplementedException();
+            var entity = FindPersonIfExists(personId, true);
+            _repositoryManager.PersonRepository.Delete(entity);
+            _repositoryManager.Save();
         }
 
         public PersonRes Get(int personId)
         {
-            throw new NotImplementedException();
+            var entity = FindPersonIfExists(personId, false);
+            return _mapper.Map<PersonRes>(entity);
+        }
+
+        private Entities.Person FindPersonIfExists(int personId, bool trackChanges)
+        {
+            var entity = _repositoryManager.PersonRepository.FindByCondition(
+                x => x.PersonId == personId,
+                trackChanges)
+                .FirstOrDefault();
+            if (entity == null) throw new Exception("No person found with id " + personId);
+
+            return entity;
         }
 
         public IEnumerable<PersonRes> GetAll()
         {
-            throw new NotImplementedException();
+            var persons = _repositoryManager.PersonRepository.FindAll(
+                false);
+            return _mapper.Map<IEnumerable<PersonRes>>(persons);
         }
 
-        public PersonRes Update(int personId, PersonReqEdit person)
+        public PersonRes Update(int personId, PersonReqEdit dto)
         {
-            throw new NotImplementedException();
+            var entity = FindPersonIfExists(personId, true);
+            _mapper.Map(dto, entity);
+            _repositoryManager.Save();
+            return _mapper.Map<PersonRes>(entity);
         }
     }
 }
