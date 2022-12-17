@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Person.Common.Paging;
 using Person.Dtos;
 using Person.Repository;
 
@@ -67,6 +68,16 @@ namespace Person.Services
             _mapper.Map(dto, entity);
             _repositoryManager.Save();
             return _mapper.Map<PersonRes>(entity);
+        }
+
+        public ApiOkPagedResponse<IEnumerable<PersonRes>, MetaData>
+            Search(PersonReqSearch dto)
+        {
+            var pagedEntities = _repositoryManager.PersonRepository.
+                Search(dto, false);
+            var dtos = _mapper.Map<IEnumerable<PersonRes>>(pagedEntities);
+            return new ApiOkPagedResponse<IEnumerable<PersonRes>, MetaData>(dtos,
+                pagedEntities.MetaData);
         }
     }
 }

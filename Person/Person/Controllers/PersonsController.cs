@@ -21,7 +21,7 @@ namespace Person.Controllers
         {
             var res = _personService.Create(dto);
             return Ok(res);
-        }
+        } 
 
         [HttpGet]
         public IActionResult GetAll()
@@ -55,6 +55,13 @@ namespace Person.Controllers
         public IActionResult Count()
         {
             var res = _personService.Count();
+            return Ok(res);
+        }
+
+        [HttpGet("search")]
+        public IActionResult Search([FromQuery] PersonReqSearch dto)
+        {
+            var res = _personService.Search(dto);
             return Ok(res);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Person.Common.Paging;
+using System.ComponentModel.DataAnnotations;
 
 namespace Person.Dtos
 {
@@ -24,4 +25,9 @@ namespace Person.Dtos
     }
     public class PersonReqCreate : PersonManipulate { }
     public class PersonReqEdit : PersonManipulate { }
+    public class PersonReqSearch : PagedReq 
+    {
+        [MaxLength(1)]
+        public string? Gender { get; set; }
+    }
 }

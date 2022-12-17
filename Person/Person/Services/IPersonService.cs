@@ -1,4 +1,5 @@
-﻿using Person.Dtos;
+﻿using Person.Common.Paging;
+using Person.Dtos;
 
 namespace Person.Services
 {
@@ -10,5 +11,7 @@ namespace Person.Services
         PersonRes Create(PersonReqCreate dto);
         PersonRes Update(int personId, PersonReqEdit dto);
         void Delete(int personId);
+        ApiOkPagedResponse<IEnumerable<PersonRes>, MetaData>
+            Search(PersonReqSearch dto);
     }
 }
