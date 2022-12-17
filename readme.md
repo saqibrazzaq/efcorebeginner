@@ -2,6 +2,8 @@
 
 Start with very basic project, that does CRUD operations on a single table with 5 fields. 
 
+Detailed articles on https://efcorebeginner.com/
+
 ## Person API
 
 ASP.NET Web API project that uses Entity Framework 7 to manage Person. It has just one table with few fields, but we added best software design practices and patterns. The project uses
