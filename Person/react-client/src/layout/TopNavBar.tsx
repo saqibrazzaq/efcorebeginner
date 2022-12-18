@@ -43,10 +43,6 @@ const TopNavBar = () => {
   const setTopMenu = () => {
     const menuItems: Array<NavItem> = [
       {
-        name: "Home",
-        href: "/",
-      },
-      {
         name: "Persons",
         href: "/persons",
       },
@@ -98,7 +94,8 @@ const TopNavBar = () => {
             color={useColorModeValue("gray.800", "white")}
           >
             <RouteLink to="/">
-              <Image src="/saleone-logo.png" height={"30px"} />
+              {/* <Image src="/saleone-logo.png" height={"30px"} /> */}
+              <Text fontWeight={"bold"}>Home</Text>
             </RouteLink>
           </Text>
 
