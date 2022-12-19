@@ -33,5 +33,22 @@ namespace Person.Extensions
         {
             services.AddScoped<IPersonService, PersonService>();
         }
+
+        public static void ConfigureCors(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder
+                    .WithOrigins(
+                        "http://localhost:3000",
+                        "https://person-react.efcorebeginner.com")
+                    .AllowCredentials()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+            });
+        }
     }
 }

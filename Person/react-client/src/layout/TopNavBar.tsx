@@ -95,7 +95,7 @@ const TopNavBar = () => {
           >
             <RouteLink to="/">
               {/* <Image src="/saleone-logo.png" height={"30px"} /> */}
-              <Text fontWeight={"bold"}>Home</Text>
+              Home
             </RouteLink>
           </Text>
 
