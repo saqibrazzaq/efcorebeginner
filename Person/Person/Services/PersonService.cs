@@ -23,7 +23,7 @@ namespace Person.Services
             return count;
         }
 
-        public PersonRes Create(PersonReqCreate dto)
+        public PersonRes Create(PersonReqEdit dto)
         {
             var entity = _mapper.Map<Entities.Person>(dto);
             _repositoryManager.PersonRepository.Create(entity);

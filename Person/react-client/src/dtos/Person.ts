@@ -5,3 +5,10 @@ export interface PersonRes {
   phoneNumber?: string;
   gender?: string;
 }
+
+export class PersonReqEdit {
+  firstName?: string = "";
+  lastName?: string = "";
+  phoneNumber?: string = "";
+  gender?: string = "";
+}

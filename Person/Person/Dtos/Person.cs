@@ -12,7 +12,7 @@ namespace Person.Dtos
         public string Gender { get; set; } = "";
     }
 
-    public class PersonManipulate
+    public class PersonReqEdit 
     {
         [Required, MaxLength(100)]
         public string? FirstName { get; set; }
@@ -23,8 +23,6 @@ namespace Person.Dtos
         [MaxLength(1)]
         public string Gender { get; set; } = "";
     }
-    public class PersonReqCreate : PersonManipulate { }
-    public class PersonReqEdit : PersonManipulate { }
     public class PersonReqSearch : PagedReq 
     {
         [MaxLength(1)]

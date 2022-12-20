@@ -9,7 +9,6 @@ namespace Person
         {
             // Person
             CreateMap<Entities.Person, PersonRes>();
-            CreateMap<PersonReqCreate, Entities.Person>();
             CreateMap<PersonReqEdit, Entities.Person>();
         }
     }

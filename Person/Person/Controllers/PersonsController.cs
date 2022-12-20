@@ -17,7 +17,7 @@ namespace Person.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(PersonReqCreate dto)
+        public IActionResult Create(PersonReqEdit dto)
         {
             var res = _personService.Create(dto);
             return Ok(res);
