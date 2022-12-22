@@ -18,6 +18,15 @@ export const PersonApi = {
 
     return response.data
   },
+  search: async function (searchParams) {
+    const response = await api.request({
+      url: "/persons/search",
+      method: "GET",
+      params: searchParams,
+    })
+
+    return response.data
+  },
   create: async function (person) {
     const response = await api.request({
       url: `/persons`,
