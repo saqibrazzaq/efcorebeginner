@@ -11,8 +11,8 @@ const PersonEdit = () => {
   const params = useParams();
   const personId = params.personId;
   const updateText = personId ? "Update Person" : "Add Person";
-  console.log("person id: " + personId)
-  console.log(updateText)
+  // console.log("person id: " + personId)
+  // console.log(updateText)
   const [person, setPerson] = useState<PersonReqEdit>(new PersonReqEdit());
   const toast = useToast();
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const PersonEdit = () => {
     if (personId) {
       PersonApi.get(personId).then(res => {
         setPerson(res);
-        console.log(res);
+        // console.log(res);
       })
     }
   }
@@ -67,7 +67,7 @@ const PersonEdit = () => {
         status: "success",
         position: "bottom-right",
       });
-      navigate("persons")
+      navigate("/persons")
     });
   }
 

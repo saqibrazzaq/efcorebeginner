@@ -34,4 +34,12 @@ export const PersonApi = {
       data: person,
     })
   },
+  delete: async function (personId) {
+    const response = await api.request({
+      url: `/persons/` + personId,
+      method: "DELETE",
+    })
+
+    return response.data
+  },
 }
