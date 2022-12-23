@@ -28,6 +28,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { PersonApi } from "../api/personApi";
 import { PersonRes } from "../dtos/Person";
+import { AlertBox } from "../utility/Alerts";
 
 const PersonDelete = () => {
   let params = useParams();
@@ -35,7 +36,7 @@ const PersonDelete = () => {
   const [person, setPerson] = useState<PersonRes>();
   const navigate = useNavigate();
   const toast = useToast();
-  
+  const [error, setError] = useState("");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef<HTMLAnchorElement>(null);
@@ -45,6 +46,7 @@ const PersonDelete = () => {
   }, [personId]);
 
   const loadPerson = () => {
+    setError("")
     if (personId) {
       PersonApi.get(personId)
         .then((res) => {
@@ -52,12 +54,14 @@ const PersonDelete = () => {
           console.log(res);
         })
         .catch((error) => {
+          setError(error.response.data.error);
           console.log("Error in api: " + error);
         });
     }
   };
 
   const deletePerson = () => {
+    setError("")
     PersonApi.delete(personId).then(res => {
       toast({
         title: "Success",
@@ -67,6 +71,7 @@ const PersonDelete = () => {
       });
       navigate("/persons");
     }).catch(error => {
+      setError(error.response.data.error);
       toast({
         title: "Error deleting Person",
         description: error,
@@ -152,6 +157,7 @@ const PersonDelete = () => {
     <Box p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
+        {error && <AlertBox description={error} />}
         {showPersonInfo()}
         {showAlertDialog()}
       </Stack>
