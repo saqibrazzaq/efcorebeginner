@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols;
 using Person.Common;
 using Person.Data;
 using Person.Repository;
@@ -42,6 +44,7 @@ namespace Person.Extensions
                 options.AddPolicy("CorsPolicy", builder =>
                 {
                     builder
+                    //.AllowAnyOrigin()
                     .WithOrigins(
                         "http://localhost:3000",
                         "https://person-react.efcorebeginner.com")
@@ -62,6 +65,12 @@ namespace Person.Extensions
                 var response = new { error = exception.Message };
                 await context.Response.WriteAsJsonAsync(response);
             }));
+        }
+
+        public static void MigrateDatabase(this IServiceCollection services)
+        {
+            var dbContext = services.BuildServiceProvider().GetRequiredService<AppDbContext>();
+            dbContext.Database.Migrate();
         }
     }
 }

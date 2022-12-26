@@ -9,7 +9,7 @@ namespace Person.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
-        public PersonService(IRepositoryManager repositoryManager, 
+        public PersonService(IRepositoryManager repositoryManager,
             IMapper mapper)
         {
             _repositoryManager = repositoryManager;

@@ -1,0 +1,418 @@
+2022-12-26 14:18:18.1042 Info Message Template Auto Format enabled
+2022-12-26 14:18:18.1385 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-12-26 14:18:18.3038 Debug Setting 'NLog.Targets.ConsoleTarget.name' to 'console'
+2022-12-26 14:18:18.3038 Debug Setting 'NLog.Targets.ConsoleTarget.layout' to '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:18:18.3172 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:18:18.3172 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:18:18.3247 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:18:18.3247 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:18:18.3247 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:18:18.3247 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:18:18.3247 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:18:18.3247 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:18:18.3247 Debug Adding target ConsoleTarget(Name=console)
+2022-12-26 14:18:18.3247 Info Registered target ConsoleTarget(Name=console)
+2022-12-26 14:18:18.3247 Trace ParseRulesElement
+2022-12-26 14:18:18.3611 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'logfile' not found for logging rule: *.
+2022-12-26 14:18:18.3711 Debug Watching file-filter 'nlog.config' in directory: C:\Data\Projects\Github\efcorebeginner\Person\Person
+2022-12-26 14:18:18.3711 Debug --- NLog configuration dump ---
+2022-12-26 14:18:18.3711 Debug Targets:
+2022-12-26 14:18:18.3711 Debug ConsoleTarget(Name=console)
+2022-12-26 14:18:18.3711 Debug Rules:
+2022-12-26 14:18:18.3711 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ ]
+2022-12-26 14:18:18.3711 Debug --- End of NLog configuration dump ---
+2022-12-26 14:18:18.3711 Trace FindReachableObject<System.Object>:
+2022-12-26 14:18:18.3711 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ ]'
+2022-12-26 14:18:18.3711 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-12-26 14:18:18.3711 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-12-26 14:18:18.3863 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-12-26 14:18:18.3863 Trace Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:18:18.3863 Trace  Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:18:18.3863 Trace  Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:18:18.3863 Trace   Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:18:18.3863 Trace   Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:18:18.3863 Trace   Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:18:18.3863 Trace   Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:18:18.3863 Trace   Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:18:18.3863 Trace   Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:18:18.3863 Trace   Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:18:18.3863 Trace   Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:18:18.3863 Info Validating config: TargetNames=console, ConfigItems=10, FilePath=C:\Data\Projects\Github\efcorebeginner\Person\Person\nlog.config
+2022-12-26 14:18:18.3863 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-12-26 14:18:18.4070 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: console
+2022-12-26 14:18:18.4070 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 1
+2022-12-26 14:18:18.4070 Trace Initializing Layout Renderer: ${message}
+2022-12-26 14:18:18.4070 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:18:18.4070 Trace Initializing Layout Renderer: ${loggername}
+2022-12-26 14:18:18.4070 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:18:18.4070 Trace Initializing Layout Renderer: ${level}
+2022-12-26 14:18:18.4070 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:18:18.4070 Trace Initializing Layout Renderer: ${longdate}
+2022-12-26 14:18:18.4070 Trace Initializing ${longdate}|${level:uppercase=true}|${logger}|${message}
+2022-12-26 14:18:18.4070 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:18:18.4070 Trace Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:18:18.4170 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:18:18.4170 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:18:18.4170 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:18:18.4170 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:18:18.4170 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:18:18.4170 Trace  Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:18:18.4170 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:18:18.4170 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:18:18.4170 Trace Initializing ConsoleTarget(Name=console)
+2022-12-26 14:18:18.4170 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-12-26 14:18:18.4170 Trace Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:18:18.4170 Trace  Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:18:18.4170 Trace  Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:18:18.4170 Trace ConsoleTarget(Name=console) has 1 layouts
+2022-12-26 14:18:50.3702 Debug Targets not configured for Logger: logger.LoggerManager
+2022-12-26 14:21:39.5944 Info Message Template Auto Format enabled
+2022-12-26 14:21:39.6266 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-12-26 14:21:39.7050 Debug Setting 'NLog.Targets.ConsoleTarget.name' to 'console'
+2022-12-26 14:21:39.7050 Debug Setting 'NLog.Targets.ConsoleTarget.layout' to '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:21:39.7169 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:21:39.7169 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:21:39.7169 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:21:39.7169 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:21:39.7169 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:21:39.7169 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:21:39.7169 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:21:39.7169 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:21:39.7169 Debug Adding target ConsoleTarget(Name=console)
+2022-12-26 14:21:39.7169 Info Registered target ConsoleTarget(Name=console)
+2022-12-26 14:21:39.7169 Trace ParseRulesElement
+2022-12-26 14:21:39.7398 Debug Watching file-filter 'nlog.config' in directory: C:\Data\Projects\Github\efcorebeginner\Person\Person
+2022-12-26 14:21:39.7398 Debug --- NLog configuration dump ---
+2022-12-26 14:21:39.7398 Debug Targets:
+2022-12-26 14:21:39.7398 Debug ConsoleTarget(Name=console)
+2022-12-26 14:21:39.7398 Debug Rules:
+2022-12-26 14:21:39.7457 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ console ]
+2022-12-26 14:21:39.7457 Debug --- End of NLog configuration dump ---
+2022-12-26 14:21:39.7457 Trace FindReachableObject<System.Object>:
+2022-12-26 14:21:39.7457 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ console ]'
+2022-12-26 14:21:39.7457 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-12-26 14:21:39.7457 Trace  Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:21:39.7457 Trace   Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:21:39.7457 Trace   Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:21:39.7457 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:21:39.7457 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:21:39.7609 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:21:39.7609 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:21:39.7609 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:21:39.7609 Trace    Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:21:39.7609 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:21:39.7609 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:21:39.7609 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-12-26 14:21:39.7609 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-12-26 14:21:39.7609 Info Validating config: TargetNames=console, ConfigItems=10, FilePath=C:\Data\Projects\Github\efcorebeginner\Person\Person\nlog.config
+2022-12-26 14:21:39.7609 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-12-26 14:21:39.7770 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-12-26 14:21:39.7770 Trace Initializing Layout Renderer: ${message}
+2022-12-26 14:21:39.7770 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:21:39.7770 Trace Initializing Layout Renderer: ${loggername}
+2022-12-26 14:21:39.7770 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:21:39.7770 Trace Initializing Layout Renderer: ${level}
+2022-12-26 14:21:39.7770 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:21:39.7770 Trace Initializing Layout Renderer: ${longdate}
+2022-12-26 14:21:39.7770 Trace Initializing ${longdate}|${level:uppercase=true}|${logger}|${message}
+2022-12-26 14:21:39.7770 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:21:39.7770 Trace Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:21:39.7770 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:21:39.7770 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:21:39.7770 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:21:39.7770 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:21:39.7770 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:21:39.7770 Trace  Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:21:39.7770 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:21:39.7770 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:21:39.7930 Trace Initializing ConsoleTarget(Name=console)
+2022-12-26 14:21:39.7930 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-12-26 14:21:39.7930 Trace Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:21:39.7930 Trace  Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:21:39.7930 Trace  Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:21:39.7930 Trace ConsoleTarget(Name=console) has 1 layouts
+2022-12-26 14:21:50.5459 Debug Targets configured when LogLevel >= Debug for Logger: logger.LoggerManager
+2022-12-26 14:21:50.5459 Debug Logger logger.LoggerManager [Debug] => console
+2022-12-26 14:21:50.5459 Debug Logger logger.LoggerManager [Info] => console
+2022-12-26 14:21:50.5459 Debug Logger logger.LoggerManager [Warn] => console
+2022-12-26 14:21:50.5459 Debug Logger logger.LoggerManager [Error] => console
+2022-12-26 14:21:50.5459 Debug Logger logger.LoggerManager [Fatal] => console
+2022-12-26 14:22:09.0459 Info AppDomain Shutting down. LogFactory closing...
+2022-12-26 14:22:09.0459 Debug Stopping file watching for path 'C:\Data\Projects\Github\efcorebeginner\Person\Person' filter 'nlog.config'
+2022-12-26 14:22:09.0459 Trace Flushing all 1 targets...
+2022-12-26 14:22:09.0459 Trace ForEachItemInParallel() 1 items
+2022-12-26 14:22:09.0459 Trace Continuation invoked: 
+2022-12-26 14:22:09.0577 Trace Parallel task completed. 0 items remaining
+2022-12-26 14:22:09.0577 Debug Flush completed
+2022-12-26 14:22:09.0577 Debug Targets not configured for Logger: logger.LoggerManager
+2022-12-26 14:22:09.0577 Debug Closing logging configuration...
+2022-12-26 14:22:09.0577 Trace Closing ConsoleTarget(Name=console)
+2022-12-26 14:22:09.0577 Debug ConsoleTarget(Name=console): Closing...
+2022-12-26 14:22:09.0577 Debug ConsoleTarget(Name=console): Closed.
+2022-12-26 14:22:09.0577 Trace Closing ${longdate}|${level:uppercase=true}|${logger}|${message}
+2022-12-26 14:22:09.0577 Trace Closing Layout Renderer: ${longdate}
+2022-12-26 14:22:09.0577 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:22:09.0577 Trace Closing Layout Renderer: ${level}
+2022-12-26 14:22:09.0577 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:22:09.0577 Trace Closing Layout Renderer: ${loggername}
+2022-12-26 14:22:09.0577 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:22:09.0577 Trace Closing Layout Renderer: ${message}
+2022-12-26 14:22:09.0577 Debug Finished closing logging configuration.
+2022-12-26 14:22:09.0577 Info LogFactory has been closed.
+2022-12-26 14:24:28.2981 Info Message Template Auto Format enabled
+2022-12-26 14:24:28.3248 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-12-26 14:24:28.4033 Debug Setting 'NLog.Targets.ConsoleTarget.name' to 'console'
+2022-12-26 14:24:28.4033 Debug Setting 'NLog.Targets.ConsoleTarget.layout' to '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:24:28.4177 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:24:28.4177 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:24:28.4177 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:24:28.4177 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:24:28.4177 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:24:28.4177 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:24:28.4177 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:24:28.4177 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:24:28.4177 Debug Adding target ConsoleTarget(Name=console)
+2022-12-26 14:24:28.4177 Info Registered target ConsoleTarget(Name=console)
+2022-12-26 14:24:28.4322 Trace ParseRulesElement
+2022-12-26 14:24:28.4322 Debug Watching file-filter 'nlog.config' in directory: C:\Data\Projects\Github\efcorebeginner\Person\Person
+2022-12-26 14:24:28.4487 Debug --- NLog configuration dump ---
+2022-12-26 14:24:28.4487 Debug Targets:
+2022-12-26 14:24:28.4487 Debug ConsoleTarget(Name=console)
+2022-12-26 14:24:28.4487 Debug Rules:
+2022-12-26 14:24:28.4487 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ console ]
+2022-12-26 14:24:28.4487 Debug --- End of NLog configuration dump ---
+2022-12-26 14:24:28.4487 Trace FindReachableObject<System.Object>:
+2022-12-26 14:24:28.4487 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ console ]'
+2022-12-26 14:24:28.4487 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-12-26 14:24:28.4648 Trace  Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:24:28.4648 Trace   Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:24:28.4648 Trace   Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:24:28.4648 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:24:28.4648 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:24:28.4648 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:24:28.4648 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:24:28.4648 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:24:28.4648 Trace    Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:24:28.4648 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:24:28.4648 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:24:28.4648 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-12-26 14:24:28.4648 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-12-26 14:24:28.4648 Info Validating config: TargetNames=console, ConfigItems=10, FilePath=C:\Data\Projects\Github\efcorebeginner\Person\Person\nlog.config
+2022-12-26 14:24:28.4648 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-12-26 14:24:28.4840 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-12-26 14:24:28.4840 Trace Initializing Layout Renderer: ${message}
+2022-12-26 14:24:28.4840 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:24:28.4840 Trace Initializing Layout Renderer: ${loggername}
+2022-12-26 14:24:28.4840 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:24:28.4840 Trace Initializing Layout Renderer: ${level}
+2022-12-26 14:24:28.4840 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:24:28.4840 Trace Initializing Layout Renderer: ${longdate}
+2022-12-26 14:24:28.4840 Trace Initializing ${longdate}|${level:uppercase=true}|${logger}|${message}
+2022-12-26 14:24:28.4840 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:24:28.4840 Trace Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:24:28.4840 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:24:28.4840 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:24:28.4840 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:24:28.4840 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:24:28.4840 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:24:28.4840 Trace  Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:24:28.4840 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:24:28.4840 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:24:28.4987 Trace Initializing ConsoleTarget(Name=console)
+2022-12-26 14:24:28.4987 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-12-26 14:24:28.4987 Trace Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:24:28.4987 Trace  Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:24:28.4987 Trace  Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:24:28.4987 Trace ConsoleTarget(Name=console) has 1 layouts
+2022-12-26 14:24:39.6950 Debug Targets configured when LogLevel >= Debug for Logger: logger.LoggerManager
+2022-12-26 14:24:39.6950 Debug Logger logger.LoggerManager [Debug] => console
+2022-12-26 14:24:39.6950 Debug Logger logger.LoggerManager [Info] => console
+2022-12-26 14:24:39.6950 Debug Logger logger.LoggerManager [Warn] => console
+2022-12-26 14:24:39.6950 Debug Logger logger.LoggerManager [Error] => console
+2022-12-26 14:24:39.6950 Debug Logger logger.LoggerManager [Fatal] => console
+2022-12-26 14:25:34.6875 Info AppDomain Shutting down. LogFactory closing...
+2022-12-26 14:25:34.6875 Debug Stopping file watching for path 'C:\Data\Projects\Github\efcorebeginner\Person\Person' filter 'nlog.config'
+2022-12-26 14:25:34.6875 Trace Flushing all 1 targets...
+2022-12-26 14:25:34.6875 Trace ForEachItemInParallel() 1 items
+2022-12-26 14:25:34.7000 Trace Continuation invoked: 
+2022-12-26 14:25:34.7000 Trace Parallel task completed. 0 items remaining
+2022-12-26 14:25:34.7000 Debug Flush completed
+2022-12-26 14:25:34.7000 Debug Targets not configured for Logger: logger.LoggerManager
+2022-12-26 14:25:34.7000 Debug Closing logging configuration...
+2022-12-26 14:25:34.7000 Trace Closing ConsoleTarget(Name=console)
+2022-12-26 14:25:34.7000 Debug ConsoleTarget(Name=console): Closing...
+2022-12-26 14:25:34.7000 Debug ConsoleTarget(Name=console): Closed.
+2022-12-26 14:25:34.7000 Trace Closing ${longdate}|${level:uppercase=true}|${logger}|${message}
+2022-12-26 14:25:34.7000 Trace Closing Layout Renderer: ${longdate}
+2022-12-26 14:25:34.7000 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:25:34.7000 Trace Closing Layout Renderer: ${level}
+2022-12-26 14:25:34.7000 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:25:34.7000 Trace Closing Layout Renderer: ${loggername}
+2022-12-26 14:25:34.7000 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:25:34.7000 Trace Closing Layout Renderer: ${message}
+2022-12-26 14:25:34.7000 Debug Finished closing logging configuration.
+2022-12-26 14:25:34.7000 Info LogFactory has been closed.
+2022-12-26 14:40:48.5171 Info Message Template Auto Format enabled
+2022-12-26 14:40:48.5686 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-12-26 14:40:48.7079 Debug Setting 'NLog.Targets.ConsoleTarget.name' to 'console'
+2022-12-26 14:40:48.7079 Debug Setting 'NLog.Targets.ConsoleTarget.layout' to '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:40:48.7191 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:40:48.7191 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:40:48.7191 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:40:48.7191 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:40:48.7191 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:40:48.7191 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:40:48.7191 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:40:48.7191 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:40:48.7191 Debug Adding target ConsoleTarget(Name=console)
+2022-12-26 14:40:48.7309 Info Registered target ConsoleTarget(Name=console)
+2022-12-26 14:40:48.7309 Trace ParseRulesElement
+2022-12-26 14:40:48.7309 Debug Watching file-filter 'nlog.config' in directory: C:\Data\Projects\Github\efcorebeginner\Person\Person
+2022-12-26 14:40:48.7463 Debug --- NLog configuration dump ---
+2022-12-26 14:40:48.7463 Debug Targets:
+2022-12-26 14:40:48.7463 Debug ConsoleTarget(Name=console)
+2022-12-26 14:40:48.7463 Debug Rules:
+2022-12-26 14:40:48.7463 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ console ]
+2022-12-26 14:40:48.7463 Debug --- End of NLog configuration dump ---
+2022-12-26 14:40:48.7463 Trace FindReachableObject<System.Object>:
+2022-12-26 14:40:48.7463 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ console ]'
+2022-12-26 14:40:48.7624 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-12-26 14:40:48.7624 Trace  Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:40:48.7624 Trace   Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:40:48.7624 Trace   Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:40:48.7624 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:40:48.7624 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:40:48.7624 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:40:48.7624 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:40:48.7624 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:40:48.7624 Trace    Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:40:48.7624 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:40:48.7624 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:40:48.7761 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-12-26 14:40:48.7761 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-12-26 14:40:48.7761 Info Validating config: TargetNames=console, ConfigItems=10, FilePath=C:\Data\Projects\Github\efcorebeginner\Person\Person\nlog.config
+2022-12-26 14:40:48.7761 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-12-26 14:40:48.7935 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-12-26 14:40:48.7935 Trace Initializing Layout Renderer: ${message}
+2022-12-26 14:40:48.7935 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:40:48.7935 Trace Initializing Layout Renderer: ${loggername}
+2022-12-26 14:40:48.7935 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:40:48.7935 Trace Initializing Layout Renderer: ${level}
+2022-12-26 14:40:48.7935 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:40:48.7935 Trace Initializing Layout Renderer: ${longdate}
+2022-12-26 14:40:48.7935 Trace Initializing ${longdate}|${level:uppercase=true}|${logger}|${message}
+2022-12-26 14:40:48.7935 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:40:48.7935 Trace Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:40:48.7935 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:40:48.7935 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:40:48.7935 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:40:48.7935 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:40:48.8091 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:40:48.8091 Trace  Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:40:48.8091 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:40:48.8091 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:40:48.8091 Trace Initializing ConsoleTarget(Name=console)
+2022-12-26 14:40:48.8091 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-12-26 14:40:48.8091 Trace Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:40:48.8091 Trace  Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:40:48.8091 Trace  Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:40:48.8091 Trace ConsoleTarget(Name=console) has 1 layouts
+2022-12-26 14:41:16.0288 Debug Targets configured when LogLevel >= Debug for Logger: logger.LoggerManager
+2022-12-26 14:41:16.0288 Debug Logger logger.LoggerManager [Debug] => console
+2022-12-26 14:41:16.0288 Debug Logger logger.LoggerManager [Info] => console
+2022-12-26 14:41:16.0288 Debug Logger logger.LoggerManager [Warn] => console
+2022-12-26 14:41:16.0288 Debug Logger logger.LoggerManager [Error] => console
+2022-12-26 14:41:16.0288 Debug Logger logger.LoggerManager [Fatal] => console
+2022-12-26 14:56:04.4431 Info Message Template Auto Format enabled
+2022-12-26 14:56:04.4920 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-12-26 14:56:04.5905 Debug Setting 'NLog.Targets.ConsoleTarget.name' to 'console'
+2022-12-26 14:56:04.5905 Debug Setting 'NLog.Targets.ConsoleTarget.layout' to '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:56:04.5905 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:56:04.6051 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:56:04.6051 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:56:04.6051 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:56:04.6051 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:56:04.6051 Trace Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:56:04.6051 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:56:04.6051 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:56:04.6051 Debug Adding target ConsoleTarget(Name=console)
+2022-12-26 14:56:04.6051 Info Registered target ConsoleTarget(Name=console)
+2022-12-26 14:56:04.6051 Trace ParseRulesElement
+2022-12-26 14:56:04.6278 Debug Watching file-filter 'nlog.config' in directory: C:\Data\Projects\Github\efcorebeginner\Person\Person
+2022-12-26 14:56:04.6278 Debug --- NLog configuration dump ---
+2022-12-26 14:56:04.6278 Debug Targets:
+2022-12-26 14:56:04.6278 Debug ConsoleTarget(Name=console)
+2022-12-26 14:56:04.6278 Debug Rules:
+2022-12-26 14:56:04.6278 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ console ]
+2022-12-26 14:56:04.6364 Debug --- End of NLog configuration dump ---
+2022-12-26 14:56:04.6364 Trace FindReachableObject<System.Object>:
+2022-12-26 14:56:04.6364 Trace Scanning LoggingRule 'logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ console ]'
+2022-12-26 14:56:04.6364 Trace  Scanning Property Targets 'System.Collections.Generic.List`1[NLog.Targets.Target]' System.Collections.Generic
+2022-12-26 14:56:04.6364 Trace  Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:56:04.6364 Trace   Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:56:04.6364 Trace   Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:56:04.6364 Trace    Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:56:04.6364 Trace    Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:56:04.6364 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:56:04.6364 Trace    Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:56:04.6364 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:56:04.6364 Trace    Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:56:04.6364 Trace    Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:56:04.6517 Trace    Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:56:04.6517 Trace  Scanning Property ChildRules 'System.Collections.Generic.List`1[NLog.Config.LoggingRule]' System.Collections.Generic
+2022-12-26 14:56:04.6517 Trace  Scanning Property Filters 'System.Collections.Generic.List`1[NLog.Filters.Filter]' System.Collections.Generic
+2022-12-26 14:56:04.6517 Info Validating config: TargetNames=console, ConfigItems=10, FilePath=C:\Data\Projects\Github\efcorebeginner\Person\Person\nlog.config
+2022-12-26 14:56:04.6517 Debug Unused target checking is started... Rule Count: 1, Target Count: 1
+2022-12-26 14:56:04.6517 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 1, Unused Target Count: 0
+2022-12-26 14:56:04.6517 Trace Initializing Layout Renderer: ${message}
+2022-12-26 14:56:04.6671 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:56:04.6671 Trace Initializing Layout Renderer: ${loggername}
+2022-12-26 14:56:04.6671 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:56:04.6671 Trace Initializing Layout Renderer: ${level}
+2022-12-26 14:56:04.6671 Trace Initializing Layout Renderer: ${literal}
+2022-12-26 14:56:04.6671 Trace Initializing Layout Renderer: ${longdate}
+2022-12-26 14:56:04.6671 Trace Initializing ${longdate}|${level:uppercase=true}|${logger}|${message}
+2022-12-26 14:56:04.6671 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-12-26 14:56:04.6671 Trace Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:56:04.6671 Trace  Scanning Property LayoutRenderers 'NLog.LayoutRenderers.LayoutRenderer[]' System.Collections.Generic
+2022-12-26 14:56:04.6671 Trace  Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-12-26 14:56:04.6671 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:56:04.6671 Trace  Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-12-26 14:56:04.6671 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:56:04.6671 Trace  Scanning LoggerNameLayoutRenderer 'Layout Renderer: ${loggername}'
+2022-12-26 14:56:04.6671 Trace  Scanning LiteralLayoutRenderer 'Layout Renderer: ${literal}'
+2022-12-26 14:56:04.6671 Trace  Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-12-26 14:56:04.6671 Trace Initializing ConsoleTarget(Name=console)
+2022-12-26 14:56:04.6839 Trace FindReachableObject<NLog.Layouts.Layout>:
+2022-12-26 14:56:04.6839 Trace Scanning ConsoleTarget 'ConsoleTarget(Name=console)'
+2022-12-26 14:56:04.6839 Trace  Scanning Property Layout '${longdate}|${level:uppercase=true}|${logger}|${message}' NLog.Layouts
+2022-12-26 14:56:04.6839 Trace  Scanning SimpleLayout '${longdate}|${level:uppercase=true}|${logger}|${message}'
+2022-12-26 14:56:04.6839 Trace ConsoleTarget(Name=console) has 1 layouts
+2022-12-26 14:56:16.3930 Debug Targets configured when LogLevel >= Debug for Logger: logger.LoggerManager
+2022-12-26 14:56:16.3930 Debug Logger logger.LoggerManager [Debug] => console
+2022-12-26 14:56:16.3930 Debug Logger logger.LoggerManager [Info] => console
+2022-12-26 14:56:16.3930 Debug Logger logger.LoggerManager [Warn] => console
+2022-12-26 14:56:16.3930 Debug Logger logger.LoggerManager [Error] => console
+2022-12-26 14:56:16.3930 Debug Logger logger.LoggerManager [Fatal] => console
+2022-12-26 14:56:21.8797 Info AppDomain Shutting down. LogFactory closing...
+2022-12-26 14:56:21.8797 Debug Stopping file watching for path 'C:\Data\Projects\Github\efcorebeginner\Person\Person' filter 'nlog.config'
+2022-12-26 14:56:21.8856 Trace Flushing all 1 targets...
+2022-12-26 14:56:21.8856 Trace ForEachItemInParallel() 1 items
+2022-12-26 14:56:21.8856 Trace Continuation invoked: 
+2022-12-26 14:56:21.8856 Trace Parallel task completed. 0 items remaining
+2022-12-26 14:56:21.8856 Debug Flush completed
+2022-12-26 14:56:21.8856 Debug Targets not configured for Logger: logger.LoggerManager
+2022-12-26 14:56:21.8856 Debug Closing logging configuration...
+2022-12-26 14:56:21.8856 Trace Closing ConsoleTarget(Name=console)
+2022-12-26 14:56:21.8856 Debug ConsoleTarget(Name=console): Closing...
+2022-12-26 14:56:21.8856 Debug ConsoleTarget(Name=console): Closed.
+2022-12-26 14:56:21.8856 Trace Closing ${longdate}|${level:uppercase=true}|${logger}|${message}
+2022-12-26 14:56:21.8856 Trace Closing Layout Renderer: ${longdate}
+2022-12-26 14:56:21.8856 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:56:21.8856 Trace Closing Layout Renderer: ${level}
+2022-12-26 14:56:21.8856 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:56:21.8856 Trace Closing Layout Renderer: ${loggername}
+2022-12-26 14:56:21.8856 Trace Closing Layout Renderer: ${literal}
+2022-12-26 14:56:21.8856 Trace Closing Layout Renderer: ${message}
+2022-12-26 14:56:21.8856 Debug Finished closing logging configuration.
+2022-12-26 14:56:21.9011 Info LogFactory has been closed.
