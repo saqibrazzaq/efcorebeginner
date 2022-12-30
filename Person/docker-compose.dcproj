@@ -6,7 +6,12 @@
     <ProjectGuid>317170df-97eb-4795-938c-20bf97985960</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="api.env" />
+    <None Include="db.env" />
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="install-docker\Readme.md" />
+    <None Include="install-docker\nginx-proxy-ssl.yml" />
+    <None Include="install-docker\docker-compose.yml" />
   </ItemGroup>
 </Project>
