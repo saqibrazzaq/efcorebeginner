@@ -1,0 +1,63 @@
+version: '3.4'
+
+services:
+  api:
+    image: saqibrazzaq/person_api
+    container_name: person_api
+    depends_on:
+      - db
+    environment:
+      VIRTUAL_HOST: person1api.efcorebeginner.com
+      LETSENCRYPT_HOST: person1api.efcorebeginner.com
+      LETSENCRYPT_EMAIL: "saqibrazzaq@gmail.com"
+      #- SQLSERVER= provide sqlserver connection string here OR load from api.env
+    expose:
+      - 80
+    networks:
+      - nginx-proxy
+      - person_db
+    restart: always
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: person_db
+    volumes:
+      - db_data:/var/opt/mssql/data
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+      #MSSQL_SA_PASSWORD: provide password here OR load from db.env
+    ports:
+      - "1433"
+    networks:
+      - person_db
+    restart: always
+
+  web:
+    image: saqibrazzaq/person_web
+    container_name: person_web
+    environment:
+      VIRTUAL_HOST: person1web.efcorebeginner.com
+      LETSENCRYPT_HOST: person1web.efcorebeginner.com
+      LETSENCRYPT_EMAIL: "saqibrazzaq@gmail.com"
+      REACT_APP_API_BASE_URL: "https://person1web.efcorebeginner.com/api"
+      CHOKIDAR_USEPOLLING: "true"
+    expose:
+      - 80
+    depends_on:
+      - api
+    networks:
+      - nginx-proxy
+    volumes:
+      - /app/node_modules
+      - ./person_web:/app
+    restart: always
+
+volumes:
+  db_data:
+
+networks:
+  nginx-proxy:
+    external: true
+  person_db:
+    internal: true

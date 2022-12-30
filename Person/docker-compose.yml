@@ -38,5 +38,22 @@ services:
       - "1441:1433"
     restart: always
 
+  web:
+    image: saqibrazzaq/person_web
+    container_name: person_web
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    build:
+      context: ./react-client
+      target: production
+    ports:
+      - "8003:80"
+      - "8004:443"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
+    restart: always
+
 volumes:
   db_data:
