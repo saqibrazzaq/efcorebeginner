@@ -12,6 +12,6 @@
     <None Include=".dockerignore" />
     <None Include="install-docker\Readme.md" />
     <None Include="install-docker\nginx-proxy-ssl.yml" />
-    <None Include="install-docker\docker-compose.yml" />
+    <None Include="install-docker\person-app.yml" />
   </ItemGroup>
 </Project>
