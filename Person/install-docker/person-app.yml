@@ -7,8 +7,8 @@ services:
     depends_on:
       - db
     environment:
-      VIRTUAL_HOST: personapi.efcorebeginner.com
-      LETSENCRYPT_HOST: personapi.efcorebeginner.com
+      VIRTUAL_HOST: person-api.efcorebeginner.com
+      LETSENCRYPT_HOST: person-api.efcorebeginner.com
       LETSENCRYPT_EMAIL: "saqibrazzaq@gmail.com"
       #- SQLSERVER= provide sqlserver connection string here OR load from api.env
     expose:
@@ -37,8 +37,8 @@ services:
     image: saqibrazzaq/person_web
     container_name: person_web
     environment:
-      VIRTUAL_HOST: personweb.efcorebeginner.com
-      LETSENCRYPT_HOST: personweb.efcorebeginner.com
+      VIRTUAL_HOST: person-web.efcorebeginner.com
+      LETSENCRYPT_HOST: person-web.efcorebeginner.com
       LETSENCRYPT_EMAIL: "saqibrazzaq@gmail.com"
       CHOKIDAR_USEPOLLING: "true"
     expose:
