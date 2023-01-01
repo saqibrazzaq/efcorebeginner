@@ -22,8 +22,8 @@ services:
       - nginx-proxy
 
   letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: nginx-proxy-le
+    image: nginxproxy/acme-companion
+    container_name: acme-companion
     depends_on:
       - nginx-proxy
     volumes:
