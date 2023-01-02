@@ -48,7 +48,8 @@ namespace Person.Extensions
                     .WithOrigins(
                         "http://localhost:3000",
                         "http://localhost:8003",
-                        "https://person-web.efcorebeginner.com")
+                        "https://person-web.efcorebeginner.com",
+                        "https://personweb.efcorebeginner.com")
                     .AllowCredentials()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
