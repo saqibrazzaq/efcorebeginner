@@ -37,5 +37,9 @@ app.UseCors("CorsPolicy");
 
 app.ConfigureExceptionHandler();
 
+
+Console.WriteLine("SQL Server connection string");
+Console.WriteLine(SecretUtility.SqlServer);
+
 app.Run();
 
