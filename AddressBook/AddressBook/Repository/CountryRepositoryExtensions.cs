@@ -17,7 +17,9 @@ namespace AddressBook.Repository
             {
                 itemsToReturn = itemsToReturn.Where(
                     x => x.Name.Contains(searchParams.SearchText) ||
-                    x.Name.Contains(searchParams.SearchText)
+                    x.iso2.Contains(searchParams.SearchText) ||
+                    x.Iso3.Contains(searchParams.SearchText) ||
+                    x.PhoneCode.Contains(searchParams.SearchText)
                 );
             }
 
