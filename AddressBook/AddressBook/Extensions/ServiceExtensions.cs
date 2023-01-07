@@ -1,6 +1,7 @@
 ﻿using AddressBook.Common;
 using AddressBook.Data;
 using AddressBook.Repository;
+using AddressBook.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -32,7 +33,11 @@ namespace AddressBook.Extensions
 
         public static void ConfigureServices(this IServiceCollection services)
         {
-            
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<IStateService, StateService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<ITranslationService, TranslationService>();
+            services.AddScoped<ITimezoneService, TimezoneService>();
         }
 
         public static void ConfigureCors(this IServiceCollection services)
