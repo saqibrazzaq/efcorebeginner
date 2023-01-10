@@ -1,43 +1,43 @@
 import { api } from "./axiosconfig"
 
-export const CountryApi = {
+export const TimezoneApi = {
   search: async function (searchParams) {
     const response = await api.request({
-      url: "/countries/search",
+      url: "/timezones/search",
       method: "GET",
       params: searchParams,
     })
 
     return response.data
   },
-  get: async function (countryId) {
-    if (!countryId) return {};
+  get: async function (timezoneId) {
+    if (!timezoneId) return {};
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/timezones/` + timezoneId,
       method: "GET",
     })
 
     return response.data
   },
-  create: async function (country) {
+  create: async function (timezone) {
     const response = await api.request({
-      url: `/countries`,
+      url: `/timezones`,
       method: "POST",
-      data: country,
+      data: timezone,
     })
 
     return response.data
   },
-  update: async function (countryId, person) {
+  update: async function (timezoneId, person) {
     await api.request({
-      url: `/countries/` + countryId,
+      url: `/timezones/` + timezoneId,
       method: "PUT",
       data: person,
     })
   },
-  delete: async function (countryId) {
+  delete: async function (timezoneId) {
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/timezones/` + timezoneId,
       method: "DELETE",
     })
 
