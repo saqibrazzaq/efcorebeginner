@@ -25,7 +25,7 @@ export class StateReqEdit {
   countryId?: number = 0;
 }
 
-export class CountryReqSearch extends PagedReq {
+export class StateReqSearch extends PagedReq {
   countryId?: number;
   constructor(
     {
