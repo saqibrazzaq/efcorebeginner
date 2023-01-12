@@ -118,7 +118,7 @@ const CountryDelete = () => {
       </TableContainer>
       <HStack pt={4} spacing={4}>
         <Button onClick={onOpen} type="button" colorScheme={"red"}>
-          YES, I WANT TO DELETE THIS COUNtRY
+          YES, I WANT TO DELETE THIS COUNTRY
         </Button>
       </HStack>
     </div>
