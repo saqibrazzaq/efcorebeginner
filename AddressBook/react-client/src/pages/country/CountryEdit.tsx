@@ -141,9 +141,9 @@ const CountryEdit = () => {
       </Box>
       <Spacer />
       <Box>
-        <Link ml={2} as={RouteLink} to={"/persons"}>
-          <Button colorScheme={"gray"}>Back</Button>
-        </Link>
+      <Button type="button" colorScheme={"gray"} onClick={() => navigate(-1)}>
+          Back
+        </Button>
       </Box>
     </Flex>
   );
