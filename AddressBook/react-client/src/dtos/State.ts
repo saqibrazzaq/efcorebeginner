@@ -26,15 +26,15 @@ export class StateReqEdit {
 }
 
 export class StateReqSearch extends PagedReq {
-  countryId?: number;
+  countryId?: string;
   constructor(
     {
       pageNumber = 1,
       pageSize = Common.DEFAULT_PAGE_SIZE,
-      orderBy,
+      orderBy = "",
       searchText = "",
     }: PagedReq,
-    {countryId = undefined}
+    {countryId = ""}
   ) {
     super({
       pageNumber: pageNumber,

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { CountryApi } from '../../api/countryApi';
 import { CountryReqSearch, CountryRes } from '../../dtos/Country';
 import PagedRes from '../../dtos/PagedRes';
-import { Link as RouteLink, useParams } from "react-router-dom";
+import { Link as RouteLink, useParams, useSearchParams } from "react-router-dom";
 
 const Countries = () => {
   const [pagedRes, setPagedRes] = useState<PagedRes<CountryRes>>();

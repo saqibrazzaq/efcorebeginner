@@ -9,7 +9,7 @@ export class PagedReq {
   constructor({
     pageNumber = 1,
     pageSize = Common.DEFAULT_PAGE_SIZE,
-    orderBy,
+    orderBy = "",
     searchText = "",
   }: PagedReq) {
     this.pageNumber = pageNumber;

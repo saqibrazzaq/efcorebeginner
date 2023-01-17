@@ -43,6 +43,8 @@ namespace AddressBook.Services
         public void Delete(int stateId)
         {
             var entity = FindStateIfExists(stateId, true);
+            _repositoryManager.StateRepository.Delete(entity);
+            _repositoryManager.Save();
         }
 
         private State FindStateIfExists(int stateId, bool trackChanges)
