@@ -1,26 +1,53 @@
-import { Box, Button, Center, Container, Flex, Heading, Input, Link, Spacer, Stack, Table, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr } from '@chakra-ui/react';
-import React, { useState, useEffect } from 'react'
-import { createSearchParams, Link as RouteLink, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { URLSearchParams } from 'url';
-import { CountryApi } from '../../api/countryApi';
-import { StateApi } from '../../api/stateApi';
-import CountryDropdown from '../../dropdowns/CountryDropdown';
-import { CountryRes } from '../../dtos/Country';
-import PagedRes from '../../dtos/PagedRes';
-import { StateReqSearch, StateRes } from '../../dtos/State';
-import Common from '../../utility/Common';
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Flex,
+  Heading,
+  Input,
+  Link,
+  Spacer,
+  Stack,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import {
+  createSearchParams,
+  Link as RouteLink,
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import { URLSearchParams } from "url";
+import { CountryApi } from "../../api/countryApi";
+import { StateApi } from "../../api/stateApi";
+import CountryDropdown from "../../dropdowns/CountryDropdown";
+import { CountryRes } from "../../dtos/Country";
+import PagedRes from "../../dtos/PagedRes";
+import { StateReqSearch, StateRes } from "../../dtos/State";
+import Common from "../../utility/Common";
 
 const States = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams(location.search);
   searchParams.set("pageSize", Common.DEFAULT_PAGE_SIZE.toString());
-  
+
   const [pagedRes, setPagedRes] = useState<PagedRes<StateRes>>();
-  const [searchText, setSearchText] = useState(searchParams.get("searchText") || "");
+  const [searchText, setSearchText] = useState(
+    searchParams.get("searchText") || ""
+  );
   const [selectedCountry, setSelectedCountry] = useState<CountryRes>({});
-  
-  
-  
+
   useEffect(() => {
     loadCountry();
     searchStates();
@@ -28,24 +55,26 @@ const States = () => {
 
   const loadCountry = () => {
     let countryId = searchParams.get("countryId");
-    CountryApi.get(countryId).then(res => setSelectedCountry(res))
-  }
+    CountryApi.get(countryId).then((res) => setSelectedCountry(res));
+  };
 
   const searchStates = () => {
     if (!searchParams) return;
-    console.log(Object.fromEntries(searchParams))
-    StateApi.search(Object.fromEntries(searchParams)).then(res => {
-      setPagedRes(res);
-      console.log(res)
-    }).catch(error => {
-      console.log(error)
-    })
-  }
+    console.log(Object.fromEntries(searchParams));
+    StateApi.search(Object.fromEntries(searchParams))
+      .then((res) => {
+        setPagedRes(res);
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const updateSearchParams = (key: string, value: string) => {
     searchParams.set(key, value);
-    setSearchParams(searchParams)
-  }
+    setSearchParams(searchParams);
+  };
 
   const previousPage = () => {
     if (pagedRes?.metaData) {
@@ -57,7 +86,7 @@ const States = () => {
   const nextPage = () => {
     if (pagedRes?.metaData) {
       let nextPageNumber = (pagedRes?.metaData?.currentPage || 0) + 1;
-      updateSearchParams("pageNumber", nextPageNumber.toString())
+      updateSearchParams("pageNumber", nextPageNumber.toString());
     }
   };
 
@@ -73,20 +102,21 @@ const States = () => {
         </Link>
       </Box>
     </Flex>
-  )
+  );
 
   const displaySearchBar = () => (
     <Flex>
       <Center>
-      <Text>Select country:</Text>
+        <Text>Select country:</Text>
       </Center>
       <Box flex={1} ml={4}>
-      <CountryDropdown
+        <CountryDropdown
           selectedCountry={selectedCountry}
           handleChange={(newValue?: CountryRes) => {
-            //navigate("/states/" + newValue?.countryId);
-            updateSearchParams("countryId", newValue ? newValue?.countryId + "" : "")
-            // console.log("/states/" + newValue?.countryId);
+            updateSearchParams(
+              "countryId",
+              newValue ? newValue?.countryId + "" : ""
+            );
           }}
         />
       </Box>
@@ -98,7 +128,7 @@ const States = () => {
           onChange={(e) => setSearchText(e.currentTarget.value || "")}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              updateSearchParams("searchText", searchText)
+              updateSearchParams("searchText", searchText);
             }
           }}
         />
@@ -107,7 +137,7 @@ const States = () => {
         <Button
           colorScheme={"blue"}
           onClick={() => {
-            updateSearchParams("searchText", searchText)
+            updateSearchParams("searchText", searchText);
           }}
         >
           Search
@@ -134,11 +164,7 @@ const States = () => {
               <Td>{item.name}</Td>
               <Td>{item.code}</Td>
               <Td>
-                <Link
-                  mr={2}
-                  as={RouteLink}
-                  to={"/states/edit/" + item.stateId}
-                >
+                <Link mr={2} as={RouteLink} to={"/states/edit/" + item.stateId}>
                   Edit
                 </Link>
                 <Link as={RouteLink} to={"/states/delete/" + item.stateId}>
@@ -174,17 +200,17 @@ const States = () => {
         </Tfoot>
       </Table>
     </TableContainer>
-  )
+  );
 
   return (
     <Box width={"3xl"} p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"}>
-      {showHeading()}
+        {showHeading()}
         {displaySearchBar()}
         {showStates()}
       </Stack>
     </Box>
   );
-}
+};
 
-export default States
+export default States;
