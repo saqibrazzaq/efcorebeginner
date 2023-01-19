@@ -97,7 +97,7 @@ const States = () => {
       </Box>
       <Spacer />
       <Box>
-        <Link ml={2} as={RouteLink} to={"/states/edit"}>
+        <Link ml={2} as={RouteLink} to={"/states/edit/" + (searchParams.get("countryId") ?? "")}>
           <Button colorScheme={"blue"}>Add State</Button>
         </Link>
       </Box>
@@ -164,7 +164,7 @@ const States = () => {
               <Td>{item.name}</Td>
               <Td>{item.code}</Td>
               <Td>
-                <Link mr={2} as={RouteLink} to={"/states/edit/" + item.stateId}>
+                <Link mr={2} as={RouteLink} to={"/states/edit/" + item.countryId + "/" + item.stateId}>
                   Edit
                 </Link>
                 <Link as={RouteLink} to={"/states/delete/" + item.stateId}>

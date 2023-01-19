@@ -23,6 +23,9 @@ export class StateReqEdit {
   longitude?: number = 0;
 
   countryId?: number = 0;
+  constructor(countryId?: number) {
+    this.countryId = countryId;
+  }
 }
 
 export class StateReqSearch extends PagedReq {
