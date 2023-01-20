@@ -62,7 +62,7 @@ const StateEdit = () => {
       StateApi.get(stateId)
         .then((res) => {
           setState(res);
-          console.log(res);
+          // console.log(res);
         })
         .catch((error) => {
           setError(error.response.data.error);
@@ -86,7 +86,7 @@ const StateEdit = () => {
   });
 
   const submitForm = (values: StateReqEdit) => {
-    console.log(values);
+    // console.log(values);
     if (stateId) {
       updateState(values);
     } else {

@@ -50,7 +50,7 @@ const StateDelete = () => {
       StateApi.get(stateId)
         .then((res) => {
           setState(res);
-          console.log(res);
+          // console.log(res);
         })
         .catch((error) => {
           setError(error.response.data.error);

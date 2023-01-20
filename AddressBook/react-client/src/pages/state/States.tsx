@@ -60,11 +60,11 @@ const States = () => {
 
   const searchStates = () => {
     if (!searchParams) return;
-    console.log(Object.fromEntries(searchParams));
+    // console.log(Object.fromEntries(searchParams));
     StateApi.search(Object.fromEntries(searchParams))
       .then((res) => {
         setPagedRes(res);
-        console.log(res);
+        // console.log(res);
       })
       .catch((error) => {
         console.log(error);
@@ -113,10 +113,8 @@ const States = () => {
         <CountryDropdown
           selectedCountry={selectedCountry}
           handleChange={(newValue?: CountryRes) => {
-            updateSearchParams(
-              "countryId",
-              newValue ? newValue?.countryId + "" : ""
-            );
+            updateSearchParams("countryId", newValue ? newValue?.countryId + "" : "");
+            updateSearchParams("pageNumber", "1");
           }}
         />
       </Box>

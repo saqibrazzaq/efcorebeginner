@@ -18,7 +18,7 @@ const Countries = () => {
   const searchCountries = () => {
     CountryApi.search(searchReq).then((res) => {
       setPagedRes(res);
-      console.log(res)
+      // console.log(res)
     });
   };
 

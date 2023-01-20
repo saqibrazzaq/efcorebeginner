@@ -51,7 +51,7 @@ const CountryDelete = () => {
       CountryApi.get(countryId)
         .then((res) => {
           setCountry(res);
-          console.log(res);
+          // console.log(res);
         })
         .catch((error) => {
           setError(error.response.data.error);
