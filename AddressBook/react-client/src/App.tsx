@@ -1,5 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
+import Cities from "./pages/city/Cities";
+import CityDelete from "./pages/city/CityDelete";
+import CityEdit from "./pages/city/CityEdit";
 import Countries from "./pages/country/Countries";
 import CountryDelete from "./pages/country/CountryDelete";
 import CountryEdit from "./pages/country/CountryEdit";
@@ -28,6 +31,14 @@ function App() {
             <Route path="edit/:countryId" element={<StateEdit />} />
             <Route path="edit/:countryId/:stateId" element={<StateEdit />} />
             <Route path="delete/:stateId" element={<StateDelete />} />
+          </Route>
+          {/* Cities */}
+          <Route path="cities">
+            <Route index element={<Cities />} />
+            <Route path="edit" element={<CityEdit />} />
+            <Route path="edit/:stateId" element={<CityEdit />} />
+            <Route path="edit/:stateId/:cityId" element={<CityEdit />} />
+            <Route path="delete" element={<CityDelete />} />
           </Route>
         </Route>
       </Routes>
