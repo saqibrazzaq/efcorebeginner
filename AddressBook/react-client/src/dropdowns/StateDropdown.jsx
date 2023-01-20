@@ -13,6 +13,7 @@ const StateDropdown = ({handleChange, selectedState}) => {
     StateApi.search(new StateReqSearch({ searchText: inputValue }, {}))
       .then((res) => {
         setItems(res.pagedList);
+        // console.log(res.pagedList)
       })
       .finally(() => setIsLoading(false));
   };
@@ -31,7 +32,7 @@ const StateDropdown = ({handleChange, selectedState}) => {
 
   return (
     <Select
-        getOptionLabel={(c) => c.name}
+        getOptionLabel={(c) => c?.name ? (c?.name + ", " + c?.country?.name) : ""}
         getOptionValue={(c) => c.stateId}
         options={items}
         onChange={handleChange}

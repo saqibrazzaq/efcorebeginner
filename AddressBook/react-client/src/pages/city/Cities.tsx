@@ -21,21 +21,14 @@ import {
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import {
-  createSearchParams,
   Link as RouteLink,
   useLocation,
-  useNavigate,
-  useParams,
   useSearchParams,
 } from "react-router-dom";
-import { URLSearchParams } from "url";
 import { CityApi } from "../../api/cityApi";
-import { CountryApi } from "../../api/countryApi";
 import { StateApi } from "../../api/stateApi";
-import CountryDropdown from "../../dropdowns/CountryDropdown";
 import StateDropdown from "../../dropdowns/StateDropdown";
 import { CityRes } from "../../dtos/City";
-import { CountryRes } from "../../dtos/Country";
 import PagedRes from "../../dtos/PagedRes";
 import { StateRes } from "../../dtos/State";
 import Common from "../../utility/Common";

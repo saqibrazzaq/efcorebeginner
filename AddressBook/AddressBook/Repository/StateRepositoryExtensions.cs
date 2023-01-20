@@ -1,6 +1,7 @@
 ﻿using AddressBook.Common.Paging;
 using AddressBook.Dtos;
 using AddressBook.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 
 namespace AddressBook.Repository
@@ -11,6 +12,7 @@ namespace AddressBook.Repository
             StateReqSearch searchParams)
         {
             var itemsToReturn = items
+                .Include(x => x.Country)
                 .AsQueryable();
 
             if (string.IsNullOrWhiteSpace(searchParams.SearchText) == false)
