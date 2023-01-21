@@ -29,6 +29,7 @@ import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { StateApi } from "../../api/stateApi";
 import { StateRes } from "../../dtos/State";
 import { AlertBox } from "../../utility/Alerts";
+
 const StateDelete = () => {
   let params = useParams();
   const stateId = params.stateId;

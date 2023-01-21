@@ -38,7 +38,7 @@ function App() {
             <Route path="edit" element={<CityEdit />} />
             <Route path="edit/:stateId" element={<CityEdit />} />
             <Route path="edit/:stateId/:cityId" element={<CityEdit />} />
-            <Route path="delete" element={<CityDelete />} />
+            <Route path="delete/:cityId" element={<CityDelete />} />
           </Route>
         </Route>
       </Routes>

@@ -3,6 +3,7 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressBook.Services
 {
@@ -51,7 +52,8 @@ namespace AddressBook.Services
         {
             var entity = _repositoryManager.CityRepository.FindByCondition(
                 x => x.CityId == cityId,
-                trackChanges)
+                trackChanges,
+                include: i => i.Include(x => x.State.Country))
                 .FirstOrDefault();
             if (entity == null) { throw new Exception("No city found with id " + cityId); }
 
