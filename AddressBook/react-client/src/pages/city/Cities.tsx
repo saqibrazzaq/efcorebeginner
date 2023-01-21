@@ -151,8 +151,8 @@ const Cities = () => {
         </Thead>
         <Tbody>
           {pagedRes?.pagedList?.map((item) => (
-            <Tr key={item.stateId}>
-              <Td>{item.stateId}</Td>
+            <Tr key={item.cityId}>
+              <Td>{item.cityId}</Td>
               <Td>{item.name}</Td>
               <Td>
                 <Link mr={2} as={RouteLink} to={"/cities/edit/" + item.stateId + "/" + item.cityId}>
