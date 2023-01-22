@@ -16,6 +16,9 @@ export class TranslationReqEdit {
   name?: string = "";
 
   countryId?: number = 0;
+  constructor(countryId?: number) {
+    this.countryId = countryId;
+  }
 }
 
 export class TranslationReqSearch extends PagedReq {

@@ -27,6 +27,8 @@ import {
 } from "react-router-dom";
 import { CityApi } from "../../api/cityApi";
 import { StateApi } from "../../api/stateApi";
+import DeleteIcon from "../../components/icons/DeleteIcon";
+import UpdateIcon from "../../components/icons/UpdateIcon";
 import StateDropdown from "../../dropdowns/StateDropdown";
 import { CityRes } from "../../dtos/City";
 import PagedRes from "../../dtos/PagedRes";
@@ -156,10 +158,10 @@ const Cities = () => {
               <Td>{item.name}</Td>
               <Td>
                 <Link mr={2} as={RouteLink} to={"/cities/edit/" + item.stateId + "/" + item.cityId}>
-                  Edit
+                  <UpdateIcon />
                 </Link>
                 <Link as={RouteLink} to={"/cities/delete/" + item.cityId}>
-                  Delete
+                  <DeleteIcon />
                 </Link>
               </Td>
             </Tr>

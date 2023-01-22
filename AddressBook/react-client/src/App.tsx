@@ -10,6 +10,12 @@ import Home from "./pages/home/Home";
 import StateDelete from "./pages/state/StateDelete";
 import StateEdit from "./pages/state/StateEdit";
 import States from "./pages/state/States";
+import TimezoneDelete from "./pages/timezone/TimezoneDelete";
+import TimezoneEdit from "./pages/timezone/TimezoneEdit";
+import Timezones from "./pages/timezone/Timezones";
+import TranslationDelete from "./pages/translation/TranslationDelete";
+import TranslationEdit from "./pages/translation/TranslationEdit";
+import Translations from "./pages/translation/Translations";
 
 function App() {
   return (
@@ -39,6 +45,22 @@ function App() {
             <Route path="edit/:stateId" element={<CityEdit />} />
             <Route path="edit/:stateId/:cityId" element={<CityEdit />} />
             <Route path="delete/:cityId" element={<CityDelete />} />
+          </Route>
+          {/* Timezones */}
+          <Route path="timezones">
+            <Route index element={<Timezones />} />
+            <Route path="edit" element={<TimezoneEdit />} />
+            <Route path="edit/:countryId" element={<TimezoneEdit />} />
+            <Route path="edit/:countryId/:timezoneId" element={<TimezoneEdit />} />
+            <Route path="delete/:timezoneId" element={<TimezoneDelete />} />
+          </Route>
+          {/* Translations */}
+          <Route path="translations">
+            <Route index element={<Translations />} />
+            <Route path="edit" element={<TranslationEdit />} />
+            <Route path="edit/:countryId" element={<TranslationEdit />} />
+            <Route path="edit/:countryId/:translationId" element={<TranslationEdit />} />
+            <Route path="delete/:translationId" element={<TranslationDelete />} />
           </Route>
         </Route>
       </Routes>

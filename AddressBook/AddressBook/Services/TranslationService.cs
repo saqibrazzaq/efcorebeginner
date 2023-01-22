@@ -43,6 +43,8 @@ namespace AddressBook.Services
         public void Delete(int translationId)
         {
             var entity = FindTranslationIfExists(translationId, true);
+            _repositoryManager.TranslationRepository.Delete(entity);
+            _repositoryManager.Save();
         }
 
         private Translation FindTranslationIfExists(int translationId, bool trackChanges)

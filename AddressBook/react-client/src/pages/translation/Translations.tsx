@@ -31,20 +31,24 @@ import {
 import { URLSearchParams } from "url";
 import { CountryApi } from "../../api/countryApi";
 import { StateApi } from "../../api/stateApi";
+import { TimezoneApi } from "../../api/TimezoneApi";
+import { TranslationApi } from "../../api/translationApi";
 import DeleteIcon from "../../components/icons/DeleteIcon";
 import UpdateIcon from "../../components/icons/UpdateIcon";
 import CountryDropdown from "../../dropdowns/CountryDropdown";
 import { CountryRes } from "../../dtos/Country";
 import PagedRes from "../../dtos/PagedRes";
 import { StateReqSearch, StateRes } from "../../dtos/State";
+import { TimezoneRes } from "../../dtos/Timezone";
+import { TranslationRes } from "../../dtos/Translation";
 import Common from "../../utility/Common";
 
-const States = () => {
+const Translations = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams(location.search);
   searchParams.set("pageSize", Common.DEFAULT_PAGE_SIZE.toString());
 
-  const [pagedRes, setPagedRes] = useState<PagedRes<StateRes>>();
+  const [pagedRes, setPagedRes] = useState<PagedRes<TranslationRes>>();
   const [searchText, setSearchText] = useState(
     searchParams.get("searchText") || ""
   );
@@ -52,7 +56,7 @@ const States = () => {
 
   useEffect(() => {
     loadCountry();
-    searchStates();
+    searchTranslations();
   }, [searchParams]);
 
   const loadCountry = () => {
@@ -60,10 +64,10 @@ const States = () => {
     CountryApi.get(countryId).then((res) => setSelectedCountry(res));
   };
 
-  const searchStates = () => {
+  const searchTranslations = () => {
     if (!searchParams) return;
     // console.log(Object.fromEntries(searchParams));
-    StateApi.search(Object.fromEntries(searchParams))
+    TranslationApi.search(Object.fromEntries(searchParams))
       .then((res) => {
         setPagedRes(res);
         // console.log(res);
@@ -95,12 +99,12 @@ const States = () => {
   const showHeading = () => (
     <Flex>
       <Box>
-        <Heading fontSize={"xl"}>State List</Heading>
+        <Heading fontSize={"xl"}>Translation List</Heading>
       </Box>
       <Spacer />
       <Box>
-        <Link ml={2} as={RouteLink} to={"/states/edit/" + (searchParams.get("countryId") ?? "")}>
-          <Button colorScheme={"blue"}>Add State</Button>
+        <Link ml={2} as={RouteLink} to={"/translations/edit/" + (searchParams.get("countryId") ?? "")}>
+          <Button colorScheme={"blue"}>Add Translation</Button>
         </Link>
       </Box>
     </Flex>
@@ -146,28 +150,29 @@ const States = () => {
     </Flex>
   );
 
-  const showStates = () => (
+  const showTranslations = () => (
     <TableContainer>
       <Table variant="simple">
         <Thead>
           <Tr>
             <Th>Id</Th>
             <Th>Name</Th>
-            <Th>Code</Th>
+            <Th>City Name</Th>
+            <Th>GMT Offset</Th>
             <Th></Th>
           </Tr>
         </Thead>
         <Tbody>
           {pagedRes?.pagedList?.map((item) => (
-            <Tr key={item.stateId}>
-              <Td>{item.stateId}</Td>
-              <Td>{item.name}</Td>
+            <Tr key={item.translationId}>
+              <Td>{item.translationId}</Td>
               <Td>{item.code}</Td>
+              <Td>{item.name}</Td>
               <Td>
-                <Link mr={2} as={RouteLink} to={"/states/edit/" + item.countryId + "/" + item.stateId}>
+                <Link mr={2} as={RouteLink} to={"/translations/edit/" + item.countryId + "/" + item.translationId}>
                   <UpdateIcon />
                 </Link>
-                <Link as={RouteLink} to={"/states/delete/" + item.stateId}>
+                <Link as={RouteLink} to={"/translations/delete/" + item.translationId}>
                   <DeleteIcon />
                 </Link>
               </Td>
@@ -203,14 +208,14 @@ const States = () => {
   );
 
   return (
-    <Box width={"3xl"} p={4}>
+    <Box width={"4xl"} p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {showHeading()}
         {displaySearchBar()}
-        {showStates()}
+        {showTranslations()}
       </Stack>
     </Box>
   );
-};
+}
 
-export default States;
+export default Translations

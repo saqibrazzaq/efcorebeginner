@@ -1,41 +1,75 @@
-import { Box, Button, Center, Container, Flex, Heading, Input, Link, Spacer, Stack, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react'
-import { CountryApi } from '../../api/countryApi';
-import { CountryReqSearch, CountryRes } from '../../dtos/Country';
-import PagedRes from '../../dtos/PagedRes';
-import { Link as RouteLink, useParams, useSearchParams } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Center,
+  Container,
+  Flex,
+  Heading,
+  Input,
+  Link,
+  Spacer,
+  Stack,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { CountryApi } from "../../api/countryApi";
+import { CountryReqSearch, CountryRes } from "../../dtos/Country";
+import PagedRes from "../../dtos/PagedRes";
+import {
+  Link as RouteLink,
+  useLocation,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import Common from "../../utility/Common";
+import UpdateIcon from "../../components/icons/UpdateIcon";
+import DeleteIcon from "../../components/icons/DeleteIcon";
+import TranslationIcon from "../../components/icons/TranslationIcon";
+import TimezoneIcon from "../../components/icons/TimezoneIcon";
 
 const Countries = () => {
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams(location.search);
+  searchParams.set("pageSize", Common.DEFAULT_PAGE_SIZE.toString());
+
   const [pagedRes, setPagedRes] = useState<PagedRes<CountryRes>>();
   const [searchText, setSearchText] = useState<string>("");
-  const [searchReq, setSearchReq] = useState<CountryReqSearch>(
-    new CountryReqSearch({}, {})
-  );
+
   useEffect(() => {
     searchCountries();
-  }, [searchReq]);
+  }, [searchParams]);
 
   const searchCountries = () => {
-    CountryApi.search(searchReq).then((res) => {
+    if (!searchParams) return;
+    CountryApi.search(Object.fromEntries(searchParams)).then((res) => {
       setPagedRes(res);
       // console.log(res)
     });
   };
 
+  const updateSearchParams = (key: string, value: string) => {
+    searchParams.set(key, value);
+    setSearchParams(searchParams);
+  };
+
   const previousPage = () => {
     if (pagedRes?.metaData) {
       let previousPageNumber = (pagedRes?.metaData?.currentPage || 2) - 1;
-      setSearchReq({
-        ...searchReq,
-        ...{ pageNumber: previousPageNumber },
-      });
+      updateSearchParams("pageNumber", previousPageNumber.toString());
     }
   };
 
   const nextPage = () => {
     if (pagedRes?.metaData) {
       let nextPageNumber = (pagedRes?.metaData?.currentPage || 0) + 1;
-      setSearchReq({ ...searchReq, ...{ pageNumber: nextPageNumber } });
+      updateSearchParams("pageNumber", nextPageNumber.toString());
     }
   };
 
@@ -51,7 +85,7 @@ const Countries = () => {
         </Link>
       </Box>
     </Flex>
-  )
+  );
 
   const displaySearchBar = () => (
     <Flex>
@@ -65,10 +99,7 @@ const Countries = () => {
           onChange={(e) => setSearchText(e.currentTarget.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              setSearchReq({
-                ...searchReq,
-                ...{ searchText: searchText },
-              });
+              updateSearchParams("searchText", searchText);
             }
           }}
         />
@@ -77,7 +108,7 @@ const Countries = () => {
         <Button
           colorScheme={"blue"}
           onClick={() => {
-            setSearchReq({ ...searchReq, ...{ searchText: searchText } });
+            updateSearchParams("searchText", searchText);
           }}
         >
           Search
@@ -94,7 +125,6 @@ const Countries = () => {
             <Th>Id</Th>
             <Th>Name</Th>
             <Th>Code</Th>
-            <Th>Currency</Th>
             <Th></Th>
           </Tr>
         </Thead>
@@ -104,17 +134,30 @@ const Countries = () => {
               <Td>{item.countryId}</Td>
               <Td>{item.name}</Td>
               <Td>{item.iso3}</Td>
-              <Td>{item.currency}</Td>
               <Td>
+                <Link
+                  mr={2}
+                  as={RouteLink}
+                  to={"/timezones?countryId=" + item.countryId}
+                >
+                  <TimezoneIcon />
+                </Link>
+                <Link
+                  mr={2}
+                  as={RouteLink}
+                  to={"/translations?countryId=" + item.countryId}
+                >
+                  <TranslationIcon />
+                </Link>
                 <Link
                   mr={2}
                   as={RouteLink}
                   to={"/countries/edit/" + item.countryId}
                 >
-                  Edit
+                  <UpdateIcon />
                 </Link>
                 <Link as={RouteLink} to={"/countries/delete/" + item.countryId}>
-                  Delete
+                  <DeleteIcon />
                 </Link>
               </Td>
             </Tr>
@@ -146,7 +189,7 @@ const Countries = () => {
         </Tfoot>
       </Table>
     </TableContainer>
-  )
+  );
 
   return (
     <Box width={"100%"} p={4}>
@@ -157,6 +200,6 @@ const Countries = () => {
       </Stack>
     </Box>
   );
-}
+};
 
-export default Countries
+export default Countries;

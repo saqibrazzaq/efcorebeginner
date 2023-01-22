@@ -22,6 +22,9 @@ export class TimezoneReqEdit {
   abbreviation?: string = "";
 
   countryId?: number = 0;
+  constructor(countryId?: number) {
+    this.countryId = countryId;
+  }
 }
 
 export class TimezoneReqSearch extends PagedReq {

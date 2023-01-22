@@ -43,6 +43,8 @@ namespace AddressBook.Services
         public void Delete(int timezoneId)
         {
             var entity = FindTimezoneIfExists(timezoneId, true);
+            _repositoryManager.TimezoneRepository.Delete(entity);
+            _repositoryManager.Save();
         }
 
         private Timezone FindTimezoneIfExists(int timezoneId, bool trackChanges)

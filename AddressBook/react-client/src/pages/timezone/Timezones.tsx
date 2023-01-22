@@ -31,20 +31,22 @@ import {
 import { URLSearchParams } from "url";
 import { CountryApi } from "../../api/countryApi";
 import { StateApi } from "../../api/stateApi";
+import { TimezoneApi } from "../../api/TimezoneApi";
 import DeleteIcon from "../../components/icons/DeleteIcon";
 import UpdateIcon from "../../components/icons/UpdateIcon";
 import CountryDropdown from "../../dropdowns/CountryDropdown";
 import { CountryRes } from "../../dtos/Country";
 import PagedRes from "../../dtos/PagedRes";
 import { StateReqSearch, StateRes } from "../../dtos/State";
+import { TimezoneRes } from "../../dtos/Timezone";
 import Common from "../../utility/Common";
 
-const States = () => {
+const Timezones = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams(location.search);
   searchParams.set("pageSize", Common.DEFAULT_PAGE_SIZE.toString());
 
-  const [pagedRes, setPagedRes] = useState<PagedRes<StateRes>>();
+  const [pagedRes, setPagedRes] = useState<PagedRes<TimezoneRes>>();
   const [searchText, setSearchText] = useState(
     searchParams.get("searchText") || ""
   );
@@ -52,7 +54,7 @@ const States = () => {
 
   useEffect(() => {
     loadCountry();
-    searchStates();
+    searchTimezones();
   }, [searchParams]);
 
   const loadCountry = () => {
@@ -60,10 +62,10 @@ const States = () => {
     CountryApi.get(countryId).then((res) => setSelectedCountry(res));
   };
 
-  const searchStates = () => {
+  const searchTimezones = () => {
     if (!searchParams) return;
     // console.log(Object.fromEntries(searchParams));
-    StateApi.search(Object.fromEntries(searchParams))
+    TimezoneApi.search(Object.fromEntries(searchParams))
       .then((res) => {
         setPagedRes(res);
         // console.log(res);
@@ -95,12 +97,12 @@ const States = () => {
   const showHeading = () => (
     <Flex>
       <Box>
-        <Heading fontSize={"xl"}>State List</Heading>
+        <Heading fontSize={"xl"}>Timezone List</Heading>
       </Box>
       <Spacer />
       <Box>
-        <Link ml={2} as={RouteLink} to={"/states/edit/" + (searchParams.get("countryId") ?? "")}>
-          <Button colorScheme={"blue"}>Add State</Button>
+        <Link ml={2} as={RouteLink} to={"/timezones/edit/" + (searchParams.get("countryId") ?? "")}>
+          <Button colorScheme={"blue"}>Add Timezone</Button>
         </Link>
       </Box>
     </Flex>
@@ -146,28 +148,30 @@ const States = () => {
     </Flex>
   );
 
-  const showStates = () => (
+  const showTimezones = () => (
     <TableContainer>
       <Table variant="simple">
         <Thead>
           <Tr>
             <Th>Id</Th>
             <Th>Name</Th>
-            <Th>Code</Th>
+            <Th>City Name</Th>
+            <Th>GMT Offset</Th>
             <Th></Th>
           </Tr>
         </Thead>
         <Tbody>
           {pagedRes?.pagedList?.map((item) => (
-            <Tr key={item.stateId}>
-              <Td>{item.stateId}</Td>
+            <Tr key={item.timezoneId}>
+              <Td>{item.timezoneId}</Td>
               <Td>{item.name}</Td>
-              <Td>{item.code}</Td>
+              <Td>{item.cityName}</Td>
+              <Td>{item.gmtOffsetName}</Td>
               <Td>
-                <Link mr={2} as={RouteLink} to={"/states/edit/" + item.countryId + "/" + item.stateId}>
+                <Link mr={2} as={RouteLink} to={"/timezones/edit/" + item.countryId + "/" + item.timezoneId}>
                   <UpdateIcon />
                 </Link>
-                <Link as={RouteLink} to={"/states/delete/" + item.stateId}>
+                <Link as={RouteLink} to={"/timezones/delete/" + item.timezoneId}>
                   <DeleteIcon />
                 </Link>
               </Td>
@@ -203,14 +207,14 @@ const States = () => {
   );
 
   return (
-    <Box width={"3xl"} p={4}>
+    <Box width={"4xl"} p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {showHeading()}
         {displaySearchBar()}
-        {showStates()}
+        {showTimezones()}
       </Stack>
     </Box>
   );
-};
+}
 
-export default States;
+export default Timezones
