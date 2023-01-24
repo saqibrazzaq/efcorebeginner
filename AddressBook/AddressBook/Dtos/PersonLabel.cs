@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using AddressBook.Entities;
+using AddressBook.Common.Paging;
 
 namespace AddressBook.Dtos
 {
@@ -18,7 +19,7 @@ namespace AddressBook.Dtos
         public int? PersonId { get; set; }
     }
 
-    public class PersonLabelReqSearch
+    public class PersonLabelReqSearch : PagedReq
     {
         [Required]
         public int? PersonId { get; set; }

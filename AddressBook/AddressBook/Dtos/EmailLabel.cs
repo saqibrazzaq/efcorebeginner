@@ -15,7 +15,7 @@ namespace AddressBook.Dtos
         public string? Label { get; set; }
     }
 
-    public class EmailLableReqSearch : PagedReq
+    public class EmailLabelReqSearch : PagedReq
     {
 
     }
