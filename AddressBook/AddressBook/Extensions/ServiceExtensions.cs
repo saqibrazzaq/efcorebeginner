@@ -38,6 +38,19 @@ namespace AddressBook.Extensions
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<ITranslationService, TranslationService>();
             services.AddScoped<ITimezoneService, TimezoneService>();
+
+            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonLabelService, PersonLabelService>();
+            services.AddScoped<IPersonEmailService, PersonEmailService>();
+            services.AddScoped<IEmailLabelService, EmailLabelService>();
+            services.AddScoped<IPersonPhoneService, PersonPhoneService>();
+            services.AddScoped<IPhoneLabelService, PhoneLabelService>();
+            services.AddScoped<IPersonAddressService, PersonAddressService>();
+            services.AddScoped<IAddressLabelService, AddressLabelService>();
+            services.AddScoped<IPersonWebsiteService, PersonWebsiteService>();
+            services.AddScoped<IWebsiteLabelService, WebsiteLabelService>();
+            services.AddScoped<IPersonChatService, PersonChatService>();
+            services.AddScoped<IChatLabelService, ChatLabelService>();
         }
 
         public static void ConfigureCors(this IServiceCollection services)
