@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
+import SettingsLayout from "./layout/SettingsLayout";
 import Cities from "./pages/city/Cities";
 import CityDelete from "./pages/city/CityDelete";
 import CityEdit from "./pages/city/CityEdit";
@@ -16,6 +17,10 @@ import Timezones from "./pages/timezone/Timezones";
 import TranslationDelete from "./pages/translation/TranslationDelete";
 import TranslationEdit from "./pages/translation/TranslationEdit";
 import Translations from "./pages/translation/Translations";
+import PersonLabelDelete from "./settings/person-labels/PersonLabelDelete";
+import PersonLabelEdit from "./settings/person-labels/PersonLabelEdit";
+import PersonLabels from "./settings/person-labels/PersonLabels";
+import SettingsHome from "./settings/SettingsHome";
 
 function App() {
   return (
@@ -61,6 +66,17 @@ function App() {
             <Route path="edit/:countryId" element={<TranslationEdit />} />
             <Route path="edit/:countryId/:translationId" element={<TranslationEdit />} />
             <Route path="delete/:translationId" element={<TranslationDelete />} />
+          </Route>
+          {/* Settings */}
+          <Route path="settings" element={<SettingsLayout />}>
+            <Route index element={<SettingsHome />} />
+            {/* Person Label */}
+            <Route path="person-labels">
+              <Route index element={<PersonLabels />} />
+              <Route path="edit" element={<PersonLabelEdit />} />
+              <Route path="edit/:personLabelId" element={<PersonLabelEdit />} />
+              <Route path="delete/:personLabelId" element={<PersonLabelDelete />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

@@ -54,6 +54,10 @@ const TopNavBar = () => {
         name: "Cities",
         href: "/cities",
       },
+      {
+        name: "Settings",
+        href: "/settings",
+      },
     ];
     setNavItems(menuItems);
   };
