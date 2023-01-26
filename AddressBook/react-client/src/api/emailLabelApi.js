@@ -1,43 +1,43 @@
 import { api } from "./axiosconfig"
 
-export const CountryApi = {
+export const EmailLabelApi = {
   search: async function (searchParams) {
     const response = await api.request({
-      url: "/countries/search",
+      url: "/emailLabels/search",
       method: "GET",
       params: searchParams,
     })
 
     return response.data
   },
-  get: async function (countryId) {
-    if (!countryId) return {};
+  get: async function (emailLabelId) {
+    if (!emailLabelId) return {};
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/emailLabels/` + emailLabelId,
       method: "GET",
     })
 
     return response.data
   },
-  create: async function (country) {
+  create: async function (emailLabel) {
     const response = await api.request({
-      url: `/countries`,
+      url: `/emailLabels`,
       method: "POST",
-      data: country,
+      data: emailLabel,
     })
 
     return response.data
   },
-  update: async function (countryId, country) {
+  update: async function (emailLabelId, emailLabel) {
     await api.request({
-      url: `/countries/` + countryId,
+      url: `/emailLabels/` + emailLabelId,
       method: "PUT",
-      data: country,
+      data: emailLabel,
     })
   },
-  delete: async function (countryId) {
+  delete: async function (emailLabel) {
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/emailLabels/` + emailLabel,
       method: "DELETE",
     })
 

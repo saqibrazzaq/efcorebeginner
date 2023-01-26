@@ -1,43 +1,43 @@
 import { api } from "./axiosconfig"
 
-export const CountryApi = {
+export const PersonAddressApi = {
   search: async function (searchParams) {
     const response = await api.request({
-      url: "/countries/search",
+      url: "/personAddresses/search",
       method: "GET",
       params: searchParams,
     })
 
     return response.data
   },
-  get: async function (countryId) {
-    if (!countryId) return {};
+  get: async function (personAddressId) {
+    if (!personAddressId) return {};
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/personAddresses/` + personAddressId,
       method: "GET",
     })
 
     return response.data
   },
-  create: async function (country) {
+  create: async function (personAddress) {
     const response = await api.request({
-      url: `/countries`,
+      url: `/personAddresses`,
       method: "POST",
-      data: country,
+      data: personAddress,
     })
 
     return response.data
   },
-  update: async function (countryId, country) {
+  update: async function (personAddressId, personAddress) {
     await api.request({
-      url: `/countries/` + countryId,
+      url: `/personAddresses/` + personAddressId,
       method: "PUT",
-      data: country,
+      data: personAddress,
     })
   },
-  delete: async function (countryId) {
+  delete: async function (personAddressId) {
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/personAddresses/` + personAddressId,
       method: "DELETE",
     })
 

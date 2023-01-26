@@ -1,43 +1,43 @@
 import { api } from "./axiosconfig"
 
-export const CountryApi = {
+export const PhoneLabelApi = {
   search: async function (searchParams) {
     const response = await api.request({
-      url: "/countries/search",
+      url: "/phoneLabels/search",
       method: "GET",
       params: searchParams,
     })
 
     return response.data
   },
-  get: async function (countryId) {
-    if (!countryId) return {};
+  get: async function (phoneLabelId) {
+    if (!phoneLabelId) return {};
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/phoneLabels/` + phoneLabelId,
       method: "GET",
     })
 
     return response.data
   },
-  create: async function (country) {
+  create: async function (phoneLabel) {
     const response = await api.request({
-      url: `/countries`,
+      url: `/phoneLabels`,
       method: "POST",
-      data: country,
+      data: phoneLabel,
     })
 
     return response.data
   },
-  update: async function (countryId, country) {
+  update: async function (phoneLabelId, phoneLabel) {
     await api.request({
-      url: `/countries/` + countryId,
+      url: `/phoneLabels/` + phoneLabelId,
       method: "PUT",
-      data: country,
+      data: phoneLabel,
     })
   },
-  delete: async function (countryId) {
+  delete: async function (phoneLabelId) {
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/phoneLabels/` + phoneLabelId,
       method: "DELETE",
     })
 

@@ -1,9 +1,9 @@
 import { api } from "./axiosconfig"
 
-export const CountryApi = {
+export const PersonLabelApi = {
   search: async function (searchParams) {
     const response = await api.request({
-      url: "/countries/search",
+      url: "/personLabels/search",
       method: "GET",
       params: searchParams,
     })
@@ -13,7 +13,7 @@ export const CountryApi = {
   get: async function (countryId) {
     if (!countryId) return {};
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/personLabels/` + countryId,
       method: "GET",
     })
 
@@ -21,23 +21,23 @@ export const CountryApi = {
   },
   create: async function (country) {
     const response = await api.request({
-      url: `/countries`,
+      url: `/personLabels`,
       method: "POST",
       data: country,
     })
 
     return response.data
   },
-  update: async function (countryId, country) {
+  update: async function (countryId, person) {
     await api.request({
-      url: `/countries/` + countryId,
+      url: `/personLabels/` + countryId,
       method: "PUT",
-      data: country,
+      data: person,
     })
   },
   delete: async function (countryId) {
     const response = await api.request({
-      url: `/countries/` + countryId,
+      url: `/personLabels/` + countryId,
       method: "DELETE",
     })
 
