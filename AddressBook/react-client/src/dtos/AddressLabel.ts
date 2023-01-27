@@ -7,7 +7,7 @@ export interface AddressLabelRes {
 }
 
 export class AddressLabelReqEdit {
-  label?: string;
+  label?: string = "";
 }
 
 export class AddressLabelReqSearch extends PagedReq {

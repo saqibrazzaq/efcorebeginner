@@ -6,7 +6,6 @@ import {CgOrganisation} from 'react-icons/cg';
 import LeftSideMenu, { LinkItemProps } from "./LeftSideMenu";
 
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Person Label", icon: FiHome, href: "/settings/person-labels" },
   { name: "Email Label", icon: CgOrganisation, href: "/settings/email-labels" },
   { name: "Phone Label", icon: CgOrganisation, href: "/settings/phone-labels" },
   { name: "Address Label", icon: CgOrganisation, href: "/settings/address-labels" },
@@ -15,7 +14,7 @@ const LinkItems: Array<LinkItemProps> = [
 ];
 const SettingsLayout = () => {
   return (
-    <Flex width={"xl"} mt="2">
+    <Flex width={"3xl"} mt="2">
       <Box w="250px">
         <LeftSideMenu menuHeading="Settings" menuItems={LinkItems} />
       </Box>

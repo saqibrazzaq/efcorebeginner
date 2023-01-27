@@ -17,10 +17,22 @@ import Timezones from "./pages/timezone/Timezones";
 import TranslationDelete from "./pages/translation/TranslationDelete";
 import TranslationEdit from "./pages/translation/TranslationEdit";
 import Translations from "./pages/translation/Translations";
-import PersonLabelDelete from "./settings/person-labels/PersonLabelDelete";
-import PersonLabelEdit from "./settings/person-labels/PersonLabelEdit";
-import PersonLabels from "./settings/person-labels/PersonLabels";
+import AddressLabelDelete from "./settings/address-labels/AddressLabelDelete";
+import AddressLabelEdit from "./settings/address-labels/AddressLabelEdit";
+import AddressLabels from "./settings/address-labels/AddressLabels";
+import ChatLabelDelete from "./settings/chat-labels/ChatLabelDelete";
+import ChatLabelEdit from "./settings/chat-labels/ChatLabelEdit";
+import ChatLabels from "./settings/chat-labels/ChatLabels";
+import EmailLabelDelete from "./settings/email-labels/EmailLabelDelete";
+import EmailLabelEdit from "./settings/email-labels/EmailLabelEdit";
+import EmailLabels from "./settings/email-labels/EmailLabels";
+import PhoneLabelDelete from "./settings/phone-labels/PhoneLabelDelete";
+import PhoneLabelEdit from "./settings/phone-labels/PhoneLabelEdit";
+import PhoneLabels from "./settings/phone-labels/PhoneLabels";
 import SettingsHome from "./settings/SettingsHome";
+import WebsiteLabelDelete from "./settings/website-labels/WebsiteLabelDelete";
+import WebsiteLabelEdit from "./settings/website-labels/WebsiteLabelEdit";
+import WebsiteLabels from "./settings/website-labels/WebsiteLabels";
 
 function App() {
   return (
@@ -70,12 +82,40 @@ function App() {
           {/* Settings */}
           <Route path="settings" element={<SettingsLayout />}>
             <Route index element={<SettingsHome />} />
-            {/* Person Label */}
-            <Route path="person-labels">
-              <Route index element={<PersonLabels />} />
-              <Route path="edit" element={<PersonLabelEdit />} />
-              <Route path="edit/:personLabelId" element={<PersonLabelEdit />} />
-              <Route path="delete/:personLabelId" element={<PersonLabelDelete />} />
+            {/* Email Label */}
+            <Route path="email-labels">
+              <Route index element={<EmailLabels />} />
+              <Route path="edit" element={<EmailLabelEdit />} />
+              <Route path="edit/:emailLabelId" element={<EmailLabelEdit />} />
+              <Route path="delete/:emailLabelId" element={<EmailLabelDelete />} />
+            </Route>
+            {/* Phone label */}
+            <Route path="phone-labels">
+              <Route index element={<PhoneLabels />} />
+              <Route path="edit" element={<PhoneLabelEdit />} />
+              <Route path="edit/:phoneLabelId" element={<PhoneLabelEdit />} />
+              <Route path="delete/:phoneLabelId" element={<PhoneLabelDelete />} />
+            </Route>
+            {/* Address label */}
+            <Route path="address-labels">
+              <Route index element={<AddressLabels />} />
+              <Route path="edit" element={<AddressLabelEdit />} />
+              <Route path="edit/:addressLabelId" element={<AddressLabelEdit />} />
+              <Route path="delete/:addressLabelId" element={<AddressLabelDelete />} />
+            </Route>
+            {/* Website label */}
+            <Route path="website-labels">
+              <Route index element={<WebsiteLabels />} />
+              <Route path="edit" element={<WebsiteLabelEdit />} />
+              <Route path="edit/:websiteLabelId" element={<WebsiteLabelEdit />} />
+              <Route path="delete/:websiteLabelId" element={<WebsiteLabelDelete />} />
+            </Route>
+            {/* Chat label */}
+            <Route path="chat-labels">
+              <Route index element={<ChatLabels />} />
+              <Route path="edit" element={<ChatLabelEdit />} />
+              <Route path="edit/:chatLabelId" element={<ChatLabelEdit />} />
+              <Route path="delete/:chatLabelId" element={<ChatLabelDelete />} />
             </Route>
           </Route>
         </Route>
