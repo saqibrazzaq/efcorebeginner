@@ -8,6 +8,7 @@
         ITranslationRepository TranslationRepository { get; }
         ITimezoneRepository TimezoneRepository { get; }
         IPersonRepository PersonRepository { get; }
+        ILabelRepository LabelRepository { get; }
         IPersonLabelRepository PersonLabelRepository { get; }
         IPersonEmailRepository PersonEmailRepository { get; }
         IEmailLabelRepository EmailLabelRepository { get; }

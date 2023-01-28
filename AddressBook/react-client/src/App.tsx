@@ -26,6 +26,9 @@ import ChatLabels from "./settings/chat-labels/ChatLabels";
 import EmailLabelDelete from "./settings/email-labels/EmailLabelDelete";
 import EmailLabelEdit from "./settings/email-labels/EmailLabelEdit";
 import EmailLabels from "./settings/email-labels/EmailLabels";
+import LabelDelete from "./settings/labels/LabelDelete";
+import LabelEdit from "./settings/labels/LabelEdit";
+import Labels from "./settings/labels/Labels";
 import PhoneLabelDelete from "./settings/phone-labels/PhoneLabelDelete";
 import PhoneLabelEdit from "./settings/phone-labels/PhoneLabelEdit";
 import PhoneLabels from "./settings/phone-labels/PhoneLabels";
@@ -82,6 +85,13 @@ function App() {
           {/* Settings */}
           <Route path="settings" element={<SettingsLayout />}>
             <Route index element={<SettingsHome />} />
+            {/* Label */}
+            <Route path="labels">
+              <Route index element={<Labels />} />
+              <Route path="edit" element={<LabelEdit />} />
+              <Route path="edit/:labelId" element={<LabelEdit />} />
+              <Route path="delete/:labelId" element={<LabelDelete />} />
+            </Route>
             {/* Email Label */}
             <Route path="email-labels">
               <Route index element={<EmailLabels />} />

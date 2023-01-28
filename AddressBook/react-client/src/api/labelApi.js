@@ -1,43 +1,43 @@
 import { api } from "./axiosconfig"
 
-export const PersonLabelApi = {
+export const LabelApi = {
   search: async function (searchParams) {
     const response = await api.request({
-      url: "/personLabels/search",
+      url: "/labels/search",
       method: "GET",
       params: searchParams,
     })
 
     return response.data
   },
-  get: async function (personLabelId) {
-    if (!personLabelId) return {};
+  get: async function (labelId) {
+    if (!labelId) return {};
     const response = await api.request({
-      url: `/personLabels/` + personLabelId,
+      url: `/labels/` + labelId,
       method: "GET",
     })
 
     return response.data
   },
-  create: async function (personLabel) {
+  create: async function (label) {
     const response = await api.request({
-      url: `/personLabels`,
+      url: `/labels`,
       method: "POST",
-      data: personLabel,
+      data: label,
     })
 
     return response.data
   },
-  update: async function (personLabelId, personLabel) {
+  update: async function (labelId, label) {
     await api.request({
-      url: `/personLabels/` + personLabelId,
+      url: `/labels/` + labelId,
       method: "PUT",
-      data: personLabel,
+      data: label,
     })
   },
-  delete: async function (personLabelId) {
+  delete: async function (labelId) {
     const response = await api.request({
-      url: `/personLabels/` + personLabelId,
+      url: `/labels/` + labelId,
       method: "DELETE",
     })
 

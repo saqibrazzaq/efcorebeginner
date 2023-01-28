@@ -13,12 +13,7 @@ namespace AddressBook.Repository
             var itemsToReturn = items
                 .AsQueryable();
 
-            if (string.IsNullOrWhiteSpace(searchParams.SearchText) == false)
-            {
-                itemsToReturn = itemsToReturn.Where(
-                    x => x.Label.Contains(searchParams.SearchText)
-                );
-            }
+            itemsToReturn = itemsToReturn.Where(x => x.PersonId == searchParams.PersonId);
 
             return itemsToReturn;
         }

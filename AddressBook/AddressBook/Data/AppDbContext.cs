@@ -17,6 +17,7 @@ namespace AddressBook.Data
         public DbSet<Timezone>? Timezones { get; set; }
         public DbSet<City>? Cities { get; set; }
         public DbSet<Person>? Persons { get; set; }
+        public DbSet<Label>? Labels { get; set; }
         public DbSet<PersonLabel>? PersonLabels { get; set; }
         public DbSet<PersonEmail>? PersonEmails { get; set; }
         public DbSet<EmailLabel>? EmailLabels { get; set; }
@@ -25,6 +26,7 @@ namespace AddressBook.Data
         public DbSet<PersonAddress>? PersonAddresses { get; set; }
         public DbSet<AddressLabel>? AddressLabels { get; set; }
         public DbSet<PersonWebsite>? PersonWebsites { get; set; }
+        public DbSet<WebsiteLabel>? WebsiteLabels { get; set; }
         public DbSet<PersonChat>? PersonChats { get; set; }
         public DbSet<ChatLabel>? ChatLabels { get; set; }
     }

@@ -32,6 +32,10 @@ namespace AddressBook
             CreateMap<Person, PersonRes>();
             CreateMap<PersonReqEdit, Person>();
 
+            // Label
+            CreateMap<Label, LabelRes>();
+            CreateMap<LabelReqEdit, Label>();
+
             // PersonLabel
             CreateMap<PersonLabel, PersonLabelRes>();
             CreateMap<PersonLabelReqEdit, PersonLabel>();

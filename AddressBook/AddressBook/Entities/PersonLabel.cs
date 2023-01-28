@@ -8,12 +8,13 @@ namespace AddressBook.Entities
     {
         [Key]
         public int PersonLabelId { get; set; }
-        [Required, MaxLength(20)]
-        public string? Label { get; set; }
-
+        
         // Foreign keys
         public int? PersonId { get; set; }
         [ForeignKey(nameof(PersonId))]
         public Person? Person { get; set; }
+        public int? LabelId { get; set; }
+        [ForeignKey(nameof(LabelId))]
+        public Label? Label { get; set; }
     }
 }

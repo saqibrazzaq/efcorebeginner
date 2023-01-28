@@ -40,6 +40,7 @@ namespace AddressBook.Extensions
             services.AddScoped<ITimezoneService, TimezoneService>();
 
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<ILabelService, LabelService>();
             services.AddScoped<IPersonLabelService, PersonLabelService>();
             services.AddScoped<IPersonEmailService, PersonEmailService>();
             services.AddScoped<IEmailLabelService, EmailLabelService>();

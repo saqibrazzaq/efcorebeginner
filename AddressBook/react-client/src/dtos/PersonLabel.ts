@@ -1,16 +1,18 @@
 import Common from "../utility/Common";
+import { LabelRes } from "./Label";
 import { PagedReq } from "./PagedReq";
 import { PersonRes } from "./Person";
 
 export interface PersonLabelRes {
   personLabelId?: number;
-  label?: string;
+  labelId?: number;
+  label?: LabelRes;
   personId?: number;
   person?: PersonRes;
 }
 
 export class PersonLabelReqEdit {
-  label?: string = "";
+  labelId?: number = 0;
   personId?: number = 0;
 }
 

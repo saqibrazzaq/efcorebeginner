@@ -6,6 +6,7 @@ import {CgOrganisation} from 'react-icons/cg';
 import LeftSideMenu, { LinkItemProps } from "./LeftSideMenu";
 
 const LinkItems: Array<LinkItemProps> = [
+  { name: "Label", icon: CgOrganisation, href: "/settings/labels" },
   { name: "Email Label", icon: CgOrganisation, href: "/settings/email-labels" },
   { name: "Phone Label", icon: CgOrganisation, href: "/settings/phone-labels" },
   { name: "Address Label", icon: CgOrganisation, href: "/settings/address-labels" },

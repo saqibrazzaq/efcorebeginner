@@ -12,6 +12,7 @@ namespace AddressBook.Repository
         private readonly Lazy<ITranslationRepository> _translationRepository;
         private readonly Lazy<ITimezoneRepository> _timezoneRepository;
         private readonly Lazy<IPersonRepository> _personRepository;
+        private readonly Lazy<ILabelRepository> _labelRepository;
         private readonly Lazy<IPersonLabelRepository> _personLabelRepository;
         private readonly Lazy<IPersonEmailRepository> _personEmailRepository;
         private readonly Lazy<IEmailLabelRepository> _emailLabelRepository;
@@ -40,6 +41,8 @@ namespace AddressBook.Repository
                 new TimezoneRepository(context));
             _personRepository = new Lazy<IPersonRepository>(() =>
                 new PersonRepository(context));
+            _labelRepository = new Lazy<ILabelRepository>(() =>
+                new LabelRepository(context));
             _personLabelRepository = new Lazy<IPersonLabelRepository>(() =>
                 new PersonLabelRepository(context));
             _personEmailRepository = new Lazy<IPersonEmailRepository>(() =>
@@ -70,6 +73,7 @@ namespace AddressBook.Repository
         public ITranslationRepository TranslationRepository => _translationRepository.Value;
         public ITimezoneRepository TimezoneRepository => _timezoneRepository.Value;
         public IPersonRepository PersonRepository => _personRepository.Value;
+        public ILabelRepository LabelRepository => _labelRepository.Value;
         public IPersonLabelRepository PersonLabelRepository => _personLabelRepository.Value;
         public IPersonEmailRepository PersonEmailRepository => _personEmailRepository.Value;
         public IEmailLabelRepository EmailLabelRepository => _emailLabelRepository.Value;
