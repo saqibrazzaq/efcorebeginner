@@ -39,18 +39,18 @@ namespace AddressBook.Extensions
             services.AddScoped<ITranslationService, TranslationService>();
             services.AddScoped<ITimezoneService, TimezoneService>();
 
-            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IContactService, ContactService>();
             services.AddScoped<ILabelService, LabelService>();
-            services.AddScoped<IPersonLabelService, PersonLabelService>();
-            services.AddScoped<IPersonEmailService, PersonEmailService>();
+            services.AddScoped<IContactLabelService, ContactLabelService>();
+            services.AddScoped<IContactEmailService, ContactEmailService>();
             services.AddScoped<IEmailLabelService, EmailLabelService>();
-            services.AddScoped<IPersonPhoneService, PersonPhoneService>();
+            services.AddScoped<IContactPhoneService, ContactPhoneService>();
             services.AddScoped<IPhoneLabelService, PhoneLabelService>();
-            services.AddScoped<IPersonAddressService, PersonAddressService>();
+            services.AddScoped<IContactAddressService, ContactAddressService>();
             services.AddScoped<IAddressLabelService, AddressLabelService>();
-            services.AddScoped<IPersonWebsiteService, PersonWebsiteService>();
+            services.AddScoped<IContactWebsiteService, ContactWebsiteService>();
             services.AddScoped<IWebsiteLabelService, WebsiteLabelService>();
-            services.AddScoped<IPersonChatService, PersonChatService>();
+            services.AddScoped<IContactChatService, ContactChatService>();
             services.AddScoped<IChatLabelService, ChatLabelService>();
         }
 

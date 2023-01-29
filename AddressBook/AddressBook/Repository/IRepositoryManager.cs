@@ -7,18 +7,18 @@
         ICityRepository CityRepository { get; }
         ITranslationRepository TranslationRepository { get; }
         ITimezoneRepository TimezoneRepository { get; }
-        IPersonRepository PersonRepository { get; }
+        IContactRepository ContactRepository { get; }
         ILabelRepository LabelRepository { get; }
-        IPersonLabelRepository PersonLabelRepository { get; }
-        IPersonEmailRepository PersonEmailRepository { get; }
+        IContactLabelRepository ContactLabelRepository { get; }
+        IContactEmailRepository ContactEmailRepository { get; }
         IEmailLabelRepository EmailLabelRepository { get; }
-        IPersonPhoneRepository PersonPhoneRepository { get; }
+        IContactPhoneRepository ContactPhoneRepository { get; }
         IPhoneLabelRepository PhoneLabelRepository { get; }
-        IPersonAddressRepository PersonAddressRepository { get; }
+        IContactAddressRepository ContactAddressRepository { get; }
         IAddressLabelRepository AddressLabelRepository { get; }
-        IPersonWebsiteRepository PersonWebsiteRepository { get; }
+        IContactWebsiteRepository ContactWebsiteRepository { get; }
         IWebsiteLabelRepository WebsiteLabelRepository { get; }
-        IPersonChatRepository PersonChatRepository { get; }
+        IContactChatRepository ContactChatRepository { get; }
         IChatLabelRepository ChatLabelRepository { get; }
         void Save();
     }

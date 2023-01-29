@@ -16,18 +16,18 @@ namespace AddressBook.Data
         public DbSet<Translation>? Translations { get; set; }
         public DbSet<Timezone>? Timezones { get; set; }
         public DbSet<City>? Cities { get; set; }
-        public DbSet<Person>? Persons { get; set; }
+        public DbSet<Contact>? Contacts { get; set; }
         public DbSet<Label>? Labels { get; set; }
-        public DbSet<PersonLabel>? PersonLabels { get; set; }
-        public DbSet<PersonEmail>? PersonEmails { get; set; }
+        public DbSet<ContactLabel>? ContactLabels { get; set; }
+        public DbSet<ContactEmail>? ContactEmails { get; set; }
         public DbSet<EmailLabel>? EmailLabels { get; set; }
-        public DbSet<PersonPhone>? PersonPhones { get; set; }
+        public DbSet<ContactPhone>? ContactPhones { get; set; }
         public DbSet<PhoneLabel>? PhoneLabels { get; set; }
-        public DbSet<PersonAddress>? PersonAddresses { get; set; }
+        public DbSet<ContactAddress>? ContactAddresses { get; set; }
         public DbSet<AddressLabel>? AddressLabels { get; set; }
-        public DbSet<PersonWebsite>? PersonWebsites { get; set; }
+        public DbSet<ContactWebsite>? ContactWebsites { get; set; }
         public DbSet<WebsiteLabel>? WebsiteLabels { get; set; }
-        public DbSet<PersonChat>? PersonChats { get; set; }
+        public DbSet<ContactChat>? ContactChats { get; set; }
         public DbSet<ChatLabel>? ChatLabels { get; set; }
     }
 }

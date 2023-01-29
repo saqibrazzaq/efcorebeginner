@@ -28,53 +28,53 @@ namespace AddressBook
             CreateMap<Translation, TranslationRes>();
             CreateMap<TranslationReqEdit, Translation>();
 
-            // Person
-            CreateMap<Person, PersonRes>();
-            CreateMap<PersonReqEdit, Person>();
+            // Contact
+            CreateMap<Contact, ContactRes>();
+            CreateMap<ContactReqEdit, Contact>();
 
             // Label
             CreateMap<Label, LabelRes>();
             CreateMap<LabelReqEdit, Label>();
 
-            // PersonLabel
-            CreateMap<PersonLabel, PersonLabelRes>();
-            CreateMap<PersonLabelReqEdit, PersonLabel>();
+            // ContactLabel
+            CreateMap<ContactLabel, ContactLabelRes>();
+            CreateMap<ContactLabelReqEdit, ContactLabel>();
 
-            // PersonEmail
-            CreateMap<PersonEmail, PersonEmailRes>();
-            CreateMap<PersonEmailReqEdit, PersonEmail>();
+            // ContactEmail
+            CreateMap<ContactEmail, ContactEmailRes>();
+            CreateMap<ContactEmailReqEdit, ContactEmail>();
 
             // EmailLabel
             CreateMap<EmailLabel, EmailLabelRes>();
             CreateMap<EmailLabelReqEdit, EmailLabel>();
 
-            // PersonPhone
-            CreateMap<PersonPhone, PersonPhoneRes>();
-            CreateMap<PersonPhoneReqEdit, PersonPhone>();
+            // ContactPhone
+            CreateMap<ContactPhone, ContactPhoneRes>();
+            CreateMap<ContactPhoneReqEdit, ContactPhone>();
 
             // PhoneLabel
             CreateMap<PhoneLabel,PhoneLabelRes>();
             CreateMap<PhoneLabelReqEdit, PhoneLabel>();
 
-            // PersonAddress
-            CreateMap<PersonAddress, PersonAddressRes>();
-            CreateMap<PersonAddressReqEdit, PersonAddress>();
+            // ContactAddress
+            CreateMap<ContactAddress, ContactAddressRes>();
+            CreateMap<ContactAddressReqEdit, ContactAddress>();
 
             // AddressLabel
             CreateMap<AddressLabel, AddressLabelRes>();
             CreateMap<AddressLabelReqEdit, AddressLabel>();
 
-            // PersonWebsite
-            CreateMap<PersonWebsite, PersonWebsiteRes>();
-            CreateMap<PersonWebsiteReqEdit, PersonWebsite>();
+            // ContactWebsite
+            CreateMap<ContactWebsite, ContactWebsiteRes>();
+            CreateMap<ContactWebsiteReqEdit, ContactWebsite>();
 
             // WebsiteLabel
             CreateMap<WebsiteLabel, WebsiteLabelRes>();
             CreateMap<WebsiteLabelReqEdit, WebsiteLabel>();
 
-            // PersonChat
-            CreateMap<PersonChat, PersonChatRes>();
-            CreateMap<PersonChatReqEdit, PersonChat>();
+            // ContactChat
+            CreateMap<ContactChat, ContactChatRes>();
+            CreateMap<ContactChatReqEdit, ContactChat>();
 
             // ChatLabel
             CreateMap<ChatLabel, ChatLabelRes>();
