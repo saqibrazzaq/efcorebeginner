@@ -4,6 +4,9 @@ import SettingsLayout from "./layout/SettingsLayout";
 import Cities from "./pages/city/Cities";
 import CityDelete from "./pages/city/CityDelete";
 import CityEdit from "./pages/city/CityEdit";
+import ContactDelete from "./pages/contact/ContactDelete";
+import ContactEdit from "./pages/contact/ContactEdit";
+import Contacts from "./pages/contact/Contacts";
 import Countries from "./pages/country/Countries";
 import CountryDelete from "./pages/country/CountryDelete";
 import CountryEdit from "./pages/country/CountryEdit";
@@ -42,7 +45,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Contacts />} />
+          {/* Contacts */}
+          <Route path="contacts">
+            <Route index element={<Contacts />} />
+            <Route path="edit" element={<ContactEdit />} />
+            <Route path="edit/:personId" element={<ContactEdit />} />
+            <Route path="delete/:personId" element={<ContactDelete />} />
+          </Route>
           {/* Country */}
           <Route path="countries">
             <Route index element={<Countries />} />

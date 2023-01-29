@@ -27,7 +27,7 @@ export interface PersonRes {
   personChats?: PersonChatRes[];
 }
 
-export class PersonEditReq {
+export class PersonReqEdit {
   firstName?: string = "";
   middleName?: string = "";
   lastName?: string = "";
@@ -35,7 +35,7 @@ export class PersonEditReq {
   company?: string = "";
   jobTitle?: string = "";
   department?: string = "";
-  dateOfBirth?: Date = new Date();
+  dateOfBirth?: string = Common.formatDate(new Date());
   notes?: string = "";
 }
 

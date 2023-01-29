@@ -16,7 +16,7 @@ namespace AddressBook.Entities
         public string? Company { get; set; }
         public string? JobTitle { get; set; }
         public string? Department { get; set; }
-        public DateTime DataOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string? Notes { get; set; }
 
         // Child tables
