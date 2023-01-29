@@ -50,8 +50,8 @@ function App() {
           <Route path="contacts">
             <Route index element={<Contacts />} />
             <Route path="edit" element={<ContactEdit />} />
-            <Route path="edit/:personId" element={<ContactEdit />} />
-            <Route path="delete/:personId" element={<ContactDelete />} />
+            <Route path="edit/:contactId" element={<ContactEdit />} />
+            <Route path="delete/:contactId" element={<ContactDelete />} />
           </Route>
           {/* Country */}
           <Route path="countries">

@@ -1,43 +1,43 @@
 import { api } from "./axiosconfig"
 
-export const PersonPhoneApi = {
+export const ContactLabelApi = {
   search: async function (searchParams) {
     const response = await api.request({
-      url: "/personPhones/search",
+      url: "/contactLabels/search",
       method: "GET",
       params: searchParams,
     })
 
     return response.data
   },
-  get: async function (personPhoneId) {
-    if (!personPhoneId) return {};
+  get: async function (contactLabelId) {
+    if (!contactLabelId) return {};
     const response = await api.request({
-      url: `/personPhones/` + personPhoneId,
+      url: `/contactLabels/` + contactLabelId,
       method: "GET",
     })
 
     return response.data
   },
-  create: async function (personPhone) {
+  create: async function (contactLabel) {
     const response = await api.request({
-      url: `/personPhones`,
+      url: `/contactLabels`,
       method: "POST",
-      data: personPhone,
+      data: contactLabel,
     })
 
     return response.data
   },
-  update: async function (personPhoneId, personPhone) {
+  update: async function (contactLabelId, contactLabel) {
     await api.request({
-      url: `/personPhones/` + personPhoneId,
+      url: `/contactLabels/` + contactLabelId,
       method: "PUT",
-      data: personPhone,
+      data: contactLabel,
     })
   },
-  delete: async function (personPhoneId) {
+  delete: async function (contactLabelId) {
     const response = await api.request({
-      url: `/personPhones/` + personPhoneId,
+      url: `/contactLabels/` + contactLabelId,
       method: "DELETE",
     })
 

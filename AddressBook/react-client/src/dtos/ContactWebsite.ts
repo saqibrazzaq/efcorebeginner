@@ -1,25 +1,25 @@
 import Common from "../utility/Common";
 import { PagedReq } from "./PagedReq";
-import { PersonRes } from "./Person";
+import { ContactRes } from "./Contact";
 import { WebsiteLabelRes } from "./WebsiteLabel";
 
-export interface PersonWebsiteRes {
-  personWebsiteId?: number;
+export interface ContactWebsiteRes {
+  contactWebsiteId?: number;
   website?: string;
-  personId?: number;
-  person?: PersonRes;
+  contactId?: number;
+  contact?: ContactRes;
   websiteLabelId?: number;
   websiteLabel?: WebsiteLabelRes;
 }
 
-export class PersonWebsiteReqEdit {
+export class ContactWebsiteReqEdit {
   website?: string = "";
-  personId?: number = 0;
+  contactId?: number = 0;
   websiteLabelId?: number = 0;
 }
 
-export class PersonWebsiteReqSearch extends PagedReq {
-  personId?: string;
+export class ContactWebsiteReqSearch extends PagedReq {
+  contactId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -27,7 +27,7 @@ export class PersonWebsiteReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {personId = ""}
+    {contactId = ""}
   ) {
     super({
       pageNumber: pageNumber,
@@ -35,6 +35,6 @@ export class PersonWebsiteReqSearch extends PagedReq {
       orderBy: orderBy,
       searchText: searchText,
     });
-    this.personId = personId;
+    this.contactId = contactId;
   }
 }

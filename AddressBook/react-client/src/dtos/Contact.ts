@@ -1,14 +1,14 @@
 import Common from "../utility/Common";
 import { PagedReq } from "./PagedReq";
-import { PersonAddressRes } from "./PersonAddress";
-import { PersonChatRes } from "./PersonChat";
-import { PersonEmailRes } from "./PersonEmail";
-import { PersonLabelRes } from "./PersonLabel";
-import { PersonPhoneRes } from "./PersonPhone";
-import { PersonWebsiteRes } from "./PersonWebsite";
+import { ContactAddressRes } from "./ContactAddress";
+import { ContactChatRes } from "./ContactChat";
+import { ContactEmailRes } from "./ContactEmail";
+import { ContactLabelRes } from "./ContactLabel";
+import { ContactPhoneRes } from "./ContactPhone";
+import { ContactWebsiteRes } from "./ContactWebsite";
 
-export interface PersonRes {
-  personId?: number;
+export interface ContactRes {
+  contactId?: number;
   firstName?: string;
   middleName?: string;
   lastName?: string;
@@ -19,15 +19,15 @@ export interface PersonRes {
   dateOfBirth?: Date;
   notes?: string;
 
-  personLabels?: PersonLabelRes[];
-  personEmails?: PersonEmailRes[];
-  personPhones?: PersonPhoneRes[];
-  personAddresses?: PersonAddressRes[];
-  personWebsites?: PersonWebsiteRes[];
-  personChats?: PersonChatRes[];
+  contactLabels?: ContactLabelRes[];
+  contactEmails?: ContactEmailRes[];
+  contactPhones?: ContactPhoneRes[];
+  contactAddresses?: ContactAddressRes[];
+  contactWebsites?: ContactWebsiteRes[];
+  contactChats?: ContactChatRes[];
 }
 
-export class PersonReqEdit {
+export class ContactReqEdit {
   firstName?: string = "";
   middleName?: string = "";
   lastName?: string = "";
@@ -39,8 +39,8 @@ export class PersonReqEdit {
   notes?: string = "";
 }
 
-export class PersonReqSearch extends PagedReq {
-  personLabelId?: string;
+export class ContactReqSearch extends PagedReq {
+  labelId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -48,7 +48,7 @@ export class PersonReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {personId: personLabelId = ""}
+    {labelId = ""}
   ) {
     super({
       pageNumber: pageNumber,
@@ -56,6 +56,6 @@ export class PersonReqSearch extends PagedReq {
       orderBy: orderBy,
       searchText: searchText,
     });
-    this.personLabelId = personLabelId;
+    this.labelId = labelId;
   }
 }

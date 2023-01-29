@@ -26,14 +26,14 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
-import { PersonApi } from "../../api/personApi";
-import { PersonRes } from "../../dtos/Person";
+import { ContactApi } from "../../api/contactApi";
+import { ContactRes } from "../../dtos/Contact";
 import { AlertBox } from "../../utility/Alerts";
 
 const ContactDelete = () => {
   let params = useParams();
-  const personId = params.personId;
-  const [person, setPerson] = useState<PersonRes>();
+  const contactId = params.contactId;
+  const [contact, setContact] = useState<ContactRes>();
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -42,15 +42,15 @@ const ContactDelete = () => {
   const cancelRef = React.useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    loadPerson();
-  }, [personId]);
+    loadContact();
+  }, [contactId]);
 
-  const loadPerson = () => {
+  const loadContact = () => {
     setError("")
-    if (personId) {
-      PersonApi.get(personId)
+    if (contactId) {
+      ContactApi.get(contactId)
         .then((res) => {
-          setPerson(res);
+          setContact(res);
           // console.log(res);
         })
         .catch((error) => {
@@ -60,12 +60,12 @@ const ContactDelete = () => {
     }
   };
 
-  const deletePerson = () => {
+  const deleteContact = () => {
     setError("")
-    PersonApi.delete(personId).then(res => {
+    ContactApi.delete(contactId).then(res => {
       toast({
         title: "Success",
-        description: person?.firstName + " " + person?.lastName + " deleted successfully.",
+        description: contact?.firstName + " " + contact?.lastName + " deleted successfully.",
         status: "success",
         position: "bottom-right",
       });
@@ -73,7 +73,7 @@ const ContactDelete = () => {
     }).catch(error => {
       setError(error.response.data.error);
       toast({
-        title: "Error deleting Person",
+        title: "Error deleting Contact",
         description: error,
         status: "error",
         position: "bottom-right",
@@ -84,7 +84,7 @@ const ContactDelete = () => {
   const displayHeading = () => (
     <Flex>
       <Box>
-        <Heading fontSize={"xl"}>Delete Person</Heading>
+        <Heading fontSize={"xl"}>Delete Contact</Heading>
       </Box>
       <Spacer />
       <Box>
@@ -95,10 +95,10 @@ const ContactDelete = () => {
     </Flex>
   );
 
-  const showPersonInfo = () => (
+  const showContactInfo = () => (
     <div>
       <Text fontSize="xl">
-        Are you sure you want to delete the following Person?
+        Are you sure you want to delete the following Contact?
       </Text>
       <TableContainer>
         <Table variant="simple">
@@ -106,19 +106,19 @@ const ContactDelete = () => {
             <Tr>
               <Th>Name</Th>
               <Td>
-                {person?.firstName + " " + person?.lastName}
+                {contact?.firstName + " " + contact?.lastName}
               </Td>
             </Tr>
             <Tr>
               <Th>Company</Th>
-              <Td>{person?.company}</Td>
+              <Td>{contact?.company}</Td>
             </Tr>
           </Tbody>
         </Table>
       </TableContainer>
       <HStack pt={4} spacing={4}>
         <Button onClick={onOpen} type="button" colorScheme={"red"}>
-          YES, I WANT TO DELETE THIS PERSON
+          YES, I WANT TO DELETE THIS CONTACT
         </Button>
       </HStack>
     </div>
@@ -133,7 +133,7 @@ const ContactDelete = () => {
       <AlertDialogOverlay>
         <AlertDialogContent>
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            Delete Person
+            Delete Contact
           </AlertDialogHeader>
 
           <AlertDialogBody>
@@ -144,8 +144,8 @@ const ContactDelete = () => {
             <Link ref={cancelRef} onClick={onClose}>
               <Button type="button" colorScheme={"gray"}>Cancel</Button>
             </Link>
-            <Link onClick={deletePerson} ml={3}>
-              <Button type="submit" colorScheme={"red"}>Delete Person</Button>
+            <Link onClick={deleteContact} ml={3}>
+              <Button type="submit" colorScheme={"red"}>Delete Contact</Button>
             </Link>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -158,7 +158,7 @@ const ContactDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        {showPersonInfo()}
+        {showContactInfo()}
         {showAlertDialog()}
       </Stack>
     </Box>

@@ -1,43 +1,43 @@
 import { api } from "./axiosconfig"
 
-export const PersonEmailApi = {
+export const ContactApi = {
   search: async function (searchParams) {
     const response = await api.request({
-      url: "/personEmails/search",
+      url: "/contacts/search",
       method: "GET",
       params: searchParams,
     })
 
     return response.data
   },
-  get: async function (personEmailId) {
-    if (!personEmailId) return {};
+  get: async function (contactId) {
+    if (!contactId) return {};
     const response = await api.request({
-      url: `/personEmails/` + personEmailId,
+      url: `/contacts/` + contactId,
       method: "GET",
     })
 
     return response.data
   },
-  create: async function (personEmail) {
+  create: async function (contact) {
     const response = await api.request({
-      url: `/personEmails`,
+      url: `/contacts`,
       method: "POST",
-      data: personEmail,
+      data: contact,
     })
 
     return response.data
   },
-  update: async function (personEmailId, personEmail) {
+  update: async function (contactId, contact) {
     await api.request({
-      url: `/personEmails/` + personEmailId,
+      url: `/contacts/` + contactId,
       method: "PUT",
-      data: personEmail,
+      data: contact,
     })
   },
-  delete: async function (personEmailId) {
+  delete: async function (contactId) {
     const response = await api.request({
-      url: `/personEmails/` + personEmailId,
+      url: `/contacts/` + contactId,
       method: "DELETE",
     })
 

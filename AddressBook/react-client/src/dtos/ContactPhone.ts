@@ -1,29 +1,29 @@
 import Common from "../utility/Common";
 import { CountryRes } from "./Country";
 import { PagedReq } from "./PagedReq";
-import { PersonRes } from "./Person";
+import { ContactRes } from "./Contact";
 import { PhoneLabelRes } from "./PhoneLabel";
 
-export interface PersonPhoneRes {
-  personPhoneId?: number;
+export interface ContactPhoneRes {
+  contactPhoneId?: number;
   phone?: string;
   countryId?: number;
   country?: CountryRes;
-  personId?: number;
-  person?: PersonRes;
+  contactId?: number;
+  contact?: ContactRes;
   phoneLabelId?: number;
   phoneLabel?: PhoneLabelRes;
 }
 
-export class PersonPhoneReqEdit {
+export class ContactPhoneReqEdit {
   phone?: string;
   countryId?: number = 0;
-  personId?: number = 0;
+  contactId?: number = 0;
   phoneLabelId?: number = 0;
 }
 
-export class PersonPhoneReqSearch extends PagedReq {
-  personId?: string;
+export class ContactPhoneReqSearch extends PagedReq {
+  contactId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -31,7 +31,7 @@ export class PersonPhoneReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {personId = ""}
+    {contactId = ""}
   ) {
     super({
       pageNumber: pageNumber,
@@ -39,6 +39,6 @@ export class PersonPhoneReqSearch extends PagedReq {
       orderBy: orderBy,
       searchText: searchText,
     });
-    this.personId = personId;
+    this.contactId = contactId;
   }
 }

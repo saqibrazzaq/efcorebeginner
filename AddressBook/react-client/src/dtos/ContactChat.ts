@@ -1,25 +1,25 @@
 import Common from "../utility/Common";
 import { ChatLabelRes } from "./ChatLabel";
 import { PagedReq } from "./PagedReq";
-import { PersonRes } from "./Person";
+import { ContactRes } from "./Contact";
 
-export interface PersonChatRes {
-  personChatId?: number;
+export interface ContactChatRes {
+  contactChatId?: number;
   chat?: string;
-  personId?: number;
-  person?: PersonRes;
+  contactId?: number;
+  contact?: ContactRes;
   chatLabelId?: number;
   chatLabel?: ChatLabelRes;
 }
 
-export class PersonChatReqEdit {
+export class ContactChatReqEdit {
   chat?: string = "";
-  personId?: number = 0;
+  contactId?: number = 0;
   chatLabelId?: number = 0;
 }
 
-export class PersonChatReqSearch extends PagedReq {
-  personId?: string;
+export class ContactChatReqSearch extends PagedReq {
+  contactId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -27,7 +27,7 @@ export class PersonChatReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {personId = ""}
+    {contactId = ""}
   ) {
     super({
       pageNumber: pageNumber,
@@ -35,6 +35,6 @@ export class PersonChatReqSearch extends PagedReq {
       orderBy: orderBy,
       searchText: searchText,
     });
-    this.personId = personId;
+    this.contactId = contactId;
   }
 }

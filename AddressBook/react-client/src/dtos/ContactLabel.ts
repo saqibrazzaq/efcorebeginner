@@ -1,23 +1,23 @@
 import Common from "../utility/Common";
 import { LabelRes } from "./Label";
 import { PagedReq } from "./PagedReq";
-import { PersonRes } from "./Person";
+import { ContactRes } from "./Contact";
 
-export interface PersonLabelRes {
-  personLabelId?: number;
+export interface ContactLabelRes {
+  contactLabelId?: number;
   labelId?: number;
   label?: LabelRes;
-  personId?: number;
-  person?: PersonRes;
+  contactId?: number;
+  contact?: ContactRes;
 }
 
-export class PersonLabelReqEdit {
+export class ContactLabelReqEdit {
   labelId?: number = 0;
-  personId?: number = 0;
+  contactId?: number = 0;
 }
 
-export class PersonLabelReqSearch extends PagedReq {
-  personId?: string;
+export class ContactLabelReqSearch extends PagedReq {
+  contactId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -25,7 +25,7 @@ export class PersonLabelReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {personId = ""}
+    {contactId = ""}
   ) {
     super({
       pageNumber: pageNumber,
@@ -33,6 +33,6 @@ export class PersonLabelReqSearch extends PagedReq {
       orderBy: orderBy,
       searchText: searchText,
     });
-    this.personId = personId;
+    this.contactId = contactId;
   }
 }

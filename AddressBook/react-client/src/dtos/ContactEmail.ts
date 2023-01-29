@@ -1,25 +1,25 @@
 import Common from "../utility/Common";
 import { EmailLabelRes } from "./EmailLabel";
 import { PagedReq } from "./PagedReq";
-import { PersonRes } from "./Person";
+import { ContactRes } from "./Contact";
 
-export interface PersonEmailRes {
-  personEmailId?: number;
+export interface ContactEmailRes {
+  contactEmailId?: number;
   email?: string;
-  personId?: number;
-  person?: PersonRes;
+  contactId?: number;
+  contact?: ContactRes;
   emailLabelId?: number;
   emailLabel?: EmailLabelRes;
 }
 
-export class PersonEmailReqEdit {
+export class ContactEmailReqEdit {
   email?: string = "";
-  personId?: number = 0;
+  contactId?: number = 0;
   emailLabelId?: number = 0;
 }
 
-export class PersonEmailReqSearch extends PagedReq {
-  personId?: string;
+export class ContactEmailReqSearch extends PagedReq {
+  contactId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -27,7 +27,7 @@ export class PersonEmailReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {personId = ""}
+    {contactId = ""}
   ) {
     super({
       pageNumber: pageNumber,
@@ -35,6 +35,6 @@ export class PersonEmailReqSearch extends PagedReq {
       orderBy: orderBy,
       searchText: searchText,
     });
-    this.personId = personId;
+    this.contactId = contactId;
   }
 }

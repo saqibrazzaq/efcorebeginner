@@ -2,10 +2,10 @@ import Common from "../utility/Common";
 import { AddressLabelRes } from "./AddressLabel";
 import { CityRes } from "./City";
 import { PagedReq } from "./PagedReq";
-import { PersonRes } from "./Person";
+import { ContactRes } from "./Contact";
 
-export interface PersonAddressRes {
-  personAddressId?: number;
+export interface ContactAddressRes {
+  contactAddressId?: number;
   line1?: string;
   line2?: string;
   postCode?: string;
@@ -13,20 +13,20 @@ export interface PersonAddressRes {
   city?: CityRes;
   addressLabelId?: number;
   addressLabel?: AddressLabelRes;
-  personId?: number;
-  person?: PersonRes;
+  contactId?: number;
+  contact?: ContactRes;
 }
 
-export class PersonAddressReqEdit {
+export class ContactAddressReqEdit {
   line1?: string = "";
   line2?: string = "";
   postCode?: string = "";
   cityId?: number = 0;
   addressLabelId?: number = 0;
-  personId?: number = 0;
+  contactId?: number = 0;
 }
 
-export class PersonAddressReqSearch extends PagedReq {
+export class ContactAddressReqSearch extends PagedReq {
   personId?: string;
   constructor(
     {

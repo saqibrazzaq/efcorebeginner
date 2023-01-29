@@ -29,24 +29,24 @@ import {
 import Common from "../../utility/Common";
 import UpdateIcon from "../../components/icons/UpdateIcon";
 import DeleteIcon from "../../components/icons/DeleteIcon";
-import { PersonRes } from "../../dtos/Person";
-import { PersonApi } from "../../api/personApi";
+import { ContactRes } from "../../dtos/Contact";
+import { ContactApi } from "../../api/contactApi";
 
 const Contacts = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams(location.search);
   searchParams.set("pageSize", Common.DEFAULT_PAGE_SIZE.toString());
 
-  const [pagedRes, setPagedRes] = useState<PagedRes<PersonRes>>();
+  const [pagedRes, setPagedRes] = useState<PagedRes<ContactRes>>();
   const [searchText, setSearchText] = useState<string>("");
 
   useEffect(() => {
-    searchPersons();
+    searchContacts();
   }, [searchParams]);
 
-  const searchPersons = () => {
+  const searchContacts = () => {
     if (!searchParams) return;
-    PersonApi.search(Object.fromEntries(searchParams)).then((res) => {
+    ContactApi.search(Object.fromEntries(searchParams)).then((res) => {
       setPagedRes(res);
       // console.log(res)
     });
@@ -128,19 +128,19 @@ const Contacts = () => {
         </Thead>
         <Tbody>
           {pagedRes?.pagedList?.map((item) => (
-            <Tr key={item.personId}>
-              <Td>{item.personId}</Td>
+            <Tr key={item.contactId}>
+              <Td>{item.contactId}</Td>
               <Td>{item.firstName + " " + item.lastName}</Td>
               <Td>{item.company}</Td>
               <Td>
                 <Link
                   mr={2}
                   as={RouteLink}
-                  to={"/contacts/edit/" + item.personId}
+                  to={"/contacts/edit/" + item.contactId}
                 >
                   <UpdateIcon />
                 </Link>
-                <Link as={RouteLink} to={"/contacts/delete/" + item.personId}>
+                <Link as={RouteLink} to={"/contacts/delete/" + item.contactId}>
                   <DeleteIcon />
                 </Link>
               </Td>

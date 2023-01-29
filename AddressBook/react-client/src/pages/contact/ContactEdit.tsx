@@ -17,15 +17,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { Field, Formik } from "formik";
 import { AlertBox } from "../../utility/Alerts";
-import { PersonReqEdit } from "../../dtos/Person";
-import { PersonApi } from "../../api/personApi";
+import { ContactReqEdit } from "../../dtos/Contact";
+import { ContactApi } from "../../api/contactApi";
 
 const ContactEdit = () => {
   const params = useParams();
-  const personId = Number.parseInt(params.personId || "0");
-  const updateText = personId ? "Update Person" : "Add Person";
+  const contactId = Number.parseInt(params.contactId || "0");
+  const updateText = contactId ? "Update Contact" : "Add Contact";
 
-  const [person, setPerson] = useState<PersonReqEdit>(new PersonReqEdit());
+  const [contact, setContact] = useState<ContactReqEdit>(new ContactReqEdit());
   const toast = useToast();
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -34,21 +34,21 @@ const ContactEdit = () => {
   // console.log("state id: " + stateId);
 
   useEffect(() => {
-    loadPerson();
-  }, [personId]);
+    loadContact();
+  }, [contactId]);
 
-  const loadPerson = () => {
+  const loadContact = () => {
     setError("");
-    if (personId) {
-      PersonApi.get(personId)
+    if (contactId) {
+      ContactApi.get(contactId)
         .then((res) => {
-          setPerson(res);
+          setContact(res);
           // console.log(res);
         })
         .catch((error) => {
           setError(error.response.data.error);
           toast({
-            title: "Failed to get Person",
+            title: "Failed to get Contact",
             description: error.response.data.error,
             status: "error",
             position: "bottom-right",
@@ -70,23 +70,23 @@ const ContactEdit = () => {
     notes: Yup.string(),
   });
 
-  const submitForm = (values: PersonReqEdit) => {
+  const submitForm = (values: ContactReqEdit) => {
     // console.log("submit form")
     // console.log(values);
-    if (personId) {
-      updatePerson(values);
+    if (contactId) {
+      updateContact(values);
     } else {
-      createPerson(values);
+      createContact(values);
     }
   };
 
-  const updatePerson = (values: PersonReqEdit) => {
+  const updateContact = (values: ContactReqEdit) => {
     setError("");
-    PersonApi.update(personId, values)
+    ContactApi.update(contactId, values)
       .then((res) => {
         toast({
           title: "Success",
-          description: "Person updated successfully.",
+          description: "Contact updated successfully.",
           status: "success",
           position: "bottom-right",
         });
@@ -97,13 +97,13 @@ const ContactEdit = () => {
       });
   };
 
-  const createPerson = (values: PersonReqEdit) => {
+  const createContact = (values: ContactReqEdit) => {
     setError("");
-    PersonApi.create(values)
+    ContactApi.create(values)
       .then((res) => {
         toast({
           title: "Success",
-          description: "Person created successfully.",
+          description: "Contact created successfully.",
           status: "success",
           position: "bottom-right",
         });
@@ -117,7 +117,7 @@ const ContactEdit = () => {
   const showUpdateForm = () => (
     <Box p={0}>
       <Formik
-        initialValues={person}
+        initialValues={contact}
         onSubmit={(values) => {
           submitForm(values);
         }}
