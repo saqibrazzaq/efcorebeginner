@@ -134,7 +134,7 @@ const ContactAddressEdit = () => {
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.line1 && touched.line1}>
                 <FormLabel htmlFor="line1">Line 1</FormLabel>
-                <Field as={Input} id="contactId" name="contactId" type="text" />
+                <Field as={Input} id="contactId" name="contactId" type="hidden" />
                 <Field as={Input} id="line1" name="line1" type="text" />
                 <FormErrorMessage>{errors.line1}</FormErrorMessage>
               </FormControl>

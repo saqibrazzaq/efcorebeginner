@@ -127,7 +127,7 @@ const ContactWebsiteEdit = () => {
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.website && touched.website}>
                 <FormLabel htmlFor="website">Website</FormLabel>
-                <Field as={Input} id="contactId" name="contactId" type="text" />
+                <Field as={Input} id="contactId" name="contactId" type="hidden" />
                 <Field as={Input} id="website" name="website" type="text" />
                 <FormErrorMessage>{errors.website}</FormErrorMessage>
               </FormControl>

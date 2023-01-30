@@ -127,7 +127,7 @@ const ContactChatEdit = () => {
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.chat && touched.chat}>
                 <FormLabel htmlFor="chat">Chat</FormLabel>
-                <Field as={Input} id="contactId" name="contactId" type="text" />
+                <Field as={Input} id="contactId" name="contactId" type="hidden" />
                 <Field as={Input} id="chat" name="chat" type="text" />
                 <FormErrorMessage>{errors.chat}</FormErrorMessage>
               </FormControl>

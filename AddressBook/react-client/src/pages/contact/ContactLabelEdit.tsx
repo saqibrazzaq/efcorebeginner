@@ -48,7 +48,7 @@ const ContactLabelEdit = () => {
         .then((res) => {
           setContactLabel(res);
           setSelectedLabel(res.label)
-          console.log(res)
+          // console.log(res)
         })
         .catch((error) => {
           setError(error.response.data.error);
@@ -126,7 +126,7 @@ const ContactLabelEdit = () => {
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.labelId && touched.labelId}>
                 <FormLabel htmlFor="labelId">Label Id</FormLabel>
-                <Field as={Input} id="contactId" name="contactId" type="text" />
+                <Field as={Input} id="contactId" name="contactId" type="hidden" />
                 <Field as={Input} id="labelId" name="labelId" type="hidden" />
                 <LabelDropdown
                   selectedLabel={selectedLabel}

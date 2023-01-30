@@ -133,7 +133,7 @@ const ContactPhoneEdit = () => {
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.countryId && touched.countryId}>
                 <FormLabel htmlFor="countryId">Country Id</FormLabel>
-                <Field as={Input} id="contactId" name="contactId" type="text" />
+                <Field as={Input} id="contactId" name="contactId" type="hidden" />
                 <Field as={Input} id="countryId" name="countryId" type="hidden" />
                 <CountryDropdown
                   selectedCountry={selectedCountry}

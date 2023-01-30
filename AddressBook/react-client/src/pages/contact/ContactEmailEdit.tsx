@@ -127,7 +127,7 @@ const ContactEmailEdit = () => {
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.email && touched.email}>
                 <FormLabel htmlFor="email">Email</FormLabel>
-                <Field as={Input} id="contactId" name="contactId" type="text" />
+                <Field as={Input} id="contactId" name="contactId" type="hidden" />
                 <Field as={Input} id="email" name="email" type="text" />
                 <FormErrorMessage>{errors.email}</FormErrorMessage>
               </FormControl>
