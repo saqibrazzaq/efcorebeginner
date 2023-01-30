@@ -43,6 +43,8 @@ import { ContactWebsiteReqSearch, ContactWebsiteRes } from "../../dtos/ContactWe
 import { ContactWebsiteApi } from "../../api/contactWebsiteApi";
 import { ContactChatReqSearch, ContactChatRes } from "../../dtos/ContactChat";
 import { ContactChatApi } from "../../api/contactChatApi";
+import { ContactAddressReqSearch, ContactAddressRes } from "../../dtos/ContactAddress";
+import { ContactAddressApi } from "../../api/contactAddressApi";
 
 const ContactEdit = () => {
   const params = useParams();
@@ -59,6 +61,7 @@ const ContactEdit = () => {
   const [contactEmailsPaged, setContactEmailsPaged] = useState<PagedRes<ContactEmailRes>>();
   const [contactWebsitesPaged, setContactWebsitesPaged] = useState<PagedRes<ContactWebsiteRes>>();
   const [contactChatsPaged, setContactChatsPaged] = useState<PagedRes<ContactChatRes>>();
+  const [contactAddressesPaged, setContactAddressesPaged] = useState<PagedRes<ContactAddressRes>>();
 
   // console.log("countryid: " + countryId);
   // console.log("state id: " + stateId);
@@ -70,6 +73,7 @@ const ContactEdit = () => {
     loadContactEmails();
     loadContactWebsites();
     loadContactChats();
+    loadContactAddresses();
   }, [contactId]);
 
   const loadContactPhones = () => {
@@ -100,6 +104,12 @@ const ContactEdit = () => {
   const loadContactChats = () => {
     ContactChatApi.search(new ContactChatReqSearch({}, {contactId: contactId.toString()})).then(res => {
       setContactChatsPaged(res);
+    })
+  }
+
+  const loadContactAddresses = () => {
+    ContactAddressApi.search(new ContactAddressReqSearch({}, {contactId: contactId.toString()})).then(res => {
+      setContactAddressesPaged(res)
     })
   }
 
@@ -432,6 +442,57 @@ const ContactEdit = () => {
     </Flex>
   )
 
+  const showContactAddresses = () => (
+    <Flex>
+      <Box>
+        <Heading mb={2} fontSize={"md"}>Addresses</Heading>
+        <Link as={RouteLink} to={"/contacts/" + contactId + "/addresses/edit"}>
+          <AddIcon />
+        </Link>
+      </Box>
+      <Spacer />
+      <Box>
+      <TableContainer>
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Address</Th>
+            <Th>Label</Th>
+            <Th></Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {contactAddressesPaged?.pagedList?.map((item) => (
+            <Tr key={item.contactAddressId}>
+              <Td>
+                {item.line1}<br />
+                {item.line2}
+                {item.line2 ? <br /> : ''}
+                {item.city?.name + ", " + item.city?.state?.name + ", " +
+                item.city?.state?.country?.name}
+              </Td>
+              <Td>{item.addressLabel?.label}</Td>
+              <Td>
+                <Link
+                  mr={2}
+                  as={RouteLink}
+                  to={"/contacts/" + contactId + "/addresses/edit/" + item.contactAddressId}
+                >
+                  <UpdateIcon />
+                </Link>
+                <Link as={RouteLink} to={"/contacts/" + contactId + "/addresses/delete/" + item.contactAddressId}>
+                  <DeleteIcon />
+                </Link>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+      </Box>
+    </Flex>
+  )
+
   const showContactLabels = () => (
     <Flex>
       <Box>
@@ -500,6 +561,7 @@ const ContactEdit = () => {
         {contactId && showContactEmails()}
         {contactId && showContactWebsites()}
         {contactId && showContactChats()}
+        {contactId && showContactAddresses()}
       </Stack>
     </Box>
   );

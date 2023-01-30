@@ -4,6 +4,8 @@ import SettingsLayout from "./layout/SettingsLayout";
 import Cities from "./pages/city/Cities";
 import CityDelete from "./pages/city/CityDelete";
 import CityEdit from "./pages/city/CityEdit";
+import ContactAddressDelete from "./pages/contact/ContactAddressDelete";
+import ContactAddressEdit from "./pages/contact/ContactAddressEdit";
 import ContactChatDelete from "./pages/contact/ContactChatDelete";
 import ContactChatEdit from "./pages/contact/ContactChatEdit";
 import ContactDelete from "./pages/contact/ContactDelete";
@@ -77,6 +79,9 @@ function App() {
             <Route path=":contactId/chats/edit" element={<ContactChatEdit />} />
             <Route path=":contactId/chats/edit/:contactChatId" element={<ContactChatEdit />} />
             <Route path=":contactId/chats/delete/:contactChatId" element={<ContactChatDelete />} />
+            <Route path=":contactId/addresses/edit" element={<ContactAddressEdit />} />
+            <Route path=":contactId/addresses/edit/:contactAddressId" element={<ContactAddressEdit />} />
+            <Route path=":contactId/addresses/delete/:contactAddressId" element={<ContactAddressDelete />} />
           </Route>
           {/* Country */}
           <Route path="countries">

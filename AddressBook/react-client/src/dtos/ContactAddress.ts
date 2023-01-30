@@ -24,10 +24,13 @@ export class ContactAddressReqEdit {
   cityId?: number = 0;
   addressLabelId?: number = 0;
   contactId?: number = 0;
+  constructor(contactId?: number) {
+    this.contactId = contactId;
+  }
 }
 
 export class ContactAddressReqSearch extends PagedReq {
-  personId?: string;
+  contactId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -35,7 +38,7 @@ export class ContactAddressReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {personId = ""}
+    {contactId = ""}
   ) {
     super({
       pageNumber: pageNumber,
@@ -43,6 +46,6 @@ export class ContactAddressReqSearch extends PagedReq {
       orderBy: orderBy,
       searchText: searchText,
     });
-    this.personId = personId;
+    this.contactId = contactId;
   }
 }
