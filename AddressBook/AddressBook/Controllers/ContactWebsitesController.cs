@@ -29,7 +29,7 @@ namespace AddressBook.Controllers
             return Search(new ContactWebsiteReqSearch());
         }
 
-        [HttpGet("contactWebsiteId")]
+        [HttpGet("{contactWebsiteId}")]
         public IActionResult Get(int contactWebsiteId)
         {
             var res = _contactWebsiteService.Get(contactWebsiteId);

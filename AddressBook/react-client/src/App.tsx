@@ -4,6 +4,8 @@ import SettingsLayout from "./layout/SettingsLayout";
 import Cities from "./pages/city/Cities";
 import CityDelete from "./pages/city/CityDelete";
 import CityEdit from "./pages/city/CityEdit";
+import ContactChatDelete from "./pages/contact/ContactChatDelete";
+import ContactChatEdit from "./pages/contact/ContactChatEdit";
 import ContactDelete from "./pages/contact/ContactDelete";
 import ContactEdit from "./pages/contact/ContactEdit";
 import ContactEmailDelete from "./pages/contact/ContactEmailDelete";
@@ -13,6 +15,8 @@ import ContactLabelEdit from "./pages/contact/ContactLabelEdit";
 import ContactPhoneDelete from "./pages/contact/ContactPhoneDelete";
 import ContactPhoneEdit from "./pages/contact/ContactPhoneEdit";
 import Contacts from "./pages/contact/Contacts";
+import ContactWebsiteDelete from "./pages/contact/ContactWebsiteDelete";
+import ContactWebsiteEdit from "./pages/contact/ContactWebsiteEdit";
 import Countries from "./pages/country/Countries";
 import CountryDelete from "./pages/country/CountryDelete";
 import CountryEdit from "./pages/country/CountryEdit";
@@ -67,6 +71,12 @@ function App() {
             <Route path=":contactId/emails/edit" element={<ContactEmailEdit />} />
             <Route path=":contactId/emails/edit/:contactEmailId" element={<ContactEmailEdit />} />
             <Route path=":contactId/emails/delete/:contactEmailId" element={<ContactEmailDelete />} />
+            <Route path=":contactId/websites/edit" element={<ContactWebsiteEdit />} />
+            <Route path=":contactId/websites/edit/:contactWebsiteId" element={<ContactWebsiteEdit />} />
+            <Route path=":contactId/websites/delete/:contactWebsiteId" element={<ContactWebsiteDelete />} />
+            <Route path=":contactId/chats/edit" element={<ContactChatEdit />} />
+            <Route path=":contactId/chats/edit/:contactChatId" element={<ContactChatEdit />} />
+            <Route path=":contactId/chats/delete/:contactChatId" element={<ContactChatDelete />} />
           </Route>
           {/* Country */}
           <Route path="countries">

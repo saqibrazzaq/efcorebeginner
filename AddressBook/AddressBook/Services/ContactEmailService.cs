@@ -3,6 +3,7 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressBook.Services
 {
@@ -35,7 +36,8 @@ namespace AddressBook.Services
         private ContactEmail FindContactEmailIfExists(int contactEmailId, bool trackChanges)
         {
             var entity = _repositoryManager.ContactEmailRepository.FindByCondition(
-                x => x.ContactEmailId == contactEmailId, trackChanges)
+                x => x.ContactEmailId == contactEmailId, trackChanges,
+                include: i => i.Include(x => x.EmailLabel))
                 .FirstOrDefault();
 
             if (entity == null) { throw new Exception("No contact email found with id " + contactEmailId); }

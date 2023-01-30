@@ -3,6 +3,7 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressBook.Services
 {
@@ -35,7 +36,8 @@ namespace AddressBook.Services
         private ContactWebsite FindContactWebsiteIfExists(int contactWebsiteId, bool trackChanges)
         {
             var entity = _repositoryManager.ContactWebsiteRepository.FindByCondition(
-                x => x.ContactWebsiteId == contactWebsiteId, trackChanges)
+                x => x.ContactWebsiteId == contactWebsiteId, trackChanges,
+                include: i => i.Include(x => x.WebsiteLabel))
                 .FirstOrDefault();
 
             if (entity == null) { throw new Exception("No contact website found with id " + contactWebsiteId); }

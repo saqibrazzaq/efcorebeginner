@@ -16,6 +16,9 @@ export class ContactChatReqEdit {
   chat?: string = "";
   contactId?: number = 0;
   chatLabelId?: number = 0;
+  constructor(contactId?: number) {
+    this.contactId = contactId;
+  }
 }
 
 export class ContactChatReqSearch extends PagedReq {

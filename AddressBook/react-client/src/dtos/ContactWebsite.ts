@@ -16,6 +16,9 @@ export class ContactWebsiteReqEdit {
   website?: string = "";
   contactId?: number = 0;
   websiteLabelId?: number = 0;
+  constructor(contactId?: number) {
+    this.contactId = contactId;
+  }
 }
 
 export class ContactWebsiteReqSearch extends PagedReq {

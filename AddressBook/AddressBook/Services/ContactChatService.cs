@@ -3,6 +3,7 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressBook.Services
 {
@@ -35,7 +36,8 @@ namespace AddressBook.Services
         private ContactChat FindContactChatIfExists(int contactChatId, bool trackChanges)
         {
             var entity = _repositoryManager.ContactChatRepository.FindByCondition(
-                x => x.ContactChatId == contactChatId, trackChanges)
+                x => x.ContactChatId == contactChatId, trackChanges,
+                include: i => i.Include(x => x.ChatLabel))
                 .FirstOrDefault();
 
             if (entity == null) { throw new Exception("No contact chat found with id " + contactChatId); }

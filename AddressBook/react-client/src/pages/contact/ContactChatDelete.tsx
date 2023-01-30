@@ -26,14 +26,14 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
-import { ContactEmailApi } from "../../api/contactEmail";
-import { ContactEmailRes } from "../../dtos/ContactEmail";
+import { ContactChatApi } from "../../api/contactChatApi";
+import { ContactChatRes } from "../../dtos/ContactChat";
 import { AlertBox } from "../../utility/Alerts";
 
-const ContactEmailDelete = () => {
+const ContactChatDelete = () => {
   let params = useParams();
-  const contactEmailId = params.contactEmailId;
-  const [contactEmail, setContactEmail] = useState<ContactEmailRes>();
+  const contactChatId = params.contactChatId;
+  const [contactChat, setContactChat] = useState<ContactChatRes>();
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -42,15 +42,15 @@ const ContactEmailDelete = () => {
   const cancelRef = React.useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    loadContactEmail();
-  }, [contactEmailId]);
+    loadContactChat();
+  }, [contactChatId]);
 
-  const loadContactEmail = () => {
+  const loadContactChat = () => {
     setError("")
-    if (contactEmailId) {
-      ContactEmailApi.get(contactEmailId)
+    if (contactChatId) {
+      ContactChatApi.get(contactChatId)
         .then((res) => {
-          setContactEmail(res);
+          setContactChat(res);
           // console.log(res);
         })
         .catch((error) => {
@@ -60,12 +60,12 @@ const ContactEmailDelete = () => {
     }
   };
 
-  const deleteContactEmail = () => {
+  const deleteContactChat = () => {
     setError("")
-    ContactEmailApi.delete(contactEmailId).then(res => {
+    ContactChatApi.delete(contactChatId).then(res => {
       toast({
         title: "Success",
-        description: contactEmail?.email + " deleted successfully.",
+        description: contactChat?.chat + " deleted successfully.",
         status: "success",
         position: "bottom-right",
       });
@@ -73,7 +73,7 @@ const ContactEmailDelete = () => {
     }).catch(error => {
       setError(error.response.data.error);
       toast({
-        title: "Error deleting Contact email",
+        title: "Error deleting Contact chat",
         description: error,
         status: "error",
         position: "bottom-right",
@@ -84,7 +84,7 @@ const ContactEmailDelete = () => {
   const displayHeading = () => (
     <Flex>
       <Box>
-        <Heading fontSize={"xl"}>Delete Contact Email</Heading>
+        <Heading fontSize={"xl"}>Delete Contact Chat</Heading>
       </Box>
       <Spacer />
       <Box>
@@ -95,30 +95,30 @@ const ContactEmailDelete = () => {
     </Flex>
   );
 
-  const showContactEmailInfo = () => (
+  const showContactChatInfo = () => (
     <div>
       <Text fontSize="xl">
-        Are you sure you want to delete the following Contact Email?
+        Are you sure you want to delete the following Contact Chat?
       </Text>
       <TableContainer>
         <Table variant="simple">
           <Tbody>
             <Tr>
-              <Th>Email</Th>
+              <Th>Chat</Th>
               <Td>
-                {contactEmail?.email}
+                {contactChat?.chat}
               </Td>
             </Tr>
             <Tr>
               <Th>Label</Th>
-              <Td>{contactEmail?.emailLabel?.label}</Td>
+              <Td>{contactChat?.chatLabel?.label}</Td>
             </Tr>
           </Tbody>
         </Table>
       </TableContainer>
       <HStack pt={4} spacing={4}>
         <Button onClick={onOpen} type="button" colorScheme={"red"}>
-          YES, I WANT TO DELETE THIS CONTACT EMAIL
+          YES, I WANT TO DELETE THIS CONTACT CHAT
         </Button>
       </HStack>
     </div>
@@ -133,7 +133,7 @@ const ContactEmailDelete = () => {
       <AlertDialogOverlay>
         <AlertDialogContent>
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            Delete Contact Email
+            Delete Contact Chat
           </AlertDialogHeader>
 
           <AlertDialogBody>
@@ -144,8 +144,8 @@ const ContactEmailDelete = () => {
             <Link ref={cancelRef} onClick={onClose}>
               <Button type="button" colorScheme={"gray"}>Cancel</Button>
             </Link>
-            <Link onClick={deleteContactEmail} ml={3}>
-              <Button type="submit" colorScheme={"red"}>Delete Contact Email</Button>
+            <Link onClick={deleteContactChat} ml={3}>
+              <Button type="submit" colorScheme={"red"}>Delete Contact Chat</Button>
             </Link>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -158,11 +158,11 @@ const ContactEmailDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        {showContactEmailInfo()}
+        {showContactChatInfo()}
         {showAlertDialog()}
       </Stack>
     </Box>
   );
 }
 
-export default ContactEmailDelete
+export default ContactChatDelete
