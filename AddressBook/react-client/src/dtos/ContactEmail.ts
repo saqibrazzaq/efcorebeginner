@@ -16,6 +16,9 @@ export class ContactEmailReqEdit {
   email?: string = "";
   contactId?: number = 0;
   emailLabelId?: number = 0;
+  constructor(contactId?: number) {
+    this.contactId = contactId;
+  }
 }
 
 export class ContactEmailReqSearch extends PagedReq {

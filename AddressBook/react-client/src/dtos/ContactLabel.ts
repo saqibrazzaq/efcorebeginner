@@ -14,6 +14,9 @@ export interface ContactLabelRes {
 export class ContactLabelReqEdit {
   labelId?: number = 0;
   contactId?: number = 0;
+  constructor(contactId?: number) {
+    this.contactId = contactId;
+  }
 }
 
 export class ContactLabelReqSearch extends PagedReq {

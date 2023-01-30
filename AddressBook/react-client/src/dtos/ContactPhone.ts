@@ -16,10 +16,13 @@ export interface ContactPhoneRes {
 }
 
 export class ContactPhoneReqEdit {
-  phone?: string;
+  phone?: string = "";
   countryId?: number = 0;
   contactId?: number = 0;
   phoneLabelId?: number = 0;
+  constructor(contactId?: number) {
+    this.contactId = contactId;
+  }
 }
 
 export class ContactPhoneReqSearch extends PagedReq {

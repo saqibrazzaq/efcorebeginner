@@ -3,6 +3,7 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressBook.Services
 {
@@ -35,7 +36,11 @@ namespace AddressBook.Services
         private ContactPhone FindContactPhoneIfExists(int contactPhoneId, bool trackChanges)
         {
             var entity = _repositoryManager.ContactPhoneRepository.FindByCondition(
-                x => x.ContactPhoneId == contactPhoneId, trackChanges)
+                x => x.ContactPhoneId == contactPhoneId, trackChanges,
+                include: i => i
+                    .Include(x => x.Country)
+                    .Include(x => x.PhoneLabel)
+                )
                 .FirstOrDefault();
 
             if (entity == null) { throw new Exception("No contact phone found with id " + contactPhoneId); }

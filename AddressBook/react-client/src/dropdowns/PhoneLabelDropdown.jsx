@@ -8,7 +8,7 @@ const PhoneLabelDropdown = ({handleChange, selectedPhoneLabel}) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const selectedPhoneLabel = () => {
+  const loadPhoneLabel = () => {
     setIsLoading(true);
     PhoneLabelApi.search(new PhoneLabelReqSearch({ searchText: inputValue }, {}))
       .then((res) => {
@@ -19,7 +19,7 @@ const PhoneLabelDropdown = ({handleChange, selectedPhoneLabel}) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      selectedPhoneLabel();
+      loadPhoneLabel();
     }, 1000);
 
     return () => clearTimeout(timer);

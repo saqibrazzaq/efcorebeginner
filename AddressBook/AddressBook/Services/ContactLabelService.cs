@@ -3,6 +3,7 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressBook.Services
 {
@@ -35,7 +36,8 @@ namespace AddressBook.Services
         private ContactLabel FindContactLabelIfExists(int contactLabelId, bool trackChanges)
         {
             var entity = _repositoryManager.ContactLabelRepository.FindByCondition(
-                x => x.ContactLabelId == contactLabelId, trackChanges)
+                x => x.ContactLabelId == contactLabelId, trackChanges,
+                include: i => i.Include(x => x.Label))
                 .FirstOrDefault();
 
             if (entity == null) { throw new Exception("No contact label found with id " + contactLabelId); }

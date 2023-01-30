@@ -8,17 +8,39 @@ import {
   FormLabel,
   Heading,
   Input,
+  Link,
   Spacer,
   Stack,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Tfoot,
+  Th,
+  Thead,
+  Tr,
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link as RouteLink, } from "react-router-dom";
 import * as Yup from "yup";
 import { Field, Formik } from "formik";
 import { AlertBox } from "../../utility/Alerts";
 import { ContactReqEdit } from "../../dtos/Contact";
 import { ContactApi } from "../../api/contactApi";
+import UpdateIcon from "../../components/icons/UpdateIcon";
+import DeleteIcon from "../../components/icons/DeleteIcon";
+import { ContactPhoneReqSearch, ContactPhoneRes } from "../../dtos/ContactPhone";
+import PagedRes from "../../dtos/PagedRes";
+import { ContactPhoneApi } from "../../api/contactPhone";
+import AddIcon from "../../components/icons/AddIcon";
+import { LabelRes } from "../../dtos/Label";
+import { ContactLabelApi } from "../../api/contactLabelApi";
+import { ContactLabelReqSearch, ContactLabelRes } from "../../dtos/ContactLabel";
+import { ContactEmailReqSearch, ContactEmailRes } from "../../dtos/ContactEmail";
+import { ContactEmailApi } from "../../api/contactEmail";
+import { ContactWebsiteReqSearch, ContactWebsiteRes } from "../../dtos/ContactWebsite";
+import { ContactWebsiteApi } from "../../api/contactWebsiteApi";
 
 const ContactEdit = () => {
   const params = useParams();
@@ -30,12 +52,46 @@ const ContactEdit = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
+  const [contactPhonesPaged, setContactPhonesPaged] = useState<PagedRes<ContactPhoneRes>>();
+  const [contactLabelsPaged, setContactLabelsPaged] = useState<PagedRes<ContactLabelRes>>();
+  const [contactEmailsPaged, setContactEmailsPaged] = useState<PagedRes<ContactEmailRes>>();
+  const [contactWebsitesPaged, setContactWebsitesPaged] = useState<PagedRes<ContactWebsiteRes>>();
+
   // console.log("countryid: " + countryId);
   // console.log("state id: " + stateId);
 
   useEffect(() => {
     loadContact();
+    loadContactPhones();
+    loadContactLabels();
+    loadContactEmails();
+    loadContactWebsites();
   }, [contactId]);
+
+  const loadContactPhones = () => {
+    ContactPhoneApi.search(new ContactPhoneReqSearch({}, {contactId: contactId.toString()})).then(res => {
+      setContactPhonesPaged(res)
+    })
+  }
+
+  const loadContactLabels = () => {
+    ContactLabelApi.search(new ContactLabelReqSearch({}, {contactId: contactId.toString()})).then(res => {
+      setContactLabelsPaged(res)
+      // console.log(res)
+    })
+  }
+
+  const loadContactEmails = () => {
+    ContactEmailApi.search(new ContactEmailReqSearch({}, {contactId: contactId.toString()})).then(res => {
+      setContactEmailsPaged(res);
+    })
+  }
+
+  const loadContactWebsites = () => {
+    ContactWebsiteApi.search(new ContactWebsiteReqSearch({}, {contactId: contactId.toString()})).then(res => {
+      setContactWebsitesPaged(res)
+    })
+  }
 
   const loadContact = () => {
     setError("");
@@ -184,6 +240,186 @@ const ContactEdit = () => {
     </Box>
   );
 
+  const showContactPhones = () => (
+    <Flex>
+      <Box>
+        <Heading mb={2} fontSize={"md"}>Phones</Heading>
+        <Link as={RouteLink} to={"/contacts/" + contactId + "/phones/edit"}>
+          <AddIcon />
+        </Link>
+      </Box>
+      <Spacer />
+      <Box>
+      <TableContainer>
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Country</Th>
+            <Th>Phone</Th>
+            <Th>Label</Th>
+            <Th></Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {contactPhonesPaged?.pagedList?.map((item) => (
+            <Tr key={item.contactPhoneId}>
+              <Td>{item.country?.name}</Td>
+              <Td>{item.phone}</Td>
+              <Td>{item.phoneLabel?.label}</Td>
+              <Td>
+                <Link
+                  mr={2}
+                  as={RouteLink}
+                  to={"/contacts/" + contactId + "/phones/edit/" + item.contactPhoneId}
+                >
+                  <UpdateIcon />
+                </Link>
+                <Link as={RouteLink} to={"/contacts/" + contactId + "/phones/delete/" + item.contactPhoneId}>
+                  <DeleteIcon />
+                </Link>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+      </Box>
+    </Flex>
+  )
+
+  const showContactEmails = () => (
+    <Flex>
+      <Box>
+        <Heading mb={2} fontSize={"md"}>Emails</Heading>
+        <Link as={RouteLink} to={"/contacts/" + contactId + "/emails/edit"}>
+          <AddIcon />
+        </Link>
+      </Box>
+      <Spacer />
+      <Box>
+      <TableContainer>
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Email</Th>
+            <Th>Label</Th>
+            <Th></Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {contactEmailsPaged?.pagedList?.map((item) => (
+            <Tr key={item.contactEmailId}>
+              <Td>{item.email}</Td>
+              <Td>{item.emailLabel?.label}</Td>
+              <Td>
+                <Link
+                  mr={2}
+                  as={RouteLink}
+                  to={"/contacts/" + contactId + "/emails/edit/" + item.contactEmailId}
+                >
+                  <UpdateIcon />
+                </Link>
+                <Link as={RouteLink} to={"/contacts/" + contactId + "/emails/delete/" + item.contactEmailId}>
+                  <DeleteIcon />
+                </Link>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+      </Box>
+    </Flex>
+  )
+
+  const showContactWebsites = () => (
+    <Flex>
+      <Box>
+        <Heading mb={2} fontSize={"md"}>Websites</Heading>
+        <Link as={RouteLink} to={"/contacts/" + contactId + "/websites/edit"}>
+          <AddIcon />
+        </Link>
+      </Box>
+      <Spacer />
+      <Box>
+      <TableContainer>
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Website</Th>
+            <Th>Label</Th>
+            <Th></Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {contactWebsitesPaged?.pagedList?.map((item) => (
+            <Tr key={item.contactWebsiteId}>
+              <Td>{item.website}</Td>
+              <Td>{item.websiteLabel?.label}</Td>
+              <Td>
+                <Link
+                  mr={2}
+                  as={RouteLink}
+                  to={"/contacts/" + contactId + "/websites/edit/" + item.contactWebsiteId}
+                >
+                  <UpdateIcon />
+                </Link>
+                <Link as={RouteLink} to={"/contacts/" + contactId + "/websites/delete/" + item.contactWebsiteId}>
+                  <DeleteIcon />
+                </Link>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+      </Box>
+    </Flex>
+  )
+
+  const showContactLabels = () => (
+    <Flex>
+      <Box>
+        <Heading mb={2} fontSize={"md"}>Labels</Heading>
+        <Link as={RouteLink} to={"/contacts/" + contactId + "/labels/edit"}>
+          <AddIcon />
+        </Link>
+      </Box>
+      <Spacer />
+      <Box>
+      <TableContainer>
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Label</Th>
+            <Th></Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {contactLabelsPaged?.pagedList?.map((item) => (
+            <Tr key={item.contactLabelId}>
+              <Td>{item.label?.name}</Td>
+              <Td>
+                <Link
+                  mr={2}
+                  as={RouteLink}
+                  to={"/contacts/" + contactId + "/labels/edit/" + item.contactLabelId}
+                >
+                  <UpdateIcon />
+                </Link>
+                <Link as={RouteLink} to={"/contacts/" + contactId + "/labels/delete/" + item.contactLabelId}>
+                  <DeleteIcon />
+                </Link>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+      </Box>
+    </Flex>
+  )
+
   const displayHeading = () => (
     <Flex>
       <Box>
@@ -199,11 +435,15 @@ const ContactEdit = () => {
   );
 
   return (
-    <Box width={"lg"} p={4}>
+    <Box width={"2xl"} p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
         {showUpdateForm()}
+        {contactId && showContactPhones()}
+        {contactId && showContactLabels()}
+        {contactId && showContactEmails()}
+        {contactId && showContactWebsites()}
       </Stack>
     </Box>
   );

@@ -6,6 +6,12 @@ import CityDelete from "./pages/city/CityDelete";
 import CityEdit from "./pages/city/CityEdit";
 import ContactDelete from "./pages/contact/ContactDelete";
 import ContactEdit from "./pages/contact/ContactEdit";
+import ContactEmailDelete from "./pages/contact/ContactEmailDelete";
+import ContactEmailEdit from "./pages/contact/ContactEmailEdit";
+import ContactLabelDelete from "./pages/contact/ContactLabelDelete";
+import ContactLabelEdit from "./pages/contact/ContactLabelEdit";
+import ContactPhoneDelete from "./pages/contact/ContactPhoneDelete";
+import ContactPhoneEdit from "./pages/contact/ContactPhoneEdit";
 import Contacts from "./pages/contact/Contacts";
 import Countries from "./pages/country/Countries";
 import CountryDelete from "./pages/country/CountryDelete";
@@ -52,6 +58,15 @@ function App() {
             <Route path="edit" element={<ContactEdit />} />
             <Route path="edit/:contactId" element={<ContactEdit />} />
             <Route path="delete/:contactId" element={<ContactDelete />} />
+            <Route path=":contactId/phones/edit" element={<ContactPhoneEdit />} />
+            <Route path=":contactId/phones/edit/:contactPhoneId" element={<ContactPhoneEdit />} />
+            <Route path=":contactId/phones/delete/:contactPhoneId" element={<ContactPhoneDelete />} />
+            <Route path=":contactId/labels/edit" element={<ContactLabelEdit />} />
+            <Route path=":contactId/labels/edit/:contactLabelId" element={<ContactLabelEdit />} />
+            <Route path=":contactId/labels/delete/:contactLabelId" element={<ContactLabelDelete />} />
+            <Route path=":contactId/emails/edit" element={<ContactEmailEdit />} />
+            <Route path=":contactId/emails/edit/:contactEmailId" element={<ContactEmailEdit />} />
+            <Route path=":contactId/emails/delete/:contactEmailId" element={<ContactEmailDelete />} />
           </Route>
           {/* Country */}
           <Route path="countries">
