@@ -43,4 +43,13 @@ export const ContactApi = {
 
     return response.data
   },
+  updateImage: async function (contactId, fd, config) {
+    const response = await api.request({
+      url: `/contacts/` + contactId,
+      method: "POST",
+      data: fd,
+    }, config)
+
+    return response.data
+  },
 }

@@ -1,6 +1,7 @@
 ﻿using AddressBook.Common.Paging;
 using AddressBook.Dtos;
 using AddressBook.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 
 namespace AddressBook.Repository
@@ -11,6 +12,8 @@ namespace AddressBook.Repository
             ContactReqSearch searchParams)
         {
             var itemsToReturn = items
+                .Include(x => x.ContactPhones.Take(1))
+                .Include(x => x.ContactEmails.Take(1))
                 .AsQueryable();
 
             if (string.IsNullOrWhiteSpace(searchParams.SearchText) == false)

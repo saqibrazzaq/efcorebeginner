@@ -13,6 +13,7 @@ namespace AddressBook.Entities
         public string? MiddleName { get; set; }
         public string? LastName { get; set; }
         public string? PictureUrl { get; set; }
+        public string? CloudinaryId { get; set; }
         public string? Company { get; set; }
         public string? JobTitle { get; set; }
         public string? Department { get; set; }

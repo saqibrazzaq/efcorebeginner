@@ -1,5 +1,7 @@
-﻿using AddressBook.Dtos;
+﻿using AddressBook.Common;
+using AddressBook.Dtos;
 using AddressBook.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +12,12 @@ namespace AddressBook.Controllers
     public class ContactsController : ControllerBase
     {
         private readonly IContactService _contactService;
-
-        public ContactsController(IContactService contactService)
+        private readonly IWebHostEnvironment _environment;
+        public ContactsController(IContactService contactService, 
+            IWebHostEnvironment environment)
         {
             _contactService = contactService;
+            _environment = environment;
         }
 
         [HttpGet]
@@ -55,6 +59,21 @@ namespace AddressBook.Controllers
         {
             _contactService.Delete(contactId);
             return NoContent();
+        }
+
+        [HttpPost("{contactId}")]
+        public IActionResult UpdateImage(int contactId)
+        {
+            var res = _contactService.UpdateImage(contactId, Request.Form.Files[0], TempFolderPath);
+            return Ok(res);
+        }
+
+        public string TempFolderPath
+        {
+            get
+            {
+                return Path.Combine(_environment.WebRootPath, Constants.TempFolderName);
+            }
         }
     }
 }

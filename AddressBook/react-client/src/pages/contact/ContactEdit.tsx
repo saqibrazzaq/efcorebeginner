@@ -1,6 +1,8 @@
 import {
+  Avatar,
   Box,
   Button,
+  Center,
   Container,
   Flex,
   FormControl,
@@ -8,6 +10,7 @@ import {
   FormLabel,
   Heading,
   HStack,
+  Image,
   Input,
   InputGroup,
   InputLeftAddon,
@@ -16,20 +19,24 @@ import {
   Stack,
   Table,
   TableContainer,
+  Tag,
+  TagLabel,
   Tbody,
   Td,
+  Text,
   Tfoot,
   Th,
   Thead,
   Tr,
   useToast,
+  VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link as RouteLink, } from "react-router-dom";
 import * as Yup from "yup";
 import { Field, Formik } from "formik";
 import { AlertBox } from "../../utility/Alerts";
-import { ContactReqEdit } from "../../dtos/Contact";
+import { ContactReqEdit, ContactRes } from "../../dtos/Contact";
 import { ContactApi } from "../../api/contactApi";
 import UpdateIcon from "../../components/icons/UpdateIcon";
 import DeleteIcon from "../../components/icons/DeleteIcon";
@@ -209,10 +216,29 @@ const ContactEdit = () => {
           <form onSubmit={handleSubmit}>
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.pictureUrl && touched.pictureUrl}>
-                <InputGroup size={fontSize}>
-                <InputLeftAddon children="Picture Url" />
-                <Field as={Input} id="pictureUrl" name="pictureUrl" type="text" />
-                </InputGroup>
+                <Flex >
+                  <Center >
+                  <Link as={RouteLink} to={"/contacts/profilePicture/" + contactId}>
+                    <Avatar size={"2xl"} src={contact.pictureUrl} />
+                  </Link>
+                  </Center>
+                  <Center>
+                  <VStack ml={10} alignItems={"start"}>
+                    <Text fontSize={"3xl"}>{contact.firstName + " " + contact.lastName}</Text>
+                    <Text fontSize={"lg"}>{contact.jobTitle} - {contact.company}</Text>
+                    <HStack>
+                      {
+                        contactLabelsPaged?.pagedList?.map(item => (
+                          <Tag size={"lg"} borderRadius='full' variant='outline'>
+                            <TagLabel>{item?.label?.name}</TagLabel>
+                          </Tag>
+                        ))
+                      }
+                    </HStack>
+                  </VStack>
+                  </Center>
+                </Flex>
+                <Field as={Input} id="pictureUrl" name="pictureUrl" type="hidden" />
                 <FormErrorMessage>{errors.pictureUrl}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.firstName && touched.firstName}>

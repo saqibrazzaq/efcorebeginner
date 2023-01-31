@@ -7,6 +7,7 @@ namespace AddressBook.Services
     {
         ContactRes Create(ContactReqEdit dto);
         ContactRes Update(int contactId, ContactReqEdit dto);
+        ContactRes UpdateImage(int contactId, IFormFile file, string tempFolderPath);
         void Delete(int contactId);
         ContactRes Get(int contactId);
         ApiOkPagedResponse<IEnumerable<ContactRes>, MetaData>

@@ -33,6 +33,8 @@ namespace AddressBook.Extensions
 
         public static void ConfigureServices(this IServiceCollection services)
         {
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IStateService, StateService>();
             services.AddScoped<ICityService, CityService>();

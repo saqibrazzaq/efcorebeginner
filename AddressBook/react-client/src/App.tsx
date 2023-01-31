@@ -10,6 +10,7 @@ import ContactChatDelete from "./pages/contact/ContactChatDelete";
 import ContactChatEdit from "./pages/contact/ContactChatEdit";
 import ContactDelete from "./pages/contact/ContactDelete";
 import ContactEdit from "./pages/contact/ContactEdit";
+import ContactEditImage from "./pages/contact/ContactEditImage";
 import ContactEmailDelete from "./pages/contact/ContactEmailDelete";
 import ContactEmailEdit from "./pages/contact/ContactEmailEdit";
 import ContactLabelDelete from "./pages/contact/ContactLabelDelete";
@@ -64,6 +65,7 @@ function App() {
             <Route path="edit" element={<ContactEdit />} />
             <Route path="edit/:contactId" element={<ContactEdit />} />
             <Route path="delete/:contactId" element={<ContactDelete />} />
+            <Route path="profilePicture/:contactId" element={<ContactEditImage />} />
             <Route path=":contactId/phones/edit" element={<ContactPhoneEdit />} />
             <Route path=":contactId/phones/edit/:contactPhoneId" element={<ContactPhoneEdit />} />
             <Route path=":contactId/phones/delete/:contactPhoneId" element={<ContactPhoneDelete />} />

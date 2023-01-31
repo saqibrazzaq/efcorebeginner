@@ -5,7 +5,7 @@ using CloudinaryDotNet.Actions;
 
 namespace AddressBook.Services
 {
-    public class CloudinaryService
+    public class CloudinaryService : ICloudinaryService
     {
         private readonly IConfiguration _configuration;
         public CloudinaryService(IConfiguration configuration)
@@ -56,7 +56,7 @@ namespace AddressBook.Services
             };
         }
 
-        public CloudinaryUploadResultRes UploadCategoryImage(IFormFile file, string tempFolderPath)
+        public CloudinaryUploadResultRes UploadGeneralImage(IFormFile file, string tempFolderPath)
         {
             var imagePath = saveNewFileInTempFolder(file, tempFolderPath);
             var uploadParams = new ImageUploadParams()

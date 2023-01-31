@@ -10,11 +10,14 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
-        public ContactService(IRepositoryManager repositoryManager, 
-            IMapper mapper)
+        private readonly ICloudinaryService _cloudinaryService;
+        public ContactService(IRepositoryManager repositoryManager,
+            IMapper mapper,
+            ICloudinaryService cloudinaryService)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            _cloudinaryService = cloudinaryService;
         }
 
         public ContactRes Create(ContactReqEdit dto)
@@ -61,6 +64,21 @@ namespace AddressBook.Services
         {
             var entity = FindContactIfExists(contactId, true);
             _mapper.Map(dto, entity);
+            _repositoryManager.Save();
+            return _mapper.Map<ContactRes>(entity);
+        }
+
+        public ContactRes UpdateImage(int contactId, IFormFile file, string tempFolderPath)
+        {
+            var uploadResult = _cloudinaryService.UploadProfilePictureThumbnail(file, tempFolderPath);
+
+            var entity = FindContactIfExists(contactId, true);
+
+            _cloudinaryService.DeleteImage(entity.CloudinaryId);
+
+            entity.CloudinaryId = uploadResult.PublicId;
+            entity.PictureUrl = uploadResult.SecureUrl;
+
             _repositoryManager.Save();
             return _mapper.Map<ContactRes>(entity);
         }

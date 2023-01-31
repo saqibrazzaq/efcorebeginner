@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Center,
@@ -117,31 +118,35 @@ const Contacts = () => {
 
   const showContacts = () => (
     <TableContainer>
-      <Table variant="simple">
+      <Table variant="simple" size={"sm"}>
         <Thead>
           <Tr>
-            <Th>Id</Th>
+            <Th></Th>
             <Th>Name</Th>
-            <Th>Company</Th>
+            <Th>Email</Th>
+            <Th>Phone</Th>
             <Th></Th>
           </Tr>
         </Thead>
         <Tbody>
           {pagedRes?.pagedList?.map((item) => (
             <Tr key={item.contactId}>
-              <Td>{item.contactId}</Td>
+              <Td>
+                <Avatar size={"sm"} src={item.pictureUrl} />
+              </Td>
               <Td>{item.firstName + " " + item.lastName}</Td>
-              <Td>{item.company}</Td>
+              <Td>{item.contactEmails?.at(0)?.email}</Td>
+              <Td>{item.contactPhones?.at(0)?.phone}</Td>
               <Td>
                 <Link
                   mr={2}
                   as={RouteLink}
                   to={"/contacts/edit/" + item.contactId}
                 >
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/contacts/delete/" + item.contactId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>
