@@ -18,7 +18,7 @@ namespace AddressBook.Extensions
 
         public static void ConfigureEnvironmentVariables(this IServiceCollection services)
         {
-            DotNetEnv.Env.Load("saqib-laptop.env");
+            DotNetEnv.Env.Load(Path.Combine(Directory.GetCurrentDirectory(), "saqib-laptop.env"));
         }
 
         public static void ConfigureAutoMapper(this IServiceCollection services)

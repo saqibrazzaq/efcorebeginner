@@ -7,7 +7,10 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
+  HStack,
   Input,
+  InputGroup,
+  InputLeftAddon,
   Link,
   Spacer,
   Stack,
@@ -45,6 +48,7 @@ import { ContactChatReqSearch, ContactChatRes } from "../../dtos/ContactChat";
 import { ContactChatApi } from "../../api/contactChatApi";
 import { ContactAddressReqSearch, ContactAddressRes } from "../../dtos/ContactAddress";
 import { ContactAddressApi } from "../../api/contactAddressApi";
+import { PhoneIcon, PlusSquareIcon } from "@chakra-ui/icons";
 
 const ContactEdit = () => {
   const params = useParams();
@@ -55,6 +59,7 @@ const ContactEdit = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const fontSize = "sm";
 
   const [contactPhonesPaged, setContactPhonesPaged] = useState<PagedRes<ContactPhoneRes>>();
   const [contactLabelsPaged, setContactLabelsPaged] = useState<PagedRes<ContactLabelRes>>();
@@ -204,48 +209,66 @@ const ContactEdit = () => {
           <form onSubmit={handleSubmit}>
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.pictureUrl && touched.pictureUrl}>
-                <FormLabel htmlFor="pictureUrl">Picture Url</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="Picture Url" />
                 <Field as={Input} id="pictureUrl" name="pictureUrl" type="text" />
+                </InputGroup>
                 <FormErrorMessage>{errors.pictureUrl}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.firstName && touched.firstName}>
-                <FormLabel htmlFor="firstName">First Name</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="First Name" />
                 <Field as={Input} id="firstName" name="firstName" type="text" />
+                </InputGroup>
                 <FormErrorMessage>{errors.firstName}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.middleName && touched.middleName}>
-                <FormLabel htmlFor="middleName">Middle Name</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="Middle Name" />
                 <Field as={Input} id="middleName" name="middleName" type="text" />
+                </InputGroup>
                 <FormErrorMessage>{errors.middleName}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.lastName && touched.lastName}>
-                <FormLabel htmlFor="lastName">Last Name</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="Last Name" />
                 <Field as={Input} id="lastName" name="lastName" type="text" />
+                </InputGroup>
                 <FormErrorMessage>{errors.lastName}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.company && touched.company}>
-                <FormLabel htmlFor="company">Company</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="Company" />
                 <Field as={Input} id="company" name="company" type="text" />
+                </InputGroup>
                 <FormErrorMessage>{errors.company}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.jobTitle && touched.jobTitle}>
-                <FormLabel htmlFor="jobTitle">Job Title</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="Job Title" />
                 <Field as={Input} id="jobTitle" name="jobTitle" type="text" />
+                </InputGroup>
                 <FormErrorMessage>{errors.jobTitle}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.department && touched.department}>
-                <FormLabel htmlFor="department">Department</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="Department" />
                 <Field as={Input} id="department" name="department" type="text" />
+                </InputGroup>
                 <FormErrorMessage>{errors.department}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.dateOfBirth && touched.dateOfBirth}>
-                <FormLabel htmlFor="dateOfBirth">Date of Birth</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="Date of Birth" />
                 <Field as={Input} id="dateOfBirth" name="dateOfBirth" type="datetime-local" />
+                </InputGroup>
                 <FormErrorMessage>{errors.dateOfBirth}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={!!errors.notes && touched.notes}>
-                <FormLabel htmlFor="notes">Notes</FormLabel>
+                <InputGroup size={fontSize}>
+                <InputLeftAddon children="Notes" />
                 <Field as={Input} id="notes" name="notes" type="text" />
+                </InputGroup>
                 <FormErrorMessage>{errors.notes}</FormErrorMessage>
               </FormControl>
               <Stack direction={"row"} spacing={6}>
@@ -263,27 +286,23 @@ const ContactEdit = () => {
   const showContactPhones = () => (
     <Flex>
       <Box>
-        <Heading mb={2} fontSize={"md"}>Phones</Heading>
+        {/* <Heading fontSize={fontSize} mb={2} >Phones</Heading> */}
+        <HStack>
+        <Heading fontSize={fontSize} >Phones</Heading>
         <Link as={RouteLink} to={"/contacts/" + contactId + "/phones/edit"}>
-          <AddIcon />
+          <AddIcon size="xs" fontSize="15" />
         </Link>
+        </HStack>
+        
       </Box>
       <Spacer />
       <Box>
       <TableContainer>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Country</Th>
-            <Th>Phone</Th>
-            <Th>Label</Th>
-            <Th></Th>
-          </Tr>
-        </Thead>
+      <Table variant="simple" size={fontSize}>
         <Tbody>
           {contactPhonesPaged?.pagedList?.map((item) => (
             <Tr key={item.contactPhoneId}>
-              <Td>{item.country?.name}</Td>
+              <Td>{item.country?.phoneCode}</Td>
               <Td>{item.phone}</Td>
               <Td>{item.phoneLabel?.label}</Td>
               <Td>
@@ -292,10 +311,10 @@ const ContactEdit = () => {
                   as={RouteLink}
                   to={"/contacts/" + contactId + "/phones/edit/" + item.contactPhoneId}
                 >
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/contacts/" + contactId + "/phones/delete/" + item.contactPhoneId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>
@@ -310,22 +329,17 @@ const ContactEdit = () => {
   const showContactEmails = () => (
     <Flex>
       <Box>
-        <Heading mb={2} fontSize={"md"}>Emails</Heading>
+        <HStack>
+        <Heading fontSize={fontSize} >Emails</Heading>
         <Link as={RouteLink} to={"/contacts/" + contactId + "/emails/edit"}>
-          <AddIcon />
+          <AddIcon size="xs" fontSize="15" />
         </Link>
+        </HStack>
       </Box>
       <Spacer />
       <Box>
       <TableContainer>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Email</Th>
-            <Th>Label</Th>
-            <Th></Th>
-          </Tr>
-        </Thead>
+      <Table variant="simple" size={fontSize}>
         <Tbody>
           {contactEmailsPaged?.pagedList?.map((item) => (
             <Tr key={item.contactEmailId}>
@@ -337,10 +351,10 @@ const ContactEdit = () => {
                   as={RouteLink}
                   to={"/contacts/" + contactId + "/emails/edit/" + item.contactEmailId}
                 >
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/contacts/" + contactId + "/emails/delete/" + item.contactEmailId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>
@@ -355,22 +369,17 @@ const ContactEdit = () => {
   const showContactWebsites = () => (
     <Flex>
       <Box>
-        <Heading mb={2} fontSize={"md"}>Websites</Heading>
+        <HStack>
+        <Heading fontSize={fontSize} >Websites</Heading>
         <Link as={RouteLink} to={"/contacts/" + contactId + "/websites/edit"}>
-          <AddIcon />
+          <AddIcon size="xs" fontSize="15" />
         </Link>
+        </HStack>
       </Box>
       <Spacer />
       <Box>
       <TableContainer>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Website</Th>
-            <Th>Label</Th>
-            <Th></Th>
-          </Tr>
-        </Thead>
+      <Table variant="simple" size={fontSize}>
         <Tbody>
           {contactWebsitesPaged?.pagedList?.map((item) => (
             <Tr key={item.contactWebsiteId}>
@@ -382,10 +391,10 @@ const ContactEdit = () => {
                   as={RouteLink}
                   to={"/contacts/" + contactId + "/websites/edit/" + item.contactWebsiteId}
                 >
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/contacts/" + contactId + "/websites/delete/" + item.contactWebsiteId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>
@@ -400,22 +409,17 @@ const ContactEdit = () => {
   const showContactChats = () => (
     <Flex>
       <Box>
-        <Heading mb={2} fontSize={"md"}>Chats</Heading>
+        <HStack>
+        <Heading fontSize={fontSize} >Chats</Heading>
         <Link as={RouteLink} to={"/contacts/" + contactId + "/chats/edit"}>
-          <AddIcon />
+          <AddIcon size="xs" fontSize="15" />
         </Link>
+        </HStack>
       </Box>
       <Spacer />
       <Box>
       <TableContainer>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Chat</Th>
-            <Th>Label</Th>
-            <Th></Th>
-          </Tr>
-        </Thead>
+      <Table variant="simple" size={fontSize}>
         <Tbody>
           {contactChatsPaged?.pagedList?.map((item) => (
             <Tr key={item.contactChatId}>
@@ -427,10 +431,10 @@ const ContactEdit = () => {
                   as={RouteLink}
                   to={"/contacts/" + contactId + "/chats/edit/" + item.contactChatId}
                 >
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/contacts/" + contactId + "/chats/delete/" + item.contactChatId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>
@@ -445,22 +449,17 @@ const ContactEdit = () => {
   const showContactAddresses = () => (
     <Flex>
       <Box>
-        <Heading mb={2} fontSize={"md"}>Addresses</Heading>
+        <HStack>
+        <Heading fontSize={fontSize} >Addresses</Heading>
         <Link as={RouteLink} to={"/contacts/" + contactId + "/addresses/edit"}>
-          <AddIcon />
+          <AddIcon size="xs" fontSize="15" />
         </Link>
+        </HStack>
       </Box>
       <Spacer />
       <Box>
       <TableContainer>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Address</Th>
-            <Th>Label</Th>
-            <Th></Th>
-          </Tr>
-        </Thead>
+      <Table variant="simple" size={fontSize}>
         <Tbody>
           {contactAddressesPaged?.pagedList?.map((item) => (
             <Tr key={item.contactAddressId}>
@@ -478,10 +477,10 @@ const ContactEdit = () => {
                   as={RouteLink}
                   to={"/contacts/" + contactId + "/addresses/edit/" + item.contactAddressId}
                 >
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/contacts/" + contactId + "/addresses/delete/" + item.contactAddressId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>
@@ -496,21 +495,17 @@ const ContactEdit = () => {
   const showContactLabels = () => (
     <Flex>
       <Box>
-        <Heading mb={2} fontSize={"md"}>Labels</Heading>
+        <HStack>
+        <Heading fontSize={fontSize} >Labels</Heading>
         <Link as={RouteLink} to={"/contacts/" + contactId + "/labels/edit"}>
-          <AddIcon />
+          <AddIcon size="xs" fontSize="15" />
         </Link>
+        </HStack>
       </Box>
       <Spacer />
       <Box>
       <TableContainer>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Label</Th>
-            <Th></Th>
-          </Tr>
-        </Thead>
+      <Table variant="simple" size={fontSize}>
         <Tbody>
           {contactLabelsPaged?.pagedList?.map((item) => (
             <Tr key={item.contactLabelId}>
@@ -521,10 +516,10 @@ const ContactEdit = () => {
                   as={RouteLink}
                   to={"/contacts/" + contactId + "/labels/edit/" + item.contactLabelId}
                 >
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/contacts/" + contactId + "/labels/delete/" + item.contactLabelId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>
@@ -551,7 +546,7 @@ const ContactEdit = () => {
   );
 
   return (
-    <Box width={"2xl"} p={4}>
+    <Box fontSize={"md"} width={"2xl"} p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
