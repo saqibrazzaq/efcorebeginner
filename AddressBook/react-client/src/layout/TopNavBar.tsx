@@ -101,7 +101,7 @@ const TopNavBar = () => {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            <RouteLink to="/">
+            <RouteLink to="/contacts">
               {/* <Image src="/saleone-logo.png" height={"30px"} /> */}
               Home
             </RouteLink>
@@ -147,7 +147,7 @@ const DesktopNav: React.FC<NavItemProps> = (props) => {
               <Link
                 p={2}
                 as={RouteLink}
-                to={navItem.href ?? "/category/" + navItem.href}
+                to={navItem.href ?? "" + navItem.href}
                 // href={navItem.href ?? "#"}
                 fontSize={"md"}
                 fontWeight={500}
@@ -188,7 +188,7 @@ const DesktopSubNav = ({ name, href, subLabel }: NavItem) => {
   return (
     <Link
       as={RouteLink}
-      to={href ? "category/" + href : "#"}
+      to={href ? "" + href : "#"}
       // href={href}
       role={"group"}
       display={"block"}
@@ -245,7 +245,7 @@ const MobileNavItem = ({ name, children, href }: NavItem) => {
       <Flex
         py={2}
         as={RouteLink}
-        to={href ? "category/" + href : "#"}
+        to={href ? "" + href : "#"}
         justify={"space-between"}
         align={"center"}
         _hover={{
@@ -284,7 +284,7 @@ const MobileNavItem = ({ name, children, href }: NavItem) => {
                 key={child.name}
                 py={2}
                 as={RouteLink}
-                to={child.href ? "category/" + child.href : "#"}
+                to={child.href ? "" + child.href : "#"}
               >
                 {child.name}
               </Link>

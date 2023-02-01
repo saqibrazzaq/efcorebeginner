@@ -75,7 +75,7 @@ const Contacts = () => {
   const showHeading = () => (
     <Flex>
       <Box>
-        <Heading fontSize={"xl"}>Contacts</Heading>
+        <Heading fontSize={"xl"}></Heading>
       </Box>
       <Spacer />
       <Box>

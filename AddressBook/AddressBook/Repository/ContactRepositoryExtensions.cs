@@ -16,6 +16,12 @@ namespace AddressBook.Repository
                 .Include(x => x.ContactEmails.Take(1))
                 .AsQueryable();
 
+            if (searchParams.LabelId != null)
+            {
+                itemsToReturn = itemsToReturn.Where(
+                    x => x.ContactLabels.Any(y => y.LabelId == searchParams.LabelId));
+            }
+
             if (string.IsNullOrWhiteSpace(searchParams.SearchText) == false)
             {
                 itemsToReturn = itemsToReturn.Where(

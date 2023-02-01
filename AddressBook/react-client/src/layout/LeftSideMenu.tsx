@@ -35,7 +35,7 @@ const LeftSideMenu: React.FC<SideMenuProps> = ({menuItems, menuHeading}: SideMen
   return (
     <Box minH="50vh" >
       <Stack spacing={0} as={Container} maxW={"3xl"} textAlign={"left"}>
-        <Heading fontSize={"xl"}>{menuHeading}</Heading>
+        <Heading fontSize={"xl"} >{menuHeading}</Heading>
         {menuItems.map((link) => (
           <NavItem key={link.name} icon={link.icon} href={link.href}>
             {link.name}
@@ -61,7 +61,7 @@ const NavItem = ({ icon, children, href, ...rest }: NavItemProps) => {
       <Flex
         align="center"
         p="2"
-        mx="4"
+        mx="1" 
         borderRadius="lg"
         role="group"
         cursor="pointer"

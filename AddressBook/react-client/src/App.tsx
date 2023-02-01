@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ContactsLayout from "./layout/ContactsLayout";
 import Layout from "./layout/Layout";
 import SettingsLayout from "./layout/SettingsLayout";
 import Cities from "./pages/city/Cities";
@@ -58,9 +59,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Contacts />} />
+          <Route index element={<Home />} />
           {/* Contacts */}
-          <Route path="contacts">
+          <Route path="contacts" element={<ContactsLayout />}>
             <Route index element={<Contacts />} />
             <Route path="edit" element={<ContactEdit />} />
             <Route path="edit/:contactId" element={<ContactEdit />} />
