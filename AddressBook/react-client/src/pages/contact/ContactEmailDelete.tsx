@@ -29,6 +29,7 @@ import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { ContactEmailApi } from "../../api/contactEmail";
 import { ContactEmailRes } from "../../dtos/ContactEmail";
 import { AlertBox } from "../../utility/Alerts";
+import ContactHeader from "./ContactHeader";
 
 const ContactEmailDelete = () => {
   let params = useParams();
@@ -158,6 +159,7 @@ const ContactEmailDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactEmail?.contactId} />
         {showContactEmailInfo()}
         {showAlertDialog()}
       </Stack>

@@ -56,6 +56,7 @@ import { ContactChatApi } from "../../api/contactChatApi";
 import { ContactAddressReqSearch, ContactAddressRes } from "../../dtos/ContactAddress";
 import { ContactAddressApi } from "../../api/contactAddressApi";
 import { PhoneIcon, PlusSquareIcon } from "@chakra-ui/icons";
+import ContactHeader from "./ContactHeader";
 
 const ContactEdit = () => {
   const params = useParams();
@@ -216,28 +217,8 @@ const ContactEdit = () => {
           <form onSubmit={handleSubmit}>
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.pictureUrl && touched.pictureUrl}>
-                <Flex >
-                  <Center >
-                  <Link as={RouteLink} to={"/contacts/profilePicture/" + contactId}>
-                    <Avatar size={"2xl"} src={contact.pictureUrl} />
-                  </Link>
-                  </Center>
-                  <Center>
-                  <VStack ml={10} alignItems={"start"}>
-                    <Text fontSize={"3xl"}>{contact.firstName + " " + contact.lastName}</Text>
-                    <Text fontSize={"lg"}>{contact.jobTitle} - {contact.company}</Text>
-                    <HStack>
-                      {
-                        contactLabelsPaged?.pagedList?.map(item => (
-                          <Tag size={"lg"} borderRadius='full' variant='outline'>
-                            <TagLabel>{item?.label?.name}</TagLabel>
-                          </Tag>
-                        ))
-                      }
-                    </HStack>
-                  </VStack>
-                  </Center>
-                </Flex>
+                
+                <ContactHeader contactId={contactId} />
                 <Field as={Input} id="pictureUrl" name="pictureUrl" type="hidden" />
                 <FormErrorMessage>{errors.pictureUrl}</FormErrorMessage>
               </FormControl>

@@ -29,10 +29,11 @@ import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { ContactApi } from "../../api/contactApi";
 import { ContactRes } from "../../dtos/Contact";
 import { AlertBox } from "../../utility/Alerts";
+import ContactHeader from "./ContactHeader";
 
 const ContactDelete = () => {
   let params = useParams();
-  const contactId = params.contactId;
+  const contactId = Number.parseInt(params.contactId || "0");
   const [contact, setContact] = useState<ContactRes>();
   const navigate = useNavigate();
   const toast = useToast();
@@ -158,6 +159,7 @@ const ContactDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactId} />
         {showContactInfo()}
         {showAlertDialog()}
       </Stack>

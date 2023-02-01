@@ -24,6 +24,7 @@ import { ContactAddressApi } from "../../api/contactAddressApi";
 import CityDropdown from "../../dropdowns/CityDropdown";
 import { CityRes } from "../../dtos/City";
 import AddressLabelDropdown from "../../dropdowns/AddressLabelDropdown";
+import ContactHeader from "./ContactHeader";
 
 const ContactAddressEdit = () => {
   const params = useParams();
@@ -205,6 +206,7 @@ const ContactAddressEdit = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactId} />
         {showUpdateForm()}
       </Stack>
     </Box>

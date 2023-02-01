@@ -29,6 +29,7 @@ import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { ContactWebsiteApi } from "../../api/contactWebsiteApi";
 import { ContactWebsiteRes } from "../../dtos/ContactWebsite";
 import { AlertBox } from "../../utility/Alerts";
+import ContactHeader from "./ContactHeader";
 
 const ContactWebsiteDelete = () => {
   let params = useParams();
@@ -158,6 +159,7 @@ const ContactWebsiteDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactWebsite?.contactId} />
         {showContactWebsiteInfo()}
         {showAlertDialog()}
       </Stack>

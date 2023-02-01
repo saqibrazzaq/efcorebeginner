@@ -25,6 +25,7 @@ import { CountryRes } from "../../dtos/Country";
 import { ContactRes } from "../../dtos/Contact";
 import { PhoneLabelRes } from "../../dtos/PhoneLabel";
 import PhoneLabelDropdown from "../../dropdowns/PhoneLabelDropdown";
+import ContactHeader from "./ContactHeader";
 
 const ContactPhoneEdit = () => {
   const params = useParams();
@@ -193,6 +194,7 @@ const ContactPhoneEdit = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactId} />
         {showUpdateForm()}
       </Stack>
     </Box>

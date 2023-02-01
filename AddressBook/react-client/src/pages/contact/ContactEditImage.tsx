@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { number } from "yup/lib/locale";
 import { useDropzone } from "react-dropzone";
 import { ContactApi } from "../../api/contactApi";
+import ContactHeader from "./ContactHeader";
 
 const ContactEditImage = () => {
   const navigate = useNavigate();
@@ -101,6 +102,7 @@ const ContactEditImage = () => {
     <Box p={4}>
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
+        <ContactHeader contactId={contactId} />
         {showUploadForm()}
       </Stack>
     </Box>

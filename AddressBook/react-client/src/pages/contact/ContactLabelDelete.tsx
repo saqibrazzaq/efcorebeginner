@@ -29,6 +29,7 @@ import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { ContactLabelApi } from "../../api/contactLabelApi";
 import { ContactLabelRes } from "../../dtos/ContactLabel";
 import { AlertBox } from "../../utility/Alerts";
+import ContactHeader from "./ContactHeader";
 
 const ContactLabelDelete = () => {
   let params = useParams();
@@ -154,6 +155,7 @@ const ContactLabelDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactLabel?.contactId} />
         {showContactLabelInfo()}
         {showAlertDialog()}
       </Stack>

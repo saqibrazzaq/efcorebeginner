@@ -22,6 +22,7 @@ import { ContactEmailReqEdit } from "../../dtos/ContactEmail";
 import { EmailLabelRes } from "../../dtos/EmailLabel";
 import { ContactEmailApi } from "../../api/contactEmail";
 import EmailLabelDropdown from "../../dropdowns/EmailLabelDropdown";
+import ContactHeader from "./ContactHeader";
 
 const ContactEmailEdit = () => {
   const params = useParams();
@@ -175,6 +176,7 @@ const ContactEmailEdit = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactId} />
         {showUpdateForm()}
       </Stack>
     </Box>

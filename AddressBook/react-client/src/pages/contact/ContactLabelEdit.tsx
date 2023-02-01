@@ -22,6 +22,7 @@ import { ContactLabelReqEdit } from "../../dtos/ContactLabel";
 import { LabelRes } from "../../dtos/Label";
 import { ContactLabelApi } from "../../api/contactLabelApi";
 import LabelDropdown from "../../dropdowns/LabelDropdown";
+import ContactHeader from "./ContactHeader";
 
 const ContactLabelEdit = () => {
   const params = useParams();
@@ -168,6 +169,7 @@ const ContactLabelEdit = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactId} />
         {showUpdateForm()}
       </Stack>
     </Box>

@@ -22,6 +22,7 @@ import { ContactWebsiteReqEdit } from "../../dtos/ContactWebsite";
 import { WebsiteLabelRes } from "../../dtos/WebsiteLabel";
 import { ContactWebsiteApi } from "../../api/contactWebsiteApi";
 import WebsiteLabelDropdown from "../../dropdowns/WebsiteLabelDropdown";
+import ContactHeader from "./ContactHeader";
 
 const ContactWebsiteEdit = () => {
   const params = useParams();
@@ -175,6 +176,7 @@ const ContactWebsiteEdit = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactId} />
         {showUpdateForm()}
       </Stack>
     </Box>

@@ -22,6 +22,7 @@ import { ContactChatReqEdit } from "../../dtos/ContactChat";
 import { ChatLabelRes } from "../../dtos/ChatLabel";
 import { ContactChatApi } from "../../api/contactChatApi";
 import ChatLabelDropdown from "../../dropdowns/ChatLabelDropdown";
+import ContactHeader from "./ContactHeader";
 
 const ContactChatEdit = () => {
   const params = useParams();
@@ -175,6 +176,7 @@ const ContactChatEdit = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
+        <ContactHeader contactId={contactId} />
         {showUpdateForm()}
       </Stack>
     </Box>
