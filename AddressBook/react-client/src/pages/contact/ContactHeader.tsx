@@ -59,7 +59,7 @@ const ContactHeader = ({ contactId = 0 }: ContactHeaderProps) => {
       <Center>
         <VStack ml={10} alignItems={"start"}>
           <Text fontSize={"3xl"}>
-            {contact?.firstName + " " + contact?.lastName}
+            {(contact?.firstName || "") + " " + (contact?.lastName || "")}
           </Text>
           <Text fontSize={"lg"}>
             {contact?.jobTitle} - {contact?.company}

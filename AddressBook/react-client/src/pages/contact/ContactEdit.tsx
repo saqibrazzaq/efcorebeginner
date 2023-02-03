@@ -24,6 +24,7 @@ import {
   Tbody,
   Td,
   Text,
+  Textarea,
   Tfoot,
   Th,
   Thead,
@@ -274,7 +275,7 @@ const ContactEdit = () => {
               <FormControl isInvalid={!!errors.notes && touched.notes}>
                 <InputGroup size={fontSize}>
                 <InputLeftAddon children="Notes" />
-                <Field as={Input} id="notes" name="notes" type="text" />
+                <Field as={Textarea} id="notes" name="notes" />
                 </InputGroup>
                 <FormErrorMessage>{errors.notes}</FormErrorMessage>
               </FormControl>

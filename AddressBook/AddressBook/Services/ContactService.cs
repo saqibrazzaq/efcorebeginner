@@ -3,6 +3,7 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddressBook.Services
 {
@@ -30,9 +31,28 @@ namespace AddressBook.Services
 
         public void Delete(int contactId)
         {
-            var entity = FindContactIfExists(contactId, true);
+            var entity = FindContactIfExistsForDelete(contactId, true);
             _repositoryManager.ContactRepository.Delete(entity);
+            _cloudinaryService.DeleteImage(entity.CloudinaryId);
             _repositoryManager.Save();
+        }
+
+        private Contact FindContactIfExistsForDelete(int contactId, bool trackChanges)
+        {
+            var entity = _repositoryManager.ContactRepository.FindByCondition(
+                x => x.ContactId == contactId, trackChanges,
+                    i => i
+                        .Include(x => x.ContactAddresses)
+                        .Include(x => x.ContactChats)
+                        .Include(x => x.ContactEmails)
+                        .Include(x => x.ContactLabels)
+                        .Include(x => x.ContactPhones)
+                        .Include(x => x.ContactWebsites)
+                        )
+                .FirstOrDefault();
+
+            if (entity == null) { throw new Exception("No contact found with id " + contactId); }
+            return entity;
         }
 
         private Contact FindContactIfExists(int contactId, bool trackChanges)

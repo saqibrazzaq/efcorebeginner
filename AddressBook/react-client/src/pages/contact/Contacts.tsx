@@ -8,6 +8,7 @@ import {
   Heading,
   Input,
   Link,
+  LinkBox,
   Spacer,
   Stack,
   Table,
@@ -24,6 +25,7 @@ import PagedRes from "../../dtos/PagedRes";
 import {
   Link as RouteLink,
   useLocation,
+  useNavigate,
   useParams,
   useSearchParams,
 } from "react-router-dom";
@@ -35,6 +37,7 @@ import { ContactApi } from "../../api/contactApi";
 
 const Contacts = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams(location.search);
   searchParams.set("pageSize", Common.DEFAULT_PAGE_SIZE.toString());
 
@@ -131,10 +134,12 @@ const Contacts = () => {
         <Tbody>
           {pagedRes?.pagedList?.map((item) => (
             <Tr key={item.contactId}>
-              <Td>
+              <Td onClick={() => navigate("/contacts/edit/" + item.contactId)}>
                 <Avatar size={"sm"} src={item.pictureUrl} />
               </Td>
-              <Td>{item.firstName + " " + item.lastName}</Td>
+              <Td onClick={() => navigate("/contacts/edit/" + item.contactId)}>
+                {item.firstName + " " + item.lastName}
+              </Td>
               <Td>{item.contactEmails?.at(0)?.email}</Td>
               <Td>{item.contactPhones?.at(0)?.phone}</Td>
               <Td>
@@ -189,6 +194,6 @@ const Contacts = () => {
       </Stack>
     </Box>
   );
-}
+};
 
-export default Contacts
+export default Contacts;

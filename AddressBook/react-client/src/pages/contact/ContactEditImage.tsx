@@ -93,7 +93,7 @@ const ContactEditImage = () => {
         </aside>
       </FormControl>
       <Stack spacing={6}>
-        <Button type="submit" colorScheme={"blue"}>Upload Product Image</Button>
+        <Button type="submit" colorScheme={"blue"}>Upload Profile Picture</Button>
       </Stack>
     </form>
   );

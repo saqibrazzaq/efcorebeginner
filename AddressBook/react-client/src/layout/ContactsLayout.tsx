@@ -35,7 +35,7 @@ const ContactsLayout = () => {
   };
 
   return (
-    <Flex width={"6xl"} mt="2">
+    <Flex width={"4xl"} mt="2">
       <Box w="250px">
         <LeftSideMenu menuHeading="Contacts" menuItems={navItems} />
       </Box>

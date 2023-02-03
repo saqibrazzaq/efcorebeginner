@@ -79,7 +79,7 @@ const StateEdit = () => {
   // Formik validation schema
   const validationSchema = Yup.object({
     name: Yup.string().required("State Name is required"),
-    code: Yup.string(),
+    code: Yup.string().required(),
     latitude: Yup.number(),
     longitude: Yup.number(),
     countryId: Yup.number().required().min(1, "Please select country"),
