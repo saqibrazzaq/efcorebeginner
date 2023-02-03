@@ -19,6 +19,23 @@ export const StateApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/states/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
+  countByCountryId: async function (countryId) {
+    if (!countryId) return {};
+    const response = await api.request({
+      url: `/states/count/` + countryId,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (state) {
     const response = await api.request({
       url: `/states`,

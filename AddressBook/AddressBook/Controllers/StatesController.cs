@@ -36,6 +36,20 @@ namespace AddressBook.Controllers
             return Ok(res);
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _stateService.Count();
+            return Ok(res);
+        }
+
+        [HttpGet("count/{countryId}")]
+        public IActionResult Count(int countryId)
+        {
+            var res = _stateService.Count(countryId);
+            return Ok(res);
+        }
+
         [HttpPost]
         public IActionResult Create(StateReqEdit dto)
         {

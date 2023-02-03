@@ -27,6 +27,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { CountryApi } from "../../api/countryApi";
+import { StateApi } from "../../api/stateApi";
 import { CountryRes } from "../../dtos/Country";
 import { AlertBox } from "../../utility/Alerts";
 
@@ -34,6 +35,7 @@ const CountryDelete = () => {
   let params = useParams();
   const countryId = params.countryId;
   const [country, setCountry] = useState<CountryRes>();
+  const [stateCount, setStateCount] = useState<number>(0);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -43,6 +45,7 @@ const CountryDelete = () => {
 
   useEffect(() => {
     loadCountry();
+    loadStateCount();
   }, [countryId]);
 
   const loadCountry = () => {
@@ -60,6 +63,12 @@ const CountryDelete = () => {
     }
   };
 
+  const loadStateCount = () => {
+    StateApi.countByCountryId(countryId).then(res => {
+      setStateCount(res);
+    })
+  }
+
   const deleteCountry = () => {
     setError("")
     CountryApi.delete(countryId).then(res => {
@@ -71,10 +80,11 @@ const CountryDelete = () => {
       });
       navigate("/countries");
     }).catch(error => {
+      console.log("Error " + error)
       setError(error.response.data.error);
       toast({
         title: "Error deleting Country",
-        description: error,
+        description: error.response.data.error,
         status: "error",
         position: "bottom-right",
       });
@@ -113,11 +123,17 @@ const CountryDelete = () => {
               <Th>Currency</Th>
               <Td>{country?.currency}</Td>
             </Tr>
+            <Tr>
+              <Th>State Count</Th>
+              <Td>{stateCount}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(stateCount > 0) && <AlertBox title="Cannot Delete Country" description={"It has states."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"}
+        disabled={stateCount > 0}>
           YES, I WANT TO DELETE THIS COUNTRY
         </Button>
       </HStack>
