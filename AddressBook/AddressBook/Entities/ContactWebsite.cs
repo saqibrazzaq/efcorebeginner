@@ -12,7 +12,7 @@ namespace AddressBook.Entities
         public string? Website { get; set; }
 
         // Foreign keys
-        public int? ContactId { get; set; }
+        public int ContactId { get; set; }
         [ForeignKey(nameof(ContactId))]
         public Contact? Contact { get; set; }
 

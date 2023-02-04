@@ -54,6 +54,20 @@ namespace AddressBook.Controllers
             return Ok(res);
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _contactService.Count();
+            return Ok(res);
+        }
+
+        [HttpGet("addressCount/{cityId}")]
+        public IActionResult CountByCity(int cityId)
+        {
+            var res = _contactService.Count(cityId);
+            return Ok(res);
+        }
+
         [HttpDelete("{contactId}")]
         public IActionResult Delete(int contactId)
         {

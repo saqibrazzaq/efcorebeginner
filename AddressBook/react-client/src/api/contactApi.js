@@ -19,6 +19,23 @@ export const ContactApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/contacts/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
+  countAddressesByCityId: async function (cityId) {
+    if (!cityId) return {};
+    const response = await api.request({
+      url: `/contacts/addressCount/` + cityId,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (contact) {
     const response = await api.request({
       url: `/contacts`,

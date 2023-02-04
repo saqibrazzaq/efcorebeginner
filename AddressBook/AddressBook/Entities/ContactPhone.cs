@@ -16,7 +16,7 @@ namespace AddressBook.Entities
         [ForeignKey(nameof(CountryId))]
         public Country? Country { get; set; }
 
-        public int? ContactId { get; set; }
+        public int ContactId { get; set; }
         [ForeignKey(nameof(ContactId))]
         public Contact? Contact { get; set; }
 

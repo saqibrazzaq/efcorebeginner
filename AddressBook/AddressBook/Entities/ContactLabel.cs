@@ -10,7 +10,7 @@ namespace AddressBook.Entities
         public int ContactLabelId { get; set; }
         
         // Foreign keys
-        public int? ContactId { get; set; }
+        public int ContactId { get; set; }
         [ForeignKey(nameof(ContactId))]
         public Contact? Contact { get; set; }
         public int? LabelId { get; set; }

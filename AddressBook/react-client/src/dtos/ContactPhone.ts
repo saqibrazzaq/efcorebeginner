@@ -5,22 +5,22 @@ import { ContactRes } from "./Contact";
 import { PhoneLabelRes } from "./PhoneLabel";
 
 export interface ContactPhoneRes {
-  contactPhoneId?: number;
+  contactPhoneId?: string;
   phone?: string;
-  countryId?: number;
+  countryId?: string;
   country?: CountryRes;
-  contactId?: number;
+  contactId?: string;
   contact?: ContactRes;
-  phoneLabelId?: number;
+  phoneLabelId?: string;
   phoneLabel?: PhoneLabelRes;
 }
 
 export class ContactPhoneReqEdit {
   phone?: string = "";
-  countryId?: number = 0;
-  contactId?: number = 0;
-  phoneLabelId?: number = 0;
-  constructor(contactId?: number) {
+  countryId?: string = "";
+  contactId?: string = "";
+  phoneLabelId?: string = "";
+  constructor(contactId?: string) {
     this.contactId = contactId;
   }
 }
@@ -31,7 +31,7 @@ export class ContactPhoneReqSearch extends PagedReq {
     {
       pageNumber = 1,
       pageSize = Common.DEFAULT_PAGE_SIZE,
-      orderBy,
+      orderBy = "",
       searchText = "",
     }: PagedReq,
     {contactId = ""}

@@ -159,7 +159,7 @@ const ContactPhoneDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={contactPhone?.contactId} />
+        <ContactHeader contactId={parseInt(contactPhone?.contactId || "0")} />
         {showContactPhoneInfo()}
         {showAlertDialog()}
       </Stack>

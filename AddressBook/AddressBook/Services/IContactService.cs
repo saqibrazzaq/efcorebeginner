@@ -10,6 +10,8 @@ namespace AddressBook.Services
         ContactRes UpdateImage(int contactId, IFormFile file, string tempFolderPath);
         void Delete(int contactId);
         ContactRes Get(int contactId);
+        int Count();
+        int Count(int cityId);
         ApiOkPagedResponse<IEnumerable<ContactRes>, MetaData>
             Search(ContactReqSearch dto);
     }

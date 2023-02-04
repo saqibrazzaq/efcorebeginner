@@ -26,6 +26,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
+import { CityApi } from "../../api/cityApi";
 import { StateApi } from "../../api/stateApi";
 import { StateRes } from "../../dtos/State";
 import { AlertBox } from "../../utility/Alerts";
@@ -34,6 +35,7 @@ const StateDelete = () => {
   let params = useParams();
   const stateId = params.stateId;
   const [state, setState] = useState<StateRes>();
+  const [cityCount, setCityCount] = useState<number>(0);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -43,6 +45,7 @@ const StateDelete = () => {
 
   useEffect(() => {
     loadState();
+    loadCityCount();
   }, [stateId]);
 
   const loadState = () => {
@@ -59,6 +62,12 @@ const StateDelete = () => {
         });
     }
   };
+
+  const loadCityCount = () => {
+    CityApi.countByStateId(stateId).then(res => {
+      setCityCount(res);
+    })
+  }
 
   const deleteState = () => {
     setError("")
@@ -113,11 +122,16 @@ const StateDelete = () => {
               <Th>Country</Th>
               <Td>{state?.country?.name}</Td>
             </Tr>
+            <Tr>
+              <Th>City Count</Th>
+              <Td>{cityCount}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(cityCount > 0) && <AlertBox title="Cannot Delete State" description={"It has cities."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"} disabled={cityCount > 0}>
           YES, I WANT TO DELETE THIS STATE
         </Button>
       </HStack>

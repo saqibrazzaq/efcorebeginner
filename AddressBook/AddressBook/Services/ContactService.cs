@@ -31,28 +31,10 @@ namespace AddressBook.Services
 
         public void Delete(int contactId)
         {
-            var entity = FindContactIfExistsForDelete(contactId, true);
+            var entity = FindContactIfExists(contactId, true);
             _repositoryManager.ContactRepository.Delete(entity);
             _cloudinaryService.DeleteImage(entity.CloudinaryId);
             _repositoryManager.Save();
-        }
-
-        private Contact FindContactIfExistsForDelete(int contactId, bool trackChanges)
-        {
-            var entity = _repositoryManager.ContactRepository.FindByCondition(
-                x => x.ContactId == contactId, trackChanges,
-                    i => i
-                        .Include(x => x.ContactAddresses)
-                        .Include(x => x.ContactChats)
-                        .Include(x => x.ContactEmails)
-                        .Include(x => x.ContactLabels)
-                        .Include(x => x.ContactPhones)
-                        .Include(x => x.ContactWebsites)
-                        )
-                .FirstOrDefault();
-
-            if (entity == null) { throw new Exception("No contact found with id " + contactId); }
-            return entity;
         }
 
         private Contact FindContactIfExists(int contactId, bool trackChanges)
@@ -69,6 +51,20 @@ namespace AddressBook.Services
         {
             var entity = FindContactIfExists(contactId, false);
             return _mapper.Map<ContactRes>(entity);
+        }
+
+        public int Count()
+        {
+            return _repositoryManager.ContactRepository.FindAll(false)
+                .Count();
+        }
+
+        public int Count(int cityId)
+        {
+            return _repositoryManager.ContactAddressRepository.FindByCondition(
+                x => x.CityId == cityId,
+                false)
+                .Count();
         }
 
         public ApiOkPagedResponse<IEnumerable<ContactRes>, MetaData> Search(ContactReqSearch dto)

@@ -27,6 +27,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { CityApi } from "../../api/cityApi";
+import { ContactApi } from "../../api/contactApi";
 import { StateApi } from "../../api/stateApi";
 import { CityRes } from "../../dtos/City";
 import { StateRes } from "../../dtos/State";
@@ -36,6 +37,7 @@ const CityDelete = () => {
   let params = useParams();
   const cityId = params.cityId;
   const [city, setCity] = useState<CityRes>();
+  const [addressCount, setAddressCount] = useState(0);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -45,6 +47,7 @@ const CityDelete = () => {
 
   useEffect(() => {
     loadCity();
+    loadAddressCount();
   }, [cityId]);
 
   const loadCity = () => {
@@ -61,6 +64,12 @@ const CityDelete = () => {
         });
     }
   };
+
+  const loadAddressCount = () => {
+    ContactApi.countAddressesByCityId(cityId).then(res => {
+      setAddressCount(res);
+    })
+  }
 
   const deleteCity = () => {
     setError("")
@@ -115,11 +124,16 @@ const CityDelete = () => {
               <Th>State</Th>
               <Td>{city?.state?.name}, {city?.state?.country?.name}</Td>
             </Tr>
+            <Tr>
+              <Th>Address Count</Th>
+              <Td>{addressCount}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(addressCount > 0) && <AlertBox title="Cannot Delete City" description={"It has addresses."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"} disabled={addressCount > 0}>
           YES, I WANT TO DELETE THIS CITY
         </Button>
       </HStack>

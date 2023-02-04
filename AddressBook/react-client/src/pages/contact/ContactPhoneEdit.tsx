@@ -30,7 +30,7 @@ import ContactHeader from "./ContactHeader";
 const ContactPhoneEdit = () => {
   const params = useParams();
   const contactPhoneId = params.contactPhoneId;
-  const contactId = Number.parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const updateText = contactPhoneId ? "Update Phone" : "Add Phone";
   // console.log("person id: " + personId)
   // console.log(updateText)
@@ -54,7 +54,7 @@ const ContactPhoneEdit = () => {
           setContactPhone(res);
           setSelectedCountry(res.country)
           setSelectedPhoneLabel(res.phoneLabel)
-          // console.log(res)
+          console.log(res)
         })
         .catch((error) => {
           setError(error.response.data.error);
@@ -71,13 +71,14 @@ const ContactPhoneEdit = () => {
   // Formik validation schema
   const validationSchema = Yup.object({
     phone: Yup.string().required("Phone is required"),
-    countryId: Yup.number().required().min(1),
+    countryId: Yup.number().nullable(),
     contactId: Yup.number().required().min(1),
-    phoneLabelId: Yup.number().required().min(1),
+    phoneLabelId: Yup.number().nullable(),
   });
 
   const submitForm = (values: ContactPhoneReqEdit) => {
     // console.log(values);
+    values = convertEmptyStringToNull(values);
     if (contactPhoneId) {
       updateContactPhone(values);
     } else {
@@ -119,10 +120,22 @@ const ContactPhoneEdit = () => {
       });
   };
 
+  const convertNullToEmptyString = (contactPhone: ContactPhoneReqEdit) => {
+    contactPhone.countryId ??= "";
+    contactPhone.phoneLabelId ??= "";
+    return contactPhone;
+  }
+
+  const convertEmptyStringToNull = (contactPhone: ContactPhoneReqEdit) => {
+    contactPhone.countryId = contactPhone.countryId == "" ? undefined : contactPhone.countryId;
+    contactPhone.phoneLabelId = contactPhone.phoneLabelId == "" ? undefined : contactPhone.phoneLabelId;
+    return contactPhone;
+  }
+
   const showUpdateForm = () => (
     <Box p={0}>
       <Formik
-        initialValues={contactPhone}
+        initialValues={convertNullToEmptyString(contactPhone)}
         onSubmit={(values) => {
           submitForm(values);
         }}
@@ -194,7 +207,7 @@ const ContactPhoneEdit = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={contactId} />
+        <ContactHeader contactId={parseInt(contactId || "0")} />
         {showUpdateForm()}
       </Stack>
     </Box>

@@ -75,7 +75,7 @@ const ContactDelete = () => {
       setError(error.response.data.error);
       toast({
         title: "Error deleting Contact",
-        description: error,
+        description: error.response.data.error,
         status: "error",
         position: "bottom-right",
       });
