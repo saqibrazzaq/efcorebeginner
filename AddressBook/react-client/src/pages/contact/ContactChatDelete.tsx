@@ -34,6 +34,7 @@ import ContactHeader from "./ContactHeader";
 const ContactChatDelete = () => {
   let params = useParams();
   const contactChatId = params.contactChatId;
+  const contactId = params.contactId;
   const [contactChat, setContactChat] = useState<ContactChatRes>();
   const navigate = useNavigate();
   const toast = useToast();
@@ -159,7 +160,7 @@ const ContactChatDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={contactChat?.contactId} />
+        <ContactHeader contactId={contactId} />
         {showContactChatInfo()}
         {showAlertDialog()}
       </Stack>

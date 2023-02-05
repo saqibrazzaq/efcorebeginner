@@ -27,8 +27,8 @@ import { TimezoneApi } from "../../api/TimezoneApi";
 
 const TimezoneEdit = () => {
   const params = useParams();
-  const countryId = Number.parseInt(params.countryId || "0");
-  const timezoneId = Number.parseInt(params.timezoneId || "0");
+  const countryId = params.countryId;
+  const timezoneId = params.timezoneId;
   const updateText = timezoneId ? "Update Timezone" : "Add Timezone";
 
   const [selectedCountry, setSelectedCountry] = useState<CountryRes>();
@@ -52,7 +52,7 @@ const TimezoneEdit = () => {
     loadCountry(timezone.countryId);
   }, [timezone.countryId]);
 
-  const loadCountry = (cid?: number) => {
+  const loadCountry = (cid?: string) => {
     CountryApi.get(cid).then((res) => {
       setSelectedCountry(res);
     });

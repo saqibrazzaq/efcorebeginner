@@ -34,6 +34,7 @@ import ContactHeader from "./ContactHeader";
 const ContactPhoneDelete = () => {
   let params = useParams();
   const contactPhoneId = params.contactPhoneId;
+  const contactId = params.contactId;
   const [contactPhone, setContactPhone] = useState<ContactPhoneRes>();
   const navigate = useNavigate();
   const toast = useToast();
@@ -159,7 +160,7 @@ const ContactPhoneDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={parseInt(contactPhone?.contactId || "0")} />
+        <ContactHeader contactId={contactId} />
         {showContactPhoneInfo()}
         {showAlertDialog()}
       </Stack>

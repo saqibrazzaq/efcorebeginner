@@ -1,7 +1,8 @@
+import { ContactReqEdit, ContactReqSearch } from "../dtos/Contact";
 import { api } from "./axiosconfig"
 
 export const ContactApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: ContactReqSearch) {
     const response = await api.request({
       url: "/contacts/search",
       method: "GET",
@@ -10,8 +11,8 @@ export const ContactApi = {
 
     return response.data
   },
-  get: async function (contactId) {
-    if (!contactId) return {};
+  get: async function (contactId?: string) {
+    if (!contactId || contactId == "") return {};
     const response = await api.request({
       url: `/contacts/` + contactId,
       method: "GET",
@@ -27,7 +28,7 @@ export const ContactApi = {
 
     return response.data
   },
-  countAddressesByCityId: async function (cityId) {
+  countAddressesByCityId: async function (cityId?: string) {
     if (!cityId) return {};
     const response = await api.request({
       url: `/contacts/addressCount/` + cityId,
@@ -36,7 +37,7 @@ export const ContactApi = {
 
     return response.data
   },
-  create: async function (contact) {
+  create: async function (contact: ContactReqEdit) {
     const response = await api.request({
       url: `/contacts`,
       method: "POST",
@@ -45,14 +46,14 @@ export const ContactApi = {
 
     return response.data
   },
-  update: async function (contactId, contact) {
+  update: async function (contactId?: string, contact?: ContactReqEdit) {
     await api.request({
       url: `/contacts/` + contactId,
       method: "PUT",
       data: contact,
     })
   },
-  delete: async function (contactId) {
+  delete: async function (contactId?: string) {
     const response = await api.request({
       url: `/contacts/` + contactId,
       method: "DELETE",
@@ -60,12 +61,13 @@ export const ContactApi = {
 
     return response.data
   },
-  updateImage: async function (contactId, fd, config) {
+  updateImage: async function (contactId?: string, fd?: FormData) {
     const response = await api.request({
       url: `/contacts/` + contactId,
       method: "POST",
       data: fd,
-    }, config)
+      
+    })
 
     return response.data
   },

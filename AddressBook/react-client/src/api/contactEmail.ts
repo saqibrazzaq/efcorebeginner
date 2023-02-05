@@ -1,7 +1,9 @@
+import { ContactEmailReqEdit, ContactEmailReqSearch } from "../dtos/ContactEmail";
 import { api } from "./axiosconfig"
 
 export const ContactEmailApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: ContactEmailReqSearch) {
+    if (!searchParams.contactId || searchParams.contactId == "") return {};
     const response = await api.request({
       url: "/contactEmails/search",
       method: "GET",
@@ -10,7 +12,7 @@ export const ContactEmailApi = {
 
     return response.data
   },
-  get: async function (contactEmailId) {
+  get: async function (contactEmailId?: string) {
     if (!contactEmailId) return {};
     const response = await api.request({
       url: `/contactEmails/` + contactEmailId,
@@ -19,7 +21,7 @@ export const ContactEmailApi = {
 
     return response.data
   },
-  create: async function (contactEmail) {
+  create: async function (contactEmail: ContactEmailReqEdit) {
     const response = await api.request({
       url: `/contactEmails`,
       method: "POST",
@@ -28,14 +30,14 @@ export const ContactEmailApi = {
 
     return response.data
   },
-  update: async function (contactEmailId, contactEmail) {
+  update: async function (contactEmailId?: string, contactEmail?: ContactEmailReqEdit) {
     await api.request({
       url: `/contactEmails/` + contactEmailId,
       method: "PUT",
       data: contactEmail,
     })
   },
-  delete: async function (contactEmailId) {
+  delete: async function (contactEmailId?: string) {
     const response = await api.request({
       url: `/contactEmails/` + contactEmailId,
       method: "DELETE",

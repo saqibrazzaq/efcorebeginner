@@ -1,7 +1,8 @@
+import { StateReqEdit, StateReqSearch } from "../dtos/State";
 import { api } from "./axiosconfig"
 
 export const StateApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: StateReqSearch) {
     const response = await api.request({
       url: "/states/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const StateApi = {
 
     return response.data
   },
-  get: async function (stateId) {
+  get: async function (stateId?: string) {
     if (!stateId) return {};
     const response = await api.request({
       url: `/states/` + stateId,
@@ -27,7 +28,7 @@ export const StateApi = {
 
     return response.data
   },
-  countByCountryId: async function (countryId) {
+  countByCountryId: async function (countryId?: string) {
     if (!countryId) return {};
     const response = await api.request({
       url: `/states/count/` + countryId,
@@ -36,7 +37,7 @@ export const StateApi = {
 
     return response.data
   },
-  create: async function (state) {
+  create: async function (state: StateReqEdit) {
     const response = await api.request({
       url: `/states`,
       method: "POST",
@@ -45,14 +46,14 @@ export const StateApi = {
 
     return response.data
   },
-  update: async function (stateId, person) {
+  update: async function (stateId?: string, state?: StateReqEdit) {
     await api.request({
       url: `/states/` + stateId,
       method: "PUT",
-      data: person,
+      data: state,
     })
   },
-  delete: async function (stateId) {
+  delete: async function (stateId?: string) {
     const response = await api.request({
       url: `/states/` + stateId,
       method: "DELETE",

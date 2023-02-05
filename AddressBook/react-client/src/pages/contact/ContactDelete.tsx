@@ -33,7 +33,7 @@ import ContactHeader from "./ContactHeader";
 
 const ContactDelete = () => {
   let params = useParams();
-  const contactId = Number.parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const [contact, setContact] = useState<ContactRes>();
   const navigate = useNavigate();
   const toast = useToast();

@@ -25,8 +25,8 @@ import StateDropdown from "../../dropdowns/StateDropdown";
 
 const CityEdit = () => {
   const params = useParams();
-  const stateId = Number.parseInt(params.stateId || "0");
-  const cityId = Number.parseInt(params.cityId || "0");
+  const stateId = params.stateId;
+  const cityId = params.cityId;
   const updateText = cityId ? "Update City" : "Add City";
 
   const [selectedState, setSelectedState] = useState<StateRes>();
@@ -50,7 +50,7 @@ const CityEdit = () => {
     loadState(city.stateId);
   }, [city.stateId]);
 
-  const loadState = (cid?: number) => {
+  const loadState = (cid?: string) => {
     StateApi.get(cid).then((res) => {
       setSelectedState(res);
     });

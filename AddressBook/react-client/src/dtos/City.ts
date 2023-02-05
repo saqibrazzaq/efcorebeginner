@@ -3,12 +3,12 @@ import { PagedReq } from "./PagedReq";
 import { StateRes } from "./State";
 
 export interface CityRes {
-  cityId?: number;
+  cityId?: string;
   name?: string;
   latitude?: number;
   longitude?: number;
 
-  stateId?: number;
+  stateId?: string;
   state?: StateRes;
 }
 
@@ -17,14 +17,14 @@ export class CityReqEdit {
   latitude?: number = 0;
   longitude?: number = 0;
 
-  stateId?: number = 0;
-  constructor(stateId?: number) {
+  stateId?: string = "";
+  constructor(stateId?: string) {
     this.stateId = stateId;
   }
 }
 
 export class CityReqSearch extends PagedReq {
-  stateId?: number;
+  stateId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -32,7 +32,7 @@ export class CityReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {stateId = undefined}
+    {stateId = ""}
   ) {
     super({
       pageNumber: pageNumber,

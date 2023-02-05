@@ -1,7 +1,8 @@
+import { PhoneLabelReqEdit, PhoneLabelReqSearch } from "../dtos/PhoneLabel";
 import { api } from "./axiosconfig"
 
 export const PhoneLabelApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: PhoneLabelReqSearch) {
     const response = await api.request({
       url: "/phoneLabels/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const PhoneLabelApi = {
 
     return response.data
   },
-  get: async function (phoneLabelId) {
+  get: async function (phoneLabelId?: string) {
     if (!phoneLabelId) return {};
     const response = await api.request({
       url: `/phoneLabels/` + phoneLabelId,
@@ -19,7 +20,7 @@ export const PhoneLabelApi = {
 
     return response.data
   },
-  create: async function (phoneLabel) {
+  create: async function (phoneLabel: PhoneLabelReqEdit) {
     const response = await api.request({
       url: `/phoneLabels`,
       method: "POST",
@@ -28,14 +29,14 @@ export const PhoneLabelApi = {
 
     return response.data
   },
-  update: async function (phoneLabelId, phoneLabel) {
+  update: async function (phoneLabelId?: string, phoneLabel?: PhoneLabelReqEdit) {
     await api.request({
       url: `/phoneLabels/` + phoneLabelId,
       method: "PUT",
       data: phoneLabel,
     })
   },
-  delete: async function (phoneLabelId) {
+  delete: async function (phoneLabelId?: string) {
     const response = await api.request({
       url: `/phoneLabels/` + phoneLabelId,
       method: "DELETE",

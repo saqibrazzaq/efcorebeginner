@@ -4,19 +4,19 @@ import { PagedReq } from "./PagedReq";
 import { ContactRes } from "./Contact";
 
 export interface ContactChatRes {
-  contactChatId?: number;
+  contactChatId?: string;
   chat?: string;
-  contactId?: number;
+  contactId?: string;
   contact?: ContactRes;
-  chatLabelId?: number;
+  chatLabelId?: string;
   chatLabel?: ChatLabelRes;
 }
 
 export class ContactChatReqEdit {
   chat?: string = "";
-  contactId?: number = 0;
-  chatLabelId?: number = 0;
-  constructor(contactId?: number) {
+  contactId?: string = "";
+  chatLabelId?: string = "";
+  constructor(contactId?: string) {
     this.contactId = contactId;
   }
 }

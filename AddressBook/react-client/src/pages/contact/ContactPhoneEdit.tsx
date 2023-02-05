@@ -207,7 +207,7 @@ const ContactPhoneEdit = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={parseInt(contactId || "0")} />
+        <ContactHeader contactId={contactId} />
         {showUpdateForm()}
       </Stack>
     </Box>

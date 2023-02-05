@@ -1,7 +1,8 @@
+import { WebsiteLabelReqEdit, WebsiteLabelReqSearch } from "../dtos/WebsiteLabel";
 import { api } from "./axiosconfig"
 
 export const WebsiteLabelApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: WebsiteLabelReqSearch) {
     const response = await api.request({
       url: "/websiteLabels/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const WebsiteLabelApi = {
 
     return response.data
   },
-  get: async function (websiteLabelId) {
+  get: async function (websiteLabelId?: string) {
     if (!websiteLabelId) return {};
     const response = await api.request({
       url: `/websiteLabels/` + websiteLabelId,
@@ -19,7 +20,7 @@ export const WebsiteLabelApi = {
 
     return response.data
   },
-  create: async function (websiteLabel) {
+  create: async function (websiteLabel: WebsiteLabelReqEdit) {
     const response = await api.request({
       url: `/websiteLabels`,
       method: "POST",
@@ -28,14 +29,14 @@ export const WebsiteLabelApi = {
 
     return response.data
   },
-  update: async function (websiteLabelId, websiteLabel) {
+  update: async function (websiteLabelId?: string, websiteLabel?: WebsiteLabelReqEdit) {
     await api.request({
       url: `/websiteLabels/` + websiteLabelId,
       method: "PUT",
       data: websiteLabel,
     })
   },
-  delete: async function (websiteLabelId) {
+  delete: async function (websiteLabelId?: string) {
     const response = await api.request({
       url: `/websiteLabels/` + websiteLabelId,
       method: "DELETE",

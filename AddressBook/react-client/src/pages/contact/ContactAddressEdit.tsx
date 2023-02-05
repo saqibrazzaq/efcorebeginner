@@ -29,7 +29,7 @@ import ContactHeader from "./ContactHeader";
 const ContactAddressEdit = () => {
   const params = useParams();
   const contactAddressId = params.contactAddressId;
-  const contactId = Number.parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const updateText = contactAddressId ? "Update Address" : "Add Address";
   // console.log("person id: " + personId)
   // console.log(updateText)
@@ -73,11 +73,12 @@ const ContactAddressEdit = () => {
     line2: Yup.string(),
     postCode: Yup.string(),
     contactId: Yup.number().required().min(1),
-    addressLabelId: Yup.number().required().min(1),
-    cityId: Yup.number().required().min(1),
+    addressLabelId: Yup.number(),
+    cityId: Yup.number(),
   });
 
   const submitForm = (values: ContactAddressReqEdit) => {
+    values = convertEmptyStringToNull(values);
     // console.log(values);
     if (contactAddressId) {
       updateContactAddress(values);
@@ -120,10 +121,22 @@ const ContactAddressEdit = () => {
       });
   };
 
+  const convertNullToEmptyString = (obj: ContactAddressReqEdit) => {
+    obj.addressLabelId ??= "";
+    obj.cityId ??= "";
+    return obj;
+  }
+
+  const convertEmptyStringToNull = (obj: ContactAddressReqEdit) => {
+    obj.addressLabelId = obj.addressLabelId == "" ? undefined : obj.addressLabelId;
+    obj.cityId = obj.cityId == "" ? undefined : obj.cityId;
+    return obj;
+  }
+
   const showUpdateForm = () => (
     <Box p={0}>
       <Formik
-        initialValues={contactAddress}
+        initialValues={convertNullToEmptyString(contactAddress)}
         onSubmit={(values) => {
           submitForm(values);
         }}

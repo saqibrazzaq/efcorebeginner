@@ -1,7 +1,9 @@
+import { ContactChatReqEdit, ContactChatReqSearch } from "../dtos/ContactChat";
 import { api } from "./axiosconfig"
 
 export const ContactChatApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: ContactChatReqSearch) {
+    if (!searchParams.contactId || searchParams.contactId == "") return {};
     const response = await api.request({
       url: "/contactChats/search",
       method: "GET",
@@ -10,7 +12,7 @@ export const ContactChatApi = {
 
     return response.data
   },
-  get: async function (contactChatId) {
+  get: async function (contactChatId?: string) {
     if (!contactChatId) return {};
     const response = await api.request({
       url: `/contactChats/` + contactChatId,
@@ -19,7 +21,7 @@ export const ContactChatApi = {
 
     return response.data
   },
-  create: async function (contactChat) {
+  create: async function (contactChat: ContactChatReqEdit) {
     const response = await api.request({
       url: `/contactChats`,
       method: "POST",
@@ -28,14 +30,14 @@ export const ContactChatApi = {
 
     return response.data
   },
-  update: async function (contactChatId, contactChat) {
+  update: async function (contactChatId?: string, contactChat?: ContactChatReqEdit) {
     await api.request({
       url: `/contactChats/` + contactChatId,
       method: "PUT",
       data: contactChat,
     })
   },
-  delete: async function (contactChatId) {
+  delete: async function (contactChatId?: string) {
     const response = await api.request({
       url: `/contactChats/` + contactChatId,
       method: "DELETE",

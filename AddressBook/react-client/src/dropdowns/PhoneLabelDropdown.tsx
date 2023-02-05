@@ -1,11 +1,16 @@
 import { Select } from 'chakra-react-select';
 import React, { useEffect, useState } from 'react'
 import { PhoneLabelApi } from '../api/phoneLabel';
-import { PhoneLabelReqSearch } from '../dtos/PhoneLabel';
+import { PhoneLabelReqSearch, PhoneLabelRes } from '../dtos/PhoneLabel';
 
-const PhoneLabelDropdown = ({handleChange, selectedPhoneLabel}) => {
+interface PhoneLabelDropdownParams {
+  handleChange?: any;
+  selectedPhoneLabel?: PhoneLabelRes;
+}
+
+const PhoneLabelDropdown = ({handleChange, selectedPhoneLabel}: PhoneLabelDropdownParams) => {
   const [inputValue, setInputValue] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<PhoneLabelRes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const loadPhoneLabel = () => {
@@ -25,14 +30,14 @@ const PhoneLabelDropdown = ({handleChange, selectedPhoneLabel}) => {
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
   return (
     <Select
-        getOptionLabel={(c) => c.label}
-        getOptionValue={(c) => c.phoneLabelId}
+        getOptionLabel={(c) => c.label || ""}
+        getOptionValue={(c) => c.phoneLabelId || ""}
         options={items}
         onChange={handleChange}
         onInputChange={handleInputChange}

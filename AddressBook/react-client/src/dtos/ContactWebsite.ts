@@ -4,19 +4,19 @@ import { ContactRes } from "./Contact";
 import { WebsiteLabelRes } from "./WebsiteLabel";
 
 export interface ContactWebsiteRes {
-  contactWebsiteId?: number;
+  contactWebsiteId?: string;
   website?: string;
-  contactId?: number;
+  contactId?: string;
   contact?: ContactRes;
-  websiteLabelId?: number;
+  websiteLabelId?: string;
   websiteLabel?: WebsiteLabelRes;
 }
 
 export class ContactWebsiteReqEdit {
   website?: string = "";
-  contactId?: number = 0;
-  websiteLabelId?: number = 0;
-  constructor(contactId?: number) {
+  contactId?: string = "";
+  websiteLabelId?: string = "";
+  constructor(contactId?: string) {
     this.contactId = contactId;
   }
 }
@@ -27,7 +27,7 @@ export class ContactWebsiteReqSearch extends PagedReq {
     {
       pageNumber = 1,
       pageSize = Common.DEFAULT_PAGE_SIZE,
-      orderBy,
+      orderBy = "",
       searchText = "",
     }: PagedReq,
     {contactId = ""}

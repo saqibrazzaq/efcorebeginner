@@ -51,7 +51,7 @@ const Cities = () => {
   }, [searchParams]);
 
   const loadState = () => {
-    let stateId = searchParams.get("stateId");
+    const stateId = searchParams.get("stateId") || undefined;
     StateApi.get(stateId).then((res) => setSelectedState(res));
   };
 

@@ -34,6 +34,7 @@ import ContactHeader from "./ContactHeader";
 const ContactEmailDelete = () => {
   let params = useParams();
   const contactEmailId = params.contactEmailId;
+  const contactId = params.contactId;
   const [contactEmail, setContactEmail] = useState<ContactEmailRes>();
   const navigate = useNavigate();
   const toast = useToast();
@@ -159,7 +160,7 @@ const ContactEmailDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={contactEmail?.contactId} />
+        <ContactHeader contactId={contactId} />
         {showContactEmailInfo()}
         {showAlertDialog()}
       </Stack>

@@ -1,7 +1,9 @@
+import { ContactPhoneReqEdit, ContactPhoneReqSearch } from "../dtos/ContactPhone";
 import { api } from "./axiosconfig"
 
 export const ContactPhoneApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: ContactPhoneReqSearch) {
+    if (!searchParams.contactId || searchParams.contactId == "") return {};
     const response = await api.request({
       url: "/contactPhones/search",
       method: "GET",
@@ -10,7 +12,7 @@ export const ContactPhoneApi = {
 
     return response.data
   },
-  get: async function (contactPhoneId) {
+  get: async function (contactPhoneId?: string) {
     if (!contactPhoneId) return {};
     const response = await api.request({
       url: `/contactPhones/` + contactPhoneId,
@@ -19,7 +21,7 @@ export const ContactPhoneApi = {
 
     return response.data
   },
-  create: async function (contactPhone) {
+  create: async function (contactPhone: ContactPhoneReqEdit) {
     const response = await api.request({
       url: `/contactPhones`,
       method: "POST",
@@ -28,14 +30,14 @@ export const ContactPhoneApi = {
 
     return response.data
   },
-  update: async function (contactPhoneId, contactPhone) {
+  update: async function (contactPhoneId?: string, contactPhone?: ContactPhoneReqEdit) {
     await api.request({
       url: `/contactPhones/` + contactPhoneId,
       method: "PUT",
       data: contactPhone,
     })
   },
-  delete: async function (contactPhoneId) {
+  delete: async function (contactPhoneId?: string) {
     const response = await api.request({
       url: `/contactPhones/` + contactPhoneId,
       method: "DELETE",

@@ -34,6 +34,7 @@ import ContactHeader from "./ContactHeader";
 const ContactLabelDelete = () => {
   let params = useParams();
   const contactLabelId = params.contactLabelId;
+  const contactId = params.contactId;
   const [contactLabel, setContactLabel] = useState<ContactLabelRes>();
   const navigate = useNavigate();
   const toast = useToast();
@@ -155,7 +156,7 @@ const ContactLabelDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={contactLabel?.contactId} />
+        <ContactHeader contactId={contactId} />
         {showContactLabelInfo()}
         {showAlertDialog()}
       </Stack>

@@ -27,7 +27,7 @@ import ContactHeader from "./ContactHeader";
 const ContactLabelEdit = () => {
   const params = useParams();
   const contactLabelId = params.contactLabelId;
-  const contactId = Number.parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const updateText = contactLabelId ? "Update Label" : "Add Label";
   // console.log("person id: " + personId)
   // console.log(updateText)

@@ -5,7 +5,7 @@ import { TimezoneRes } from "./Timezone";
 import { TranslationRes } from "./Translation";
 
 export interface CountryRes {
-  countryId?: number;
+  countryId?: string;
   name?: string;
   iso3?: string;
   iso2?: string;

@@ -27,7 +27,7 @@ import ContactHeader from "./ContactHeader";
 const ContactEmailEdit = () => {
   const params = useParams();
   const contactEmailId = params.contactEmailId;
-  const contactId = Number.parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const updateText = contactEmailId ? "Update Email" : "Add Email";
   // console.log("person id: " + personId)
   // console.log(updateText)
@@ -67,10 +67,11 @@ const ContactEmailEdit = () => {
   const validationSchema = Yup.object({
     email: Yup.string().required("Email is required").email(),
     contactId: Yup.number().required().min(1),
-    emailLabelId: Yup.number().required().min(1),
+    emailLabelId: Yup.number(),
   });
 
   const submitForm = (values: ContactEmailReqEdit) => {
+    values = convertEmptyStringToNull(values);
     // console.log(values);
     if (contactEmailId) {
       updateContactEmail(values);
@@ -113,10 +114,20 @@ const ContactEmailEdit = () => {
       });
   };
 
+  const convertNullToEmptyString = (obj: ContactEmailReqEdit) => {
+    obj.emailLabelId ??= "";
+    return obj;
+  }
+
+  const convertEmptyStringToNull = (obj: ContactEmailReqEdit) => {
+    obj.emailLabelId = obj.emailLabelId == "" ? undefined : obj.emailLabelId;
+    return obj;
+  }
+
   const showUpdateForm = () => (
     <Box p={0}>
       <Formik
-        initialValues={contactEmail}
+        initialValues={convertNullToEmptyString(contactEmail)}
         onSubmit={(values) => {
           submitForm(values);
         }}

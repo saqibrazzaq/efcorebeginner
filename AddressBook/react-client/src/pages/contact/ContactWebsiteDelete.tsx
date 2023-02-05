@@ -34,6 +34,7 @@ import ContactHeader from "./ContactHeader";
 const ContactWebsiteDelete = () => {
   let params = useParams();
   const contactWebsiteId = params.contactWebsiteId;
+  const contactId = params.contactId;
   const [contactWebsite, setContactWebsite] = useState<ContactWebsiteRes>();
   const navigate = useNavigate();
   const toast = useToast();
@@ -159,7 +160,7 @@ const ContactWebsiteDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={contactWebsite?.contactId} />
+        <ContactHeader contactId={contactId} />
         {showContactWebsiteInfo()}
         {showAlertDialog()}
       </Stack>

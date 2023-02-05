@@ -3,11 +3,11 @@ import { CountryRes } from "./Country";
 import { PagedReq } from "./PagedReq";
 
 export interface TranslationRes {
-  translationId?: number;
+  translationId?: string;
   code?: string;
   name?: string;
 
-  countryId?: number;
+  countryId?: string;
   country?: CountryRes;
 }
 
@@ -15,14 +15,14 @@ export class TranslationReqEdit {
   code?: string = "";
   name?: string = "";
 
-  countryId?: number = 0;
-  constructor(countryId?: number) {
+  countryId?: string = "";
+  constructor(countryId?: string) {
     this.countryId = countryId;
   }
 }
 
 export class TranslationReqSearch extends PagedReq {
-  countryId?: number;
+  countryId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -30,7 +30,7 @@ export class TranslationReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {countryId = undefined}
+    {countryId = ""}
   ) {
     super({
       pageNumber: pageNumber,

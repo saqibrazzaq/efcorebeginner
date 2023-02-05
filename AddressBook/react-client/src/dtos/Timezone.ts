@@ -3,7 +3,7 @@ import { CountryRes } from "./Country";
 import { PagedReq } from "./PagedReq";
 
 export interface TimezoneRes {
-  timezoneId?: number;
+  timezoneId?: string;
   name?: string;
   cityName?: string;
   gmtOffset?: number;
@@ -21,14 +21,14 @@ export class TimezoneReqEdit {
   gmtOffsetName?: string = "";
   abbreviation?: string = "";
 
-  countryId?: number = 0;
-  constructor(countryId?: number) {
+  countryId?: string = "";
+  constructor(countryId?: string) {
     this.countryId = countryId;
   }
 }
 
 export class TimezoneReqSearch extends PagedReq {
-  countryId?: number;
+  countryId?: string;
   constructor(
     {
       pageNumber = 1,
@@ -36,7 +36,7 @@ export class TimezoneReqSearch extends PagedReq {
       orderBy,
       searchText = "",
     }: PagedReq,
-    {countryId = undefined}
+    {countryId = ""}
   ) {
     super({
       pageNumber: pageNumber,

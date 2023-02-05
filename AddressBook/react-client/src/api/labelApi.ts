@@ -1,7 +1,8 @@
+import { LabelReqEdit, LabelReqSearch } from "../dtos/Label";
 import { api } from "./axiosconfig"
 
 export const LabelApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: LabelReqSearch) {
     const response = await api.request({
       url: "/labels/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const LabelApi = {
 
     return response.data
   },
-  get: async function (labelId) {
+  get: async function (labelId?: string) {
     if (!labelId) return {};
     const response = await api.request({
       url: `/labels/` + labelId,
@@ -19,7 +20,7 @@ export const LabelApi = {
 
     return response.data
   },
-  create: async function (label) {
+  create: async function (label: LabelReqEdit) {
     const response = await api.request({
       url: `/labels`,
       method: "POST",
@@ -28,14 +29,14 @@ export const LabelApi = {
 
     return response.data
   },
-  update: async function (labelId, label) {
+  update: async function (labelId?: string, label?: LabelReqEdit) {
     await api.request({
       url: `/labels/` + labelId,
       method: "PUT",
       data: label,
     })
   },
-  delete: async function (labelId) {
+  delete: async function (labelId?: string) {
     const response = await api.request({
       url: `/labels/` + labelId,
       method: "DELETE",

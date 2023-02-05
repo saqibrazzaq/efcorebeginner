@@ -2,7 +2,7 @@ import Common from "../utility/Common";
 import { PagedReq } from "./PagedReq";
 
 export interface ChatLabelRes {
-  chatLabelId?: number;
+  chatLabelId?: string;
   label?: string;
 }
 

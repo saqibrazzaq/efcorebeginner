@@ -21,10 +21,10 @@ import PagedRes from "../../dtos/PagedRes";
 import { Link as RouteLink } from "react-router-dom";
 
 interface ContactHeaderProps {
-  contactId?: number;
+  contactId?: string;
 }
 
-const ContactHeader = ({ contactId = 0 }: ContactHeaderProps) => {
+const ContactHeader = ({ contactId = "" }: ContactHeaderProps) => {
   const [contact, setContact] = useState<ContactRes>();
   const [contactLabelsPaged, setContactLabelsPaged] =
     useState<PagedRes<ContactLabelRes>>();

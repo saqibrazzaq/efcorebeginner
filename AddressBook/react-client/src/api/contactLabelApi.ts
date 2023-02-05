@@ -1,7 +1,9 @@
+import { ContactLabelReqEdit, ContactLabelReqSearch } from "../dtos/ContactLabel";
 import { api } from "./axiosconfig"
 
 export const ContactLabelApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: ContactLabelReqSearch) {
+    if (!searchParams.contactId || searchParams.contactId == "") return {};
     const response = await api.request({
       url: "/contactLabels/search",
       method: "GET",
@@ -10,7 +12,7 @@ export const ContactLabelApi = {
 
     return response.data
   },
-  get: async function (contactLabelId) {
+  get: async function (contactLabelId?: string) {
     if (!contactLabelId) return {};
     const response = await api.request({
       url: `/contactLabels/` + contactLabelId,
@@ -19,7 +21,7 @@ export const ContactLabelApi = {
 
     return response.data
   },
-  create: async function (contactLabel) {
+  create: async function (contactLabel: ContactLabelReqEdit) {
     const response = await api.request({
       url: `/contactLabels`,
       method: "POST",
@@ -28,14 +30,14 @@ export const ContactLabelApi = {
 
     return response.data
   },
-  update: async function (contactLabelId, contactLabel) {
+  update: async function (contactLabelId?: string, contactLabel?: ContactLabelReqEdit) {
     await api.request({
       url: `/contactLabels/` + contactLabelId,
       method: "PUT",
       data: contactLabel,
     })
   },
-  delete: async function (contactLabelId) {
+  delete: async function (contactLabelId?: string) {
     const response = await api.request({
       url: `/contactLabels/` + contactLabelId,
       method: "DELETE",

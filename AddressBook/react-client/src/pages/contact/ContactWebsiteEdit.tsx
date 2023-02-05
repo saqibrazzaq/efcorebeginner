@@ -27,7 +27,7 @@ import ContactHeader from "./ContactHeader";
 const ContactWebsiteEdit = () => {
   const params = useParams();
   const contactWebsiteId = params.contactWebsiteId;
-  const contactId = Number.parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const updateText = contactWebsiteId ? "Update Website" : "Add Website";
   // console.log("person id: " + personId)
   // console.log(updateText)
@@ -67,10 +67,11 @@ const ContactWebsiteEdit = () => {
   const validationSchema = Yup.object({
     website: Yup.string().required("Website is required"),
     contactId: Yup.number().required().min(1),
-    websiteLabelId: Yup.number().required().min(1),
+    websiteLabelId: Yup.number(),
   });
 
   const submitForm = (values: ContactWebsiteReqEdit) => {
+    values = convertEmptyStringToNull(values);
     // console.log(values);
     if (contactWebsiteId) {
       updateContactWebsite(values);
@@ -113,10 +114,20 @@ const ContactWebsiteEdit = () => {
       });
   };
 
+  const convertNullToEmptyString = (obj: ContactWebsiteReqEdit) => {
+    obj.websiteLabelId ??= "";
+    return obj;
+  }
+
+  const convertEmptyStringToNull = (obj: ContactWebsiteReqEdit) => {
+    obj.websiteLabelId = obj.websiteLabelId == "" ? undefined : obj.websiteLabelId;
+    return obj;
+  }
+
   const showUpdateForm = () => (
     <Box p={0}>
       <Formik
-        initialValues={contactWebsite}
+        initialValues={convertNullToEmptyString(contactWebsite)}
         onSubmit={(values) => {
           submitForm(values);
         }}

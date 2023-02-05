@@ -1,11 +1,16 @@
 import { Select } from 'chakra-react-select';
 import React, { useEffect, useState } from 'react'
 import { StateApi } from '../api/stateApi';
-import { StateReqSearch } from '../dtos/State';
+import { StateReqSearch, StateRes } from '../dtos/State';
 
-const StateDropdown = ({handleChange, selectedState}) => {
+interface StateDropdownParams {
+  handleChange?: any;
+  selectedState?: StateRes;
+}
+
+const StateDropdown = ({handleChange, selectedState}: StateDropdownParams) => {
   const [inputValue, setInputValue] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<StateRes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const loadStates = () => {
@@ -26,14 +31,14 @@ const StateDropdown = ({handleChange, selectedState}) => {
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
   return (
     <Select
         getOptionLabel={(c) => c?.name ? (c?.name + ", " + c?.country?.name) : ""}
-        getOptionValue={(c) => c.stateId}
+        getOptionValue={(c) => c.stateId || ""}
         options={items}
         onChange={handleChange}
         onInputChange={handleInputChange}

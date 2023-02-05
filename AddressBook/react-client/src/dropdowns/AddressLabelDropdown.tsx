@@ -1,11 +1,16 @@
 import { Select } from 'chakra-react-select';
 import React, { useEffect, useState } from 'react'
 import { AddressLabelApi } from '../api/addressLabelApi';
-import { AddressLabelReqSearch } from '../dtos/AddressLabel';
+import { AddressLabelReqSearch, AddressLabelRes } from '../dtos/AddressLabel';
 
-const AddressLabelDropdown = ({handleChange, selectedAddressLabel}) => {
+interface AddressLabelDropdownParams {
+  handleChange?: any;
+  selectedAddressLabel?: AddressLabelRes;
+}
+
+const AddressLabelDropdown = ({handleChange, selectedAddressLabel}: AddressLabelDropdownParams) => {
   const [inputValue, setInputValue] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<AddressLabelRes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const loadAddressLabels = () => {
@@ -25,14 +30,14 @@ const AddressLabelDropdown = ({handleChange, selectedAddressLabel}) => {
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
   return (
     <Select
-        getOptionLabel={(c) => c.label}
-        getOptionValue={(c) => c.addressLabelId}
+        getOptionLabel={(c) => c.label || ""}
+        getOptionValue={(c) => c.addressLabelId || ""}
         options={items}
         onChange={handleChange}
         onInputChange={handleInputChange}

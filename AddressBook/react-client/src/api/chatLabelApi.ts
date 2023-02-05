@@ -1,7 +1,8 @@
+import { ChatLabelReqEdit, ChatLabelReqSearch } from "../dtos/ChatLabel";
 import { api } from "./axiosconfig"
 
 export const ChatLabelApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: ChatLabelReqSearch) {
     const response = await api.request({
       url: "/chatLabels/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const ChatLabelApi = {
 
     return response.data
   },
-  get: async function (chatLabelId) {
+  get: async function (chatLabelId?: string) {
     if (!chatLabelId) return {};
     const response = await api.request({
       url: `/chatLabels/` + chatLabelId,
@@ -19,7 +20,7 @@ export const ChatLabelApi = {
 
     return response.data
   },
-  create: async function (chatLabel) {
+  create: async function (chatLabel: ChatLabelReqEdit) {
     const response = await api.request({
       url: `/chatLabels`,
       method: "POST",
@@ -28,14 +29,14 @@ export const ChatLabelApi = {
 
     return response.data
   },
-  update: async function (chatLabelId, chatLabel) {
+  update: async function (chatLabelId?: string, chatLabel?: ChatLabelReqEdit) {
     await api.request({
       url: `/chatLabels/` + chatLabelId,
       method: "PUT",
       data: chatLabel,
     })
   },
-  delete: async function (chatLabelId) {
+  delete: async function (chatLabelId?: string) {
     const response = await api.request({
       url: `/chatLabels/` + chatLabelId,
       method: "DELETE",

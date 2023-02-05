@@ -34,6 +34,7 @@ import ContactHeader from "./ContactHeader";
 const ContactAddressDelete = () => {
   let params = useParams();
   const contactAddressId = params.contactAddressId;
+  const contactId = params.contactId;
   const [contactAddress, setContactAddress] = useState<ContactAddressRes>();
   const navigate = useNavigate();
   const toast = useToast();
@@ -110,8 +111,8 @@ const ContactAddressDelete = () => {
                 {contactAddress?.line1}<br />
                 {contactAddress?.line2}
                 {contactAddress?.line2 ? <br /> : ''}
-                {contactAddress?.city?.name + ", " + contactAddress?.city?.state?.name + ", " +
-                contactAddress?.city?.state?.country?.name}
+                {(contactAddress?.city?.name || "") + ", " + (contactAddress?.city?.state?.name || "") + ", " +
+                (contactAddress?.city?.state?.country?.name || "")}
               </Td>
             </Tr>
             <Tr>
@@ -163,7 +164,7 @@ const ContactAddressDelete = () => {
       <Stack spacing={4} as={Container} maxW={"3xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
-        <ContactHeader contactId={contactAddress?.contactId} />
+        <ContactHeader contactId={contactId} />
         {showContactAddressInfo()}
         {showAlertDialog()}
       </Stack>

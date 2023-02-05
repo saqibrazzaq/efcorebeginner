@@ -1,11 +1,16 @@
 import { Select } from 'chakra-react-select';
 import React, { useEffect, useState } from 'react'
 import { CountryApi } from '../api/countryApi';
-import { CountryReqSearch } from '../dtos/Country';
+import { CountryReqSearch, CountryRes } from '../dtos/Country';
 
-const CountryDropdown = ({handleChange, selectedCountry}) => {
+interface CountryDropdownParams {
+  handleChange?: any;
+  selectedCountry?: CountryRes;
+}
+
+const CountryDropdown = ({handleChange, selectedCountry}: CountryDropdownParams) => {
   const [inputValue, setInputValue] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<CountryRes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const loadCountries = () => {
@@ -25,14 +30,14 @@ const CountryDropdown = ({handleChange, selectedCountry}) => {
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
   return (
     <Select
-        getOptionLabel={(c) => c.name}
-        getOptionValue={(c) => c.countryId}
+        getOptionLabel={(c) => c.name || ""}
+        getOptionValue={(c) => c.countryId || ""}
         options={items}
         onChange={handleChange}
         onInputChange={handleInputChange}

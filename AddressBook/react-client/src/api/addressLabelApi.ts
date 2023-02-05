@@ -1,7 +1,8 @@
+import { AddressLabelReqEdit, AddressLabelReqSearch } from "../dtos/AddressLabel";
 import { api } from "./axiosconfig"
 
 export const AddressLabelApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams?: AddressLabelReqSearch) {
     const response = await api.request({
       url: "/addressLabels/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const AddressLabelApi = {
 
     return response.data
   },
-  get: async function (addressLabelId) {
+  get: async function (addressLabelId?: string) {
     if (!addressLabelId) return {};
     const response = await api.request({
       url: `/addressLabels/` + addressLabelId,
@@ -19,7 +20,7 @@ export const AddressLabelApi = {
 
     return response.data
   },
-  create: async function (addressLabel) {
+  create: async function (addressLabel: AddressLabelReqEdit) {
     const response = await api.request({
       url: `/addressLabels`,
       method: "POST",
@@ -28,14 +29,14 @@ export const AddressLabelApi = {
 
     return response.data
   },
-  update: async function (addressLabelId, addressLabel) {
+  update: async function (addressLabelId?: string, addressLabel?: AddressLabelReqEdit) {
     await api.request({
       url: `/addressLabels/` + addressLabelId,
       method: "PUT",
       data: addressLabel,
     })
   },
-  delete: async function (addressLabelId) {
+  delete: async function (addressLabelId?: string) {
     const response = await api.request({
       url: `/addressLabels/` + addressLabelId,
       method: "DELETE",

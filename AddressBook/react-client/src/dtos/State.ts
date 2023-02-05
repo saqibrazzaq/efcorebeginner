@@ -4,13 +4,13 @@ import { CountryRes } from "./Country";
 import { PagedReq } from "./PagedReq";
 
 export interface StateRes {
-  stateId?: number;
+  stateId?: string;
   name?: string;
   code?: string;
   latitude?: number;
   longitude?: number;
 
-  countryId?: number;
+  countryId?: string;
   country?: CountryRes;
 
   cities?: CityRes[];
@@ -22,8 +22,8 @@ export class StateReqEdit {
   latitude?: number = 0;
   longitude?: number = 0;
 
-  countryId?: number = 0;
-  constructor(countryId?: number) {
+  countryId?: string = "";
+  constructor(countryId?: string) {
     this.countryId = countryId;
   }
 }

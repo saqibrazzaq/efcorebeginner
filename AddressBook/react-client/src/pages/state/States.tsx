@@ -56,7 +56,7 @@ const States = () => {
   }, [searchParams]);
 
   const loadCountry = () => {
-    let countryId = searchParams.get("countryId");
+    let countryId = searchParams.get("countryId") || undefined;
     CountryApi.get(countryId).then((res) => setSelectedCountry(res));
   };
 

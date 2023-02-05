@@ -27,7 +27,7 @@ import ContactHeader from "./ContactHeader";
 const ContactChatEdit = () => {
   const params = useParams();
   const contactChatId = params.contactChatId;
-  const contactId = Number.parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const updateText = contactChatId ? "Update Chat" : "Add Chat";
   // console.log("person id: " + personId)
   // console.log(updateText)
@@ -67,10 +67,11 @@ const ContactChatEdit = () => {
   const validationSchema = Yup.object({
     chat: Yup.string().required("Chat is required"),
     contactId: Yup.number().required().min(1),
-    chatLabelId: Yup.number().required().min(1),
+    chatLabelId: Yup.number(),
   });
 
   const submitForm = (values: ContactChatReqEdit) => {
+    values = convertEmptyStringToNull(values);
     // console.log(values);
     if (contactChatId) {
       updateContactChat(values);
@@ -113,10 +114,20 @@ const ContactChatEdit = () => {
       });
   };
 
+  const convertNullToEmptyString = (obj: ContactChatReqEdit) => {
+    obj.chatLabelId ??= "";
+    return obj;
+  }
+
+  const convertEmptyStringToNull = (obj: ContactChatReqEdit) => {
+    obj.chatLabelId = obj.chatLabelId == "" ? undefined : obj.chatLabelId;
+    return obj;
+  }
+
   const showUpdateForm = () => (
     <Box p={0}>
       <Formik
-        initialValues={contactChat}
+        initialValues={convertNullToEmptyString(contactChat)}
         onSubmit={(values) => {
           submitForm(values);
         }}

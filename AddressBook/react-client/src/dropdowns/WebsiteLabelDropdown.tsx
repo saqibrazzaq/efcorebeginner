@@ -1,11 +1,16 @@
 import { Select } from 'chakra-react-select';
 import React, { useEffect, useState } from 'react'
 import { WebsiteLabelApi } from '../api/websiteLabelApi';
-import { WebsiteLabelReqSearch } from '../dtos/WebsiteLabel';
+import { WebsiteLabelReqSearch, WebsiteLabelRes } from '../dtos/WebsiteLabel';
 
-const WebsiteLabelDropdown = ({handleChange, selectedWebsiteLabel}) => {
+interface WebsiteLabelDropdownParams {
+  handleChange?: any;
+  selectedWebsiteLabel?: WebsiteLabelRes;
+}
+
+const WebsiteLabelDropdown = ({handleChange, selectedWebsiteLabel}: WebsiteLabelDropdownParams) => {
   const [inputValue, setInputValue] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<WebsiteLabelRes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const loadWebsiteLabels = () => {
@@ -25,14 +30,14 @@ const WebsiteLabelDropdown = ({handleChange, selectedWebsiteLabel}) => {
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
   return (
     <Select
-        getOptionLabel={(c) => c.label}
-        getOptionValue={(c) => c.websiteLabelId}
+        getOptionLabel={(c) => c.label || ""}
+        getOptionValue={(c) => c.websiteLabelId || ""}
         options={items}
         onChange={handleChange}
         onInputChange={handleInputChange}

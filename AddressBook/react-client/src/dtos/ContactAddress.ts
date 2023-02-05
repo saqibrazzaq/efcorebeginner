@@ -5,15 +5,15 @@ import { PagedReq } from "./PagedReq";
 import { ContactRes } from "./Contact";
 
 export interface ContactAddressRes {
-  contactAddressId?: number;
+  contactAddressId?: string;
   line1?: string;
   line2?: string;
   postCode?: string;
-  cityId?: number;
+  cityId?: string;
   city?: CityRes;
-  addressLabelId?: number;
+  addressLabelId?: string;
   addressLabel?: AddressLabelRes;
-  contactId?: number;
+  contactId?: string;
   contact?: ContactRes;
 }
 
@@ -21,10 +21,10 @@ export class ContactAddressReqEdit {
   line1?: string = "";
   line2?: string = "";
   postCode?: string = "";
-  cityId?: number = 0;
-  addressLabelId?: number = 0;
-  contactId?: number = 0;
-  constructor(contactId?: number) {
+  cityId?: string = "";
+  addressLabelId?: string = "";
+  contactId?: string = "";
+  constructor(contactId?: string) {
     this.contactId = contactId;
   }
 }
@@ -35,7 +35,7 @@ export class ContactAddressReqSearch extends PagedReq {
     {
       pageNumber = 1,
       pageSize = Common.DEFAULT_PAGE_SIZE,
-      orderBy,
+      orderBy = "",
       searchText = "",
     }: PagedReq,
     {contactId = ""}

@@ -21,7 +21,7 @@ import ContactHeader from "./ContactHeader";
 const ContactEditImage = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const contactId = parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const toast = useToast();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const ContactEditImage = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    ContactApi.updateImage(contactId, fd, config)
+    ContactApi.updateImage(contactId, fd)
       .then((res) => {
         // console.log(res.data);
         successToast();
@@ -63,7 +63,6 @@ const ContactEditImage = () => {
     });
   };
 
-  const config = { headers: { "Content-Type": "multipart/form-data" } };
   let fd = new FormData();
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();

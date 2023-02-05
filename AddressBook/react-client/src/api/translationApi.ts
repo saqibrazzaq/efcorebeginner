@@ -1,7 +1,8 @@
+import { TranslationReqEdit, TranslationReqSearch } from "../dtos/Translation";
 import { api } from "./axiosconfig"
 
 export const TranslationApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: TranslationReqSearch) {
     const response = await api.request({
       url: "/translations/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const TranslationApi = {
 
     return response.data
   },
-  get: async function (translationId) {
+  get: async function (translationId?: string) {
     if (!translationId) return {};
     const response = await api.request({
       url: `/translations/` + translationId,
@@ -19,7 +20,7 @@ export const TranslationApi = {
 
     return response.data
   },
-  create: async function (translation) {
+  create: async function (translation: TranslationReqEdit) {
     const response = await api.request({
       url: `/translations`,
       method: "POST",
@@ -28,14 +29,14 @@ export const TranslationApi = {
 
     return response.data
   },
-  update: async function (translationId, person) {
+  update: async function (translationId?: string, person?: TranslationReqEdit) {
     await api.request({
       url: `/translations/` + translationId,
       method: "PUT",
       data: person,
     })
   },
-  delete: async function (translationId) {
+  delete: async function (translationId?: string) {
     const response = await api.request({
       url: `/translations/` + translationId,
       method: "DELETE",

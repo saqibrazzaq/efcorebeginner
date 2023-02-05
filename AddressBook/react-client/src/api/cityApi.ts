@@ -1,7 +1,8 @@
+import { CityReqEdit, CityReqSearch } from "../dtos/City";
 import { api } from "./axiosconfig"
 
 export const CityApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: CityReqSearch) {
     const response = await api.request({
       url: "/cities/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const CityApi = {
 
     return response.data
   },
-  get: async function (cityId) {
+  get: async function (cityId?: string) {
     if (!cityId) return {};
     const response = await api.request({
       url: `/cities/` + cityId,
@@ -27,7 +28,7 @@ export const CityApi = {
 
     return response.data
   },
-  countByStateId: async function (stateId) {
+  countByStateId: async function (stateId?: string) {
     if (!stateId) return {};
     const response = await api.request({
       url: `/cities/count/` + stateId,
@@ -36,7 +37,7 @@ export const CityApi = {
 
     return response.data
   },
-  create: async function (city) {
+  create: async function (city: CityReqEdit) {
     const response = await api.request({
       url: `/cities`,
       method: "POST",
@@ -45,14 +46,14 @@ export const CityApi = {
 
     return response.data
   },
-  update: async function (cityId, person) {
+  update: async function (cityId?: string, city?: CityReqEdit) {
     await api.request({
       url: `/cities/` + cityId,
       method: "PUT",
-      data: person,
+      data: city,
     })
   },
-  delete: async function (cityId) {
+  delete: async function (cityId?: string) {
     const response = await api.request({
       url: `/cities/` + cityId,
       method: "DELETE",

@@ -61,7 +61,7 @@ import ContactHeader from "./ContactHeader";
 
 const ContactEdit = () => {
   const params = useParams();
-  const contactId = Number.parseInt(params.contactId || "0");
+  const contactId = params.contactId;
   const updateText = contactId ? "Update Contact" : "Add Contact";
 
   const [contact, setContact] = useState<ContactReqEdit>(new ContactReqEdit());
@@ -91,38 +91,38 @@ const ContactEdit = () => {
   }, [contactId]);
 
   const loadContactPhones = () => {
-    ContactPhoneApi.search(new ContactPhoneReqSearch({}, {contactId: contactId.toString()})).then(res => {
+    ContactPhoneApi.search(new ContactPhoneReqSearch({}, {contactId: contactId})).then(res => {
       setContactPhonesPaged(res)
     })
   }
 
   const loadContactLabels = () => {
-    ContactLabelApi.search(new ContactLabelReqSearch({}, {contactId: contactId.toString()})).then(res => {
+    ContactLabelApi.search(new ContactLabelReqSearch({}, {contactId: contactId})).then(res => {
       setContactLabelsPaged(res)
       // console.log(res)
     })
   }
 
   const loadContactEmails = () => {
-    ContactEmailApi.search(new ContactEmailReqSearch({}, {contactId: contactId.toString()})).then(res => {
+    ContactEmailApi.search(new ContactEmailReqSearch({}, {contactId: contactId})).then(res => {
       setContactEmailsPaged(res);
     })
   }
 
   const loadContactWebsites = () => {
-    ContactWebsiteApi.search(new ContactWebsiteReqSearch({}, {contactId: contactId.toString()})).then(res => {
+    ContactWebsiteApi.search(new ContactWebsiteReqSearch({}, {contactId: contactId})).then(res => {
       setContactWebsitesPaged(res)
     })
   }
 
   const loadContactChats = () => {
-    ContactChatApi.search(new ContactChatReqSearch({}, {contactId: contactId.toString()})).then(res => {
+    ContactChatApi.search(new ContactChatReqSearch({}, {contactId: contactId})).then(res => {
       setContactChatsPaged(res);
     })
   }
 
   const loadContactAddresses = () => {
-    ContactAddressApi.search(new ContactAddressReqSearch({}, {contactId: contactId.toString()})).then(res => {
+    ContactAddressApi.search(new ContactAddressReqSearch({}, {contactId: contactId})).then(res => {
       setContactAddressesPaged(res)
     })
   }
@@ -180,7 +180,7 @@ const ContactEdit = () => {
           status: "success",
           position: "bottom-right",
         });
-        navigate(-1);
+        loadContact();
       })
       .catch((error) => {
         setError(error.response.data.error);
@@ -197,7 +197,8 @@ const ContactEdit = () => {
           status: "success",
           position: "bottom-right",
         });
-        navigate(-1);
+        console.log(res)
+        navigate("/contacts/edit/" + res.contactId);
       })
       .catch((error) => {
         setError(error.response.data.error);
@@ -475,8 +476,8 @@ const ContactEdit = () => {
                 {item.line1}<br />
                 {item.line2}
                 {item.line2 ? <br /> : ''}
-                {item.city?.name + ", " + item.city?.state?.name + ", " +
-                item.city?.state?.country?.name}
+                {(item.city?.name || "") + ", " + (item.city?.state?.name || "") + ", " +
+                (item.city?.state?.country?.name || "")}
               </Td>
               <Td>{item.addressLabel?.label}</Td>
               <Td>

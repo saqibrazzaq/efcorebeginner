@@ -2,7 +2,7 @@ import Common from "../utility/Common";
 import { PagedReq } from "./PagedReq";
 
 export interface WebsiteLabelRes {
-  websiteLabelId?: number;
+  websiteLabelId?: string;
   label?: string;
 }
 
@@ -15,7 +15,7 @@ export class WebsiteLabelReqSearch extends PagedReq {
     {
       pageNumber = 1,
       pageSize = Common.DEFAULT_PAGE_SIZE,
-      orderBy,
+      orderBy = "",
       searchText = "",
     }: PagedReq,
     {}

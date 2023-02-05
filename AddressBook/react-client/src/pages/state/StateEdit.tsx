@@ -25,8 +25,8 @@ import { CountryApi } from "../../api/countryApi";
 
 const StateEdit = () => {
   const params = useParams();
-  const countryId = Number.parseInt(params.countryId || "0");
-  const stateId = Number.parseInt(params.stateId || "0");
+  const countryId = params.countryId;
+  const stateId = params.stateId;
   const updateText = stateId ? "Update State" : "Add State";
 
   const [selectedCountry, setSelectedCountry] = useState<CountryRes>();
@@ -50,7 +50,7 @@ const StateEdit = () => {
     loadCountry(state.countryId);
   }, [state.countryId]);
 
-  const loadCountry = (cid?: number) => {
+  const loadCountry = (cid?: string) => {
     CountryApi.get(cid).then((res) => {
       setSelectedCountry(res);
     });

@@ -1,16 +1,21 @@
 import { Select } from 'chakra-react-select';
 import React, { useEffect, useState } from 'react'
-import { EmailLabelApi } from '../api/emailLabelApi';
-import { EmailLabelReqSearch } from '../dtos/EmailLabel';
+import { LabelApi } from '../api/labelApi';
+import { LabelReqSearch, LabelRes } from '../dtos/Label';
 
-const EmailLabelDropdown = ({handleChange, selectedEmailLabel}) => {
+interface LabelDropdownParams {
+  handleChange?: any;
+  selectedLabel?: LabelRes;
+}
+
+const LabelDropdown = ({handleChange, selectedLabel}: LabelDropdownParams) => {
   const [inputValue, setInputValue] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<LabelRes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const loadEmailLabels = () => {
+  const loadLabels = () => {
     setIsLoading(true);
-    EmailLabelApi.search(new EmailLabelReqSearch({ searchText: inputValue }, {}))
+    LabelApi.search(new LabelReqSearch({ searchText: inputValue }, {}))
       .then((res) => {
         setItems(res.pagedList);
       })
@@ -19,29 +24,29 @@ const EmailLabelDropdown = ({handleChange, selectedEmailLabel}) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      loadEmailLabels();
+      loadLabels();
     }, 1000);
 
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
   return (
     <Select
-        getOptionLabel={(c) => c.label}
-        getOptionValue={(c) => c.emailLabelId}
+        getOptionLabel={(c) => c.name || ""}
+        getOptionValue={(c) => c.labelId || ""}
         options={items}
         onChange={handleChange}
         onInputChange={handleInputChange}
         isClearable={true}
-        placeholder="Select email label..."
+        placeholder="Select label..."
         isLoading={isLoading}
-        value={selectedEmailLabel}
+        value={selectedLabel}
       ></Select>
   );
 }
 
-export default EmailLabelDropdown
+export default LabelDropdown

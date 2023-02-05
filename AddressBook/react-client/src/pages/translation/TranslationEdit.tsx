@@ -29,8 +29,8 @@ import { TranslationApi } from "../../api/translationApi";
 
 const TranslationEdit = () => {
   const params = useParams();
-  const countryId = Number.parseInt(params.countryId || "0");
-  const translationId = Number.parseInt(params.translationId || "0");
+  const countryId = params.countryId;
+  const translationId = params.translationId;
   const updateText = translationId ? "Update Translation" : "Add Translation";
 
   const [selectedCountry, setSelectedCountry] = useState<CountryRes>();
@@ -54,7 +54,7 @@ const TranslationEdit = () => {
     loadCountry(translation.countryId);
   }, [translation.countryId]);
 
-  const loadCountry = (cid?: number) => {
+  const loadCountry = (cid?: string) => {
     CountryApi.get(cid).then((res) => {
       setSelectedCountry(res);
     });

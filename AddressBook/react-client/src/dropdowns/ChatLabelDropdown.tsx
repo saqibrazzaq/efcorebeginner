@@ -1,11 +1,16 @@
 import { Select } from 'chakra-react-select';
 import React, { useEffect, useState } from 'react'
 import { ChatLabelApi } from '../api/chatLabelApi';
-import { ChatLabelReqSearch } from '../dtos/ChatLabel';
+import { ChatLabelReqSearch, ChatLabelRes } from '../dtos/ChatLabel';
 
-const ChatLabelDropdown = ({handleChange, selectedChatLabel}) => {
+interface ChhatLabelDropdownParams {
+  handleChange?: any;
+  selectedChatLabel?: ChatLabelRes;
+}
+
+const ChatLabelDropdown = ({handleChange, selectedChatLabel}: ChhatLabelDropdownParams) => {
   const [inputValue, setInputValue] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<ChatLabelRes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const loadChatLabels = () => {
@@ -25,14 +30,14 @@ const ChatLabelDropdown = ({handleChange, selectedChatLabel}) => {
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue: string) => {
     setInputValue(newValue);
   };
 
   return (
     <Select
-        getOptionLabel={(c) => c.label}
-        getOptionValue={(c) => c.chatLabelId}
+        getOptionLabel={(c) => c.label || ""}
+        getOptionValue={(c) => c.chatLabelId || ""}
         options={items}
         onChange={handleChange}
         onInputChange={handleInputChange}

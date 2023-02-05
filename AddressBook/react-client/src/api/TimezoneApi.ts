@@ -1,7 +1,8 @@
+import { TimezoneReqEdit, TimezoneReqSearch } from "../dtos/Timezone";
 import { api } from "./axiosconfig"
 
 export const TimezoneApi = {
-  search: async function (searchParams) {
+  search: async function (searchParams: TimezoneReqSearch) {
     const response = await api.request({
       url: "/timezones/search",
       method: "GET",
@@ -10,7 +11,7 @@ export const TimezoneApi = {
 
     return response.data
   },
-  get: async function (timezoneId) {
+  get: async function (timezoneId?: string) {
     if (!timezoneId) return {};
     const response = await api.request({
       url: `/timezones/` + timezoneId,
@@ -19,7 +20,7 @@ export const TimezoneApi = {
 
     return response.data
   },
-  create: async function (timezone) {
+  create: async function (timezone: TimezoneReqEdit) {
     const response = await api.request({
       url: `/timezones`,
       method: "POST",
@@ -28,14 +29,14 @@ export const TimezoneApi = {
 
     return response.data
   },
-  update: async function (timezoneId, person) {
+  update: async function (timezoneId?: string, person?: TimezoneReqEdit) {
     await api.request({
       url: `/timezones/` + timezoneId,
       method: "PUT",
       data: person,
     })
   },
-  delete: async function (timezoneId) {
+  delete: async function (timezoneId?: string) {
     const response = await api.request({
       url: `/timezones/` + timezoneId,
       method: "DELETE",

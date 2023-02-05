@@ -4,17 +4,17 @@ import { PagedReq } from "./PagedReq";
 import { ContactRes } from "./Contact";
 
 export interface ContactLabelRes {
-  contactLabelId?: number;
-  labelId?: number;
+  contactLabelId?: string;
+  labelId?: string;
   label?: LabelRes;
-  contactId?: number;
+  contactId?: string;
   contact?: ContactRes;
 }
 
 export class ContactLabelReqEdit {
-  labelId?: number = 0;
-  contactId?: number = 0;
-  constructor(contactId?: number) {
+  labelId?: string = "";
+  contactId?: string = "";
+  constructor(contactId?: string) {
     this.contactId = contactId;
   }
 }
@@ -25,7 +25,7 @@ export class ContactLabelReqSearch extends PagedReq {
     {
       pageNumber = 1,
       pageSize = Common.DEFAULT_PAGE_SIZE,
-      orderBy,
+      orderBy = "",
       searchText = "",
     }: PagedReq,
     {contactId = ""}
