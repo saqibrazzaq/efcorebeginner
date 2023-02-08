@@ -29,6 +29,13 @@ namespace AddressBook.Controllers
             return Search(new ContactChatReqSearch());
         }
 
+        [HttpGet("anyChats/{chatLabelId}")]
+        public IActionResult AnyChats(int chatLabelId)
+        {
+            var res = _contactChatService.AnyChats(chatLabelId);
+            return Ok(res);
+        }
+
         [HttpPost]
         public IActionResult Create(ContactChatReqEdit dto)
         {

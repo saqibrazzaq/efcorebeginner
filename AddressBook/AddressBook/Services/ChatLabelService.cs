@@ -10,11 +10,14 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
-        public ChatLabelService(IRepositoryManager repositoryManager, 
-            IMapper mapper)
+        private readonly IContactChatService _contactChatServicec;
+        public ChatLabelService(IRepositoryManager repositoryManager,
+            IMapper mapper,
+            IContactChatService contactChatServicec)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            _contactChatServicec = contactChatServicec;
         }
 
         public ChatLabelRes Create(ChatLabelReqEdit dto)
@@ -27,9 +30,19 @@ namespace AddressBook.Services
 
         public void Delete(int chatLabelId)
         {
+            ValidateForDelete(chatLabelId);
+
             var entity = FindChatLabelIfExists(chatLabelId, true);
             _repositoryManager.ChatLabelRepository.Delete(entity);
             _repositoryManager.Save();
+        }
+
+        private void ValidateForDelete(int chatLabelId)
+        {
+            if (_contactChatServicec.AnyChats(chatLabelId))
+            {
+                throw new Exception("Cannot delete Chat Label. It is used in some chats.");
+            }
         }
 
         private ChatLabel FindChatLabelIfExists(int chatLabelId, bool trackChanges)

@@ -27,6 +27,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { ChatLabelApi } from "../../api/chatLabelApi";
+import { ContactChatApi } from "../../api/contactChatApi";
 import { ChatLabelRes } from "../../dtos/ChatLabel";
 import { AlertBox } from "../../utility/Alerts";
 
@@ -34,6 +35,7 @@ const ChatLabelDelete = () => {
   let params = useParams();
   const chatLabelId = params.chatLabelId;
   const [chatLabel, setChatLabel] = useState<ChatLabelRes>();
+  const [anyChats, setAnyChats] = useState<boolean>(false);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -43,6 +45,7 @@ const ChatLabelDelete = () => {
 
   useEffect(() => {
     loadChatLabel();
+    checkAnyChats();
   }, [chatLabelId]);
 
   const loadChatLabel = () => {
@@ -60,6 +63,12 @@ const ChatLabelDelete = () => {
     }
   };
 
+  const checkAnyChats = () => {
+    ContactChatApi.anyChats(chatLabelId).then(res => {
+      setAnyChats(res);
+    })
+  }
+
   const deleteChatLabel = () => {
     setError("")
     ChatLabelApi.delete(chatLabelId).then(res => {
@@ -74,7 +83,7 @@ const ChatLabelDelete = () => {
       setError(error.response.data.error);
       toast({
         title: "Error deleting Chat label",
-        description: error,
+        description: error.response.data.error,
         status: "error",
         position: "bottom-right",
       });
@@ -109,11 +118,16 @@ const ChatLabelDelete = () => {
                 {chatLabel?.label}
               </Td>
             </Tr>
+            <Tr>
+              <Th>Any Chats</Th>
+              <Td>{anyChats ? "Yes" : "No"}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(anyChats) && <AlertBox title="Cannot Delete Chat Label" description={"It is used in chats."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"} disabled={anyChats}>
           YES, I WANT TO DELETE THIS CHAT LABEL
         </Button>
       </HStack>

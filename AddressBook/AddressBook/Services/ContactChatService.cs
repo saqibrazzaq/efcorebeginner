@@ -66,5 +66,13 @@ namespace AddressBook.Services
             _repositoryManager.Save();
             return _mapper.Map<ContactChatRes>(entity);
         }
+
+        public bool AnyChats(int chatLabelId)
+        {
+            return _repositoryManager.ContactChatRepository.FindByCondition(
+                x => x.ChatLabelId == chatLabelId,
+                false)
+                .Any();
+        }
     }
 }

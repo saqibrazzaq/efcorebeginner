@@ -21,6 +21,15 @@ export const ContactChatApi = {
 
     return response.data
   },
+  anyChats: async function (chatLabelId?: string) {
+    if (!chatLabelId) return {};
+    const response = await api.request({
+      url: `/contactChats/anyChats/` + chatLabelId,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (contactChat: ContactChatReqEdit) {
     const response = await api.request({
       url: `/contactChats`,
