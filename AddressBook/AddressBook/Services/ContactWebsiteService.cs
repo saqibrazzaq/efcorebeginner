@@ -66,5 +66,13 @@ namespace AddressBook.Services
             _repositoryManager.Save();
             return _mapper.Map<ContactWebsiteRes>(entity);
         }
+
+        public bool AnyWebsite(int websiteLabelId)
+        {
+            return _repositoryManager.ContactWebsiteRepository.FindByCondition(
+                x => x.WebsiteLabelId == websiteLabelId,
+                false)
+                .Any();
+        }
     }
 }

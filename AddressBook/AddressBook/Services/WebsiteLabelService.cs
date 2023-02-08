@@ -10,11 +10,14 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
-        public WebsiteLabelService(IRepositoryManager repositoryManager, 
-            IMapper mapper)
+        private readonly IContactWebsiteService _contactWebsiteService;
+        public WebsiteLabelService(IRepositoryManager repositoryManager,
+            IMapper mapper,
+            IContactWebsiteService contactWebsiteService)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            _contactWebsiteService = contactWebsiteService;
         }
 
         public WebsiteLabelRes Create(WebsiteLabelReqEdit dto)
@@ -27,9 +30,19 @@ namespace AddressBook.Services
 
         public void Delete(int websiteLabelId)
         {
+            ValidateForDelete(websiteLabelId);
+
             var entity = FindWebsiteLabelIfExists(websiteLabelId, true);
             _repositoryManager.WebsiteLabelRepository.Delete(entity);
             _repositoryManager.Save();
+        }
+
+        private void ValidateForDelete(int websiteLabelId)
+        {
+            if (_contactWebsiteService.AnyWebsite(websiteLabelId))
+            {
+                throw new Exception("Cannot delete Website Label. It is used in websites.");
+            }
         }
 
         private WebsiteLabel FindWebsiteLabelIfExists(int websiteLabelId, bool trackChanges)

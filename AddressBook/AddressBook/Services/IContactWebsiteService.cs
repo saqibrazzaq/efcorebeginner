@@ -9,6 +9,7 @@ namespace AddressBook.Services
         ContactWebsiteRes Update(int contactWebsiteId, ContactWebsiteReqEdit dto);
         void Delete(int contactWebsiteId);
         ContactWebsiteRes Get(int contactWebsiteId);
+        bool AnyWebsite(int websiteLabelId);
         ApiOkPagedResponse<IEnumerable<ContactWebsiteRes>, MetaData>
             Search(ContactWebsiteReqSearch dto);
     }

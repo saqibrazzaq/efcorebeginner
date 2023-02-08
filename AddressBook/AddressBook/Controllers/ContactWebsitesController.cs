@@ -29,6 +29,13 @@ namespace AddressBook.Controllers
             return Search(new ContactWebsiteReqSearch());
         }
 
+        [HttpGet("anyWebsite/{websiteLabelId}")]
+        public IActionResult AnyWebsite(int websiteLabelId)
+        {
+            var res = _contactWebsiteService.AnyWebsite(websiteLabelId);
+            return Ok(res);
+        }
+
         [HttpGet("{contactWebsiteId}")]
         public IActionResult Get(int contactWebsiteId)
         {

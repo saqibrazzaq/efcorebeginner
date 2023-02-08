@@ -26,6 +26,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
+import { ContactWebsiteApi } from "../../api/contactWebsiteApi";
 import { WebsiteLabelApi } from "../../api/websiteLabelApi";
 import { WebsiteLabelRes } from "../../dtos/WebsiteLabel";
 import { AlertBox } from "../../utility/Alerts";
@@ -34,6 +35,7 @@ const WebsiteLabelDelete = () => {
   let params = useParams();
   const websiteLabelId = params.websiteLabelId;
   const [websiteLabel, setWebsiteLabel] = useState<WebsiteLabelRes>();
+  const [anyWebsite, setAnyWebsite] = useState<boolean>(false);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -43,6 +45,7 @@ const WebsiteLabelDelete = () => {
 
   useEffect(() => {
     loadWebsiteLabel();
+    checkAnyWebsite();
   }, [websiteLabelId]);
 
   const loadWebsiteLabel = () => {
@@ -60,6 +63,12 @@ const WebsiteLabelDelete = () => {
     }
   };
 
+  const checkAnyWebsite = () => {
+    ContactWebsiteApi.anyWebsite(websiteLabelId).then(res => {
+      setAnyWebsite(res);
+    })
+  }
+
   const deleteWebsiteLabel = () => {
     setError("")
     WebsiteLabelApi.delete(websiteLabelId).then(res => {
@@ -74,7 +83,7 @@ const WebsiteLabelDelete = () => {
       setError(error.response.data.error);
       toast({
         title: "Error deleting Website label",
-        description: error,
+        description: error.response.data.error,
         status: "error",
         position: "bottom-right",
       });
@@ -109,11 +118,16 @@ const WebsiteLabelDelete = () => {
                 {websiteLabel?.label}
               </Td>
             </Tr>
+            <Tr>
+              <Th>Any Website</Th>
+              <Td>{anyWebsite ? "Yes" : "No"}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(anyWebsite) && <AlertBox title="Cannot Delete Website Label" description={"It is used in websites."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"} disabled={anyWebsite}>
           YES, I WANT TO DELETE THIS WEBSITE LABEL
         </Button>
       </HStack>

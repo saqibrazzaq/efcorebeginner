@@ -21,6 +21,15 @@ export const ContactWebsiteApi = {
 
     return response.data
   },
+  anyWebsite: async function (websiteLabelId?: string) {
+    if (!websiteLabelId) return {};
+    const response = await api.request({
+      url: `/contactWebsites/anyWebsite/` + websiteLabelId,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (contactWebsite: ContactWebsiteReqEdit) {
     const response = await api.request({
       url: `/contactWebsites`,
