@@ -68,5 +68,13 @@ namespace AddressBook.Services
             _repositoryManager.Save();
             return _mapper.Map<ContactAddressRes>(entity);
         }
+
+        public bool AnyAddress(int addressLabelId)
+        {
+            return _repositoryManager.ContactAddressRepository.FindByCondition(
+                x => x.AddressLabelId == addressLabelId,
+                false)
+                .Any();
+        }
     }
 }

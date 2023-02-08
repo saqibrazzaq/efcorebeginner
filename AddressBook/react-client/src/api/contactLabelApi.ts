@@ -21,6 +21,15 @@ export const ContactLabelApi = {
 
     return response.data
   },
+  anyContact: async function (labelId?: string) {
+    if (!labelId) return {};
+    const response = await api.request({
+      url: `/contactLabels/anyContact/` + labelId,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (contactLabel: ContactLabelReqEdit) {
     const response = await api.request({
       url: `/contactLabels`,

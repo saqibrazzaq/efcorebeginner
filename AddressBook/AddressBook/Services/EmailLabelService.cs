@@ -3,6 +3,7 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AddressBook.Services
 {
@@ -10,11 +11,14 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
-        public EmailLabelService(IRepositoryManager repositoryManager, 
-            IMapper mapper)
+        private readonly IContactEmailService _contactEmailService;
+        public EmailLabelService(IRepositoryManager repositoryManager,
+            IMapper mapper,
+            IContactEmailService contactEmailService)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            _contactEmailService = contactEmailService;
         }
 
         public EmailLabelRes Create(EmailLabelReqEdit dto)
@@ -27,9 +31,19 @@ namespace AddressBook.Services
 
         public void Delete(int emailLabelId)
         {
+            ValidateForDelete(emailLabelId);
+
             var entity = FindEmailLableIfExists(emailLabelId, true);
             _repositoryManager.EmailLabelRepository.Delete(entity);
             _repositoryManager.Save();
+        }
+
+        private void ValidateForDelete(int emailLabelId)
+        {
+            if (_contactEmailService.AnyEmail(emailLabelId))
+            {
+                throw new Exception("Cannot delete Email label. It is used in some emails.");
+            }
         }
 
         private EmailLabel FindEmailLableIfExists(int emailLabelId, bool trackChanges)

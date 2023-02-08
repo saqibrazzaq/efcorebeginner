@@ -27,6 +27,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
 import { AddressLabelApi } from "../../api/addressLabelApi";
+import { ContactAddressApi } from "../../api/contactAddressApi";
 import { AddressLabelRes } from "../../dtos/AddressLabel";
 import { AlertBox } from "../../utility/Alerts";
 
@@ -34,6 +35,7 @@ const AddressLabelDelete = () => {
   let params = useParams();
   const addressLabelId = params.addressLabelId;
   const [addressLabel, setAddressLabel] = useState<AddressLabelRes>();
+  const [anyAddress, setAnyAddress] = useState<boolean>(false);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -43,6 +45,7 @@ const AddressLabelDelete = () => {
 
   useEffect(() => {
     loadAddressLabel();
+    checkAnyAddress();
   }, [addressLabelId]);
 
   const loadAddressLabel = () => {
@@ -60,6 +63,12 @@ const AddressLabelDelete = () => {
     }
   };
 
+  const checkAnyAddress = () => {
+    ContactAddressApi.anyAddress(addressLabelId).then(res => {
+      setAnyAddress(res);
+    })
+  }
+
   const deleteAddressLabel = () => {
     setError("")
     AddressLabelApi.delete(addressLabelId).then(res => {
@@ -74,7 +83,7 @@ const AddressLabelDelete = () => {
       setError(error.response.data.error);
       toast({
         title: "Error deleting Address label",
-        description: error,
+        description: error.response.data.error,
         status: "error",
         position: "bottom-right",
       });
@@ -109,11 +118,16 @@ const AddressLabelDelete = () => {
                 {addressLabel?.label}
               </Td>
             </Tr>
+            <Tr>
+              <Th>Any Addresses</Th>
+              <Td>{anyAddress ? "Yes" : "No"}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(anyAddress) && <AlertBox title="Cannot Delete Address Label" description={"It is used in addresses."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"} disabled={anyAddress}>
           YES, I WANT TO DELETE THIS ADDRESS LABEL
         </Button>
       </HStack>

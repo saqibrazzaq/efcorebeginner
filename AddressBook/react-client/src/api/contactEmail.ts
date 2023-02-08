@@ -21,6 +21,15 @@ export const ContactEmailApi = {
 
     return response.data
   },
+  anyEmail: async function (emailLabelId?: string) {
+    if (!emailLabelId) return {};
+    const response = await api.request({
+      url: `/contactEmails/anyEmail/` + emailLabelId,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (contactEmail: ContactEmailReqEdit) {
     const response = await api.request({
       url: `/contactEmails`,

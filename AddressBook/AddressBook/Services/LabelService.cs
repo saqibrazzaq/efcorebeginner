@@ -10,11 +10,14 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
-        public LabelService(IRepositoryManager repositoryManager, 
-            IMapper mapper)
+        private readonly IContactLabelService _contactLabelService;
+        public LabelService(IRepositoryManager repositoryManager,
+            IMapper mapper,
+            IContactLabelService contactLabelService)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            _contactLabelService = contactLabelService;
         }
 
         public LabelRes Create(LabelReqEdit dto)
@@ -27,9 +30,19 @@ namespace AddressBook.Services
 
         public void Delete(int labelId)
         {
+            ValidateForDelete(labelId);
+
             var entity = FindLabelIfExists(labelId, true);
             _repositoryManager.LabelRepository.Delete(entity);
             _repositoryManager.Save();
+        }
+
+        private void ValidateForDelete(int labelId)
+        {
+            if (_contactLabelService.AnyContact(labelId))
+            {
+                throw new Exception("Cannot delete Label. It has contacts.");
+            }
         }
 
         private Label FindLabelIfExists(int labelId, bool trackChanges)

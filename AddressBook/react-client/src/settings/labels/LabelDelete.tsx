@@ -26,6 +26,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
+import { ContactLabelApi } from "../../api/contactLabelApi";
 import { LabelApi } from "../../api/labelApi";
 import { LabelRes } from "../../dtos/Label";
 import { AlertBox } from "../../utility/Alerts";
@@ -34,6 +35,7 @@ const LabelDelete = () => {
   let params = useParams();
   const labelId = params.labelId;
   const [label, setLabel] = useState<LabelRes>();
+  const [anyContact, setAnyContact] = useState<boolean>(false);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -43,6 +45,7 @@ const LabelDelete = () => {
 
   useEffect(() => {
     loadLabel();
+    checkAnyLabel();
   }, [labelId]);
 
   const loadLabel = () => {
@@ -60,6 +63,13 @@ const LabelDelete = () => {
     }
   };
 
+  const checkAnyLabel = () => {
+    ContactLabelApi.anyContact(labelId).then(res => {
+      setAnyContact(res);
+      // console.log("contact count: " + res)
+    })
+  }
+
   const deleteLabel = () => {
     setError("")
     LabelApi.delete(labelId).then(res => {
@@ -74,7 +84,7 @@ const LabelDelete = () => {
       setError(error.response.data.error);
       toast({
         title: "Error deleting label",
-        description: error,
+        description: error.response.data.error,
         status: "error",
         position: "bottom-right",
       });
@@ -109,11 +119,16 @@ const LabelDelete = () => {
                 {label?.name}
               </Td>
             </Tr>
+            <Tr>
+              <Th>Any Contacts</Th>
+              <Td>{anyContact ? "Yes" : "No"}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(anyContact) && <AlertBox title="Cannot Delete Label" description={"It has contacts."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"} disabled={anyContact}>
           YES, I WANT TO DELETE THIS LABEL
         </Button>
       </HStack>

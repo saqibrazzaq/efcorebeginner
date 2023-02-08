@@ -26,6 +26,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
+import { ContactEmailApi } from "../../api/contactEmail";
 import { EmailLabelApi } from "../../api/emailLabelApi";
 import { EmailLabelRes } from "../../dtos/EmailLabel";
 import { AlertBox } from "../../utility/Alerts";
@@ -34,6 +35,7 @@ const EmailLabelDelete = () => {
   let params = useParams();
   const emailLabelId = params.emailLabelId;
   const [emailLabel, setEmailLabel] = useState<EmailLabelRes>();
+  const [anyEmail, setAnyEmail] = useState<boolean>(false);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -43,6 +45,7 @@ const EmailLabelDelete = () => {
 
   useEffect(() => {
     loadEmailLabel();
+    checkAnyEmail();
   }, [emailLabelId]);
 
   const loadEmailLabel = () => {
@@ -60,6 +63,12 @@ const EmailLabelDelete = () => {
     }
   };
 
+  const checkAnyEmail = () => {
+    ContactEmailApi.anyEmail(emailLabelId).then(res => {
+      setAnyEmail(res);
+    })
+  }
+
   const deleteEmailLabel = () => {
     setError("")
     EmailLabelApi.delete(emailLabelId).then(res => {
@@ -74,7 +83,7 @@ const EmailLabelDelete = () => {
       setError(error.response.data.error);
       toast({
         title: "Error deleting Email label",
-        description: error,
+        description: error.response.data.error,
         status: "error",
         position: "bottom-right",
       });
@@ -109,11 +118,16 @@ const EmailLabelDelete = () => {
                 {emailLabel?.label}
               </Td>
             </Tr>
+            <Tr>
+              <Th>Any Emails</Th>
+              <Td>{anyEmail ? "Yes" : "No"}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(anyEmail) && <AlertBox title="Cannot Delete Email Label" description={"It is used in emails."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"} disabled={anyEmail}>
           YES, I WANT TO DELETE THIS EMAIL LABEL
         </Button>
       </HStack>

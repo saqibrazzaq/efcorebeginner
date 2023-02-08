@@ -29,6 +29,13 @@ namespace AddressBook.Controllers
             return Search(new ContactAddressReqSearch());
         }
 
+        [HttpGet("anyAddress/{addressLabelId}")]
+        public IActionResult AnyAddress(int addressLabelId)
+        {
+            var res = _contactAddressService.AnyAddress(addressLabelId);
+            return Ok(res);
+        }
+
         [HttpGet("{contactAddressId}")]
         public IActionResult Get(int contactAddressId)
         {

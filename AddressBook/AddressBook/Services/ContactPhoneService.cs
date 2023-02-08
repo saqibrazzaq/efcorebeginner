@@ -69,5 +69,13 @@ namespace AddressBook.Services
             _repositoryManager.Save();
             return _mapper.Map<ContactPhoneRes>(entity);
         }
+
+        public bool AnyPhone(int phoneLabelId)
+        {
+            return _repositoryManager.ContactPhoneRepository.FindByCondition(
+                x => x.PhoneLabelId == phoneLabelId,
+                false)
+                .Any();
+        }
     }
 }

@@ -30,6 +30,13 @@ namespace AddressBook.Controllers
             return Ok(res);
         }
 
+        [HttpGet("anyPhone/{phoneLabelId}")]
+        public IActionResult AnyPhone(int phoneLabelId)
+        {
+            var res = _contactPhoneService.AnyPhone(phoneLabelId);
+            return Ok(res);
+        }
+
         [HttpGet("{contactPhoneId}")]
         public IActionResult Get(int contactPhoneId)
         {

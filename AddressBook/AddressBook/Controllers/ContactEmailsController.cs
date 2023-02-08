@@ -29,6 +29,13 @@ namespace AddressBook.Controllers
             return Search(new ContactEmailReqSearch());
         }
 
+        [HttpGet("anyEmail/{emailLabelId}")]
+        public IActionResult AnyEmail(int emailLabelId)
+        {
+            var res = _contactEmailService.AnyEmail(emailLabelId);
+            return Ok(res);
+        }
+
         [HttpPost]
         public IActionResult Create(ContactEmailReqEdit dto)
         {

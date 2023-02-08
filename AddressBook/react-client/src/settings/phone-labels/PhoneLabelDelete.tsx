@@ -26,6 +26,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
+import { ContactPhoneApi } from "../../api/contactPhone";
 import { EmailLabelApi } from "../../api/emailLabelApi";
 import { PhoneLabelApi } from "../../api/phoneLabel";
 import { EmailLabelRes } from "../../dtos/EmailLabel";
@@ -36,6 +37,7 @@ const PhoneLabelDelete = () => {
   let params = useParams();
   const phoneLabelId = params.phoneLabelId;
   const [phoneLabel, setPhoneLabel] = useState<PhoneLabelRes>();
+  const [anyPhone, setAnyPhone] = useState<boolean>(false);
   const navigate = useNavigate();
   const toast = useToast();
   const [error, setError] = useState("");
@@ -45,6 +47,7 @@ const PhoneLabelDelete = () => {
 
   useEffect(() => {
     loadPhoneLabel();
+    checkAnyPhone();
   }, [phoneLabelId]);
 
   const loadPhoneLabel = () => {
@@ -62,6 +65,12 @@ const PhoneLabelDelete = () => {
     }
   };
 
+  const checkAnyPhone = () => {
+    ContactPhoneApi.anyPhone(phoneLabelId).then(res => {
+      setAnyPhone(res)
+    })
+  }
+
   const deletePhoneLabel = () => {
     setError("")
     PhoneLabelApi.delete(phoneLabelId).then(res => {
@@ -76,7 +85,7 @@ const PhoneLabelDelete = () => {
       setError(error.response.data.error);
       toast({
         title: "Error deleting Phone label",
-        description: error,
+        description: error.response.data.error,
         status: "error",
         position: "bottom-right",
       });
@@ -111,11 +120,16 @@ const PhoneLabelDelete = () => {
                 {phoneLabel?.label}
               </Td>
             </Tr>
+            <Tr>
+              <Th>Any Phone</Th>
+              <Td>{anyPhone ? "Yes" : "No"}</Td>
+            </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {(anyPhone) && <AlertBox title="Cannot Delete Phone Label" description={"It is used in phones."} />}
       <HStack pt={4} spacing={4}>
-        <Button onClick={onOpen} type="button" colorScheme={"red"}>
+        <Button onClick={onOpen} type="button" colorScheme={"red"} disabled={anyPhone}>
           YES, I WANT TO DELETE THIS PHONE LABEL
         </Button>
       </HStack>

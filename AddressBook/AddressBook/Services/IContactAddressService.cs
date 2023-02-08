@@ -9,6 +9,7 @@ namespace AddressBook.Services
         ContactAddressRes Update(int contactAddressId, ContactAddressReqEdit dto);
         void Delete(int contactAddressId);
         ContactAddressRes Get(int contactAddressId);
+        bool AnyAddress(int addressLabelId);
         ApiOkPagedResponse<IEnumerable<ContactAddressRes>, MetaData>
             Search(ContactAddressReqSearch dto);
     }

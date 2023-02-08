@@ -10,11 +10,14 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
-        public AddressLabelService(IRepositoryManager repositoryManager, 
-            IMapper mapper)
+        private readonly IContactAddressService _contactAddressService;
+        public AddressLabelService(IRepositoryManager repositoryManager,
+            IMapper mapper,
+            IContactAddressService contactAddressService)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            _contactAddressService = contactAddressService;
         }
 
         public AddressLabelRes Create(AddressLabelReqEdit dto)
@@ -27,9 +30,19 @@ namespace AddressBook.Services
 
         public void Delete(int addressLabelId)
         {
+            ValidateForDelete(addressLabelId);
+
             var entity = FindAddressLabelIfExists(addressLabelId, true);
             _repositoryManager.AddressLabelRepository.Delete(entity);
             _repositoryManager.Save();
+        }
+
+        private void ValidateForDelete(int addressLabelId)
+        {
+            if (_contactAddressService.AnyAddress(addressLabelId))
+            {
+                throw new Exception("Cannot delete Address Label. It is used in Addresses.");
+            }
         }
 
         private AddressLabel FindAddressLabelIfExists(int addressLabelId, bool trackChanges)

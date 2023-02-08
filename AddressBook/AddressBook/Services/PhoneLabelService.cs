@@ -10,11 +10,14 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
-        public PhoneLabelService(IRepositoryManager repositoryManager, 
-            IMapper mapper)
+        private readonly IContactPhoneService _contactPhoneService;
+        public PhoneLabelService(IRepositoryManager repositoryManager,
+            IMapper mapper,
+            IContactPhoneService contactPhoneService)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            _contactPhoneService = contactPhoneService;
         }
 
         public PhoneLabelRes Create(PhoneLabelReqEdit dto)
@@ -27,9 +30,19 @@ namespace AddressBook.Services
 
         public void Delete(int phoneLabelId)
         {
+            ValidateForDelete(phoneLabelId);
+
             var entity = FindPhoneLabelIfExists(phoneLabelId, true);
             _repositoryManager.PhoneLabelRepository.Delete(entity);
             _repositoryManager.Save();
+        }
+
+        private void ValidateForDelete(int phoneLabelId)
+        {
+            if (_contactPhoneService.AnyPhone(phoneLabelId))
+            {
+                throw new Exception("Cannot delete phone label. It is being used in some phones.");
+            }
         }
 
         private PhoneLabel FindPhoneLabelIfExists(int phoneLabelId, bool trackChanges)

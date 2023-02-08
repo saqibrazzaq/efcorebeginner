@@ -28,6 +28,7 @@ namespace AddressBook.Services
 
         public void Delete(int contactLabelId)
         {
+            
             var entity = FindContactLabelIfExists(contactLabelId, true);
             _repositoryManager.ContactLabelRepository.Delete(entity);
             _repositoryManager.Save();
@@ -65,6 +66,14 @@ namespace AddressBook.Services
             _mapper.Map(dto, entity);
             _repositoryManager.Save();
             return _mapper.Map<ContactLabelRes>(entity);
+        }
+
+        public bool AnyContact(int labelId)
+        {
+            return _repositoryManager.ContactLabelRepository.FindByCondition(
+                x => x.LabelId == labelId,
+                false)
+                .Any();
         }
     }
 }

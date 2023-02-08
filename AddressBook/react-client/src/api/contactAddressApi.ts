@@ -21,6 +21,15 @@ export const ContactAddressApi = {
 
     return response.data
   },
+  anyAddress: async function (addressLabelId?: string) {
+    if (!addressLabelId) return {};
+    const response = await api.request({
+      url: `/contactAddresses/anyAddress/` + addressLabelId,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (contactAddress: ContactAddressReqEdit) {
     const response = await api.request({
       url: `/contactAddresses`,

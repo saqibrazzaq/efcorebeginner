@@ -13,7 +13,7 @@ namespace AddressBook.Dtos
         public int? CountryId { get; set; }
         public Country? Country { get; set; }
 
-        public int? ContactId { get; set; }
+        public int ContactId { get; set; }
         public ContactRes? Contact { get; set; }
 
         public int? PhoneLabelId { get; set; }
@@ -26,6 +26,7 @@ namespace AddressBook.Dtos
         public string? Phone { get; set; }
         // Foreign keys
         public int? CountryId { get; set; }
+        [Required]
         public int? ContactId { get; set; }
         public int? PhoneLabelId { get; set; }
     }

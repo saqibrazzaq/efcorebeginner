@@ -21,6 +21,15 @@ export const ContactPhoneApi = {
 
     return response.data
   },
+  anyPhone: async function (phoneLabelId?: string) {
+    if (!phoneLabelId) return {};
+    const response = await api.request({
+      url: `/contactPhones/anyPhone/` + phoneLabelId,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (contactPhone: ContactPhoneReqEdit) {
     const response = await api.request({
       url: `/contactPhones`,
