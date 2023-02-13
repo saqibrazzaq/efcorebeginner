@@ -7,15 +7,15 @@ namespace AddressBook.Services
 {
     public class CloudinaryService : ICloudinaryService
     {
-        private readonly IConfiguration _configuration;
-        public CloudinaryService(IConfiguration configuration)
+        public CloudinaryService()
         {
-            _configuration = configuration;
+            
         }
 
         public void DeleteImage(string? cloudinaryId)
         {
-            Cloudinary cloudinary = new Cloudinary(CloudinaryUrl);
+            Cloudinary cloudinary = new Cloudinary(new Account(
+                CloudName, APIKey, APISecret));
             if (string.IsNullOrWhiteSpace(cloudinaryId) == false)
             {
                 try
@@ -29,7 +29,9 @@ namespace AddressBook.Services
             }
         }
 
-        public string? CloudinaryUrl { get { return SecretUtility.CloudinaryUrl; } }
+        private string? CloudName { get { return SecretUtility.Cloudinary_Cloud_Name; } }
+        private string? APIKey { get { return SecretUtility.Cloudinary_API_Key; } }
+        private string? APISecret { get { return SecretUtility.Cloudinary_API_Secret; } }
 
         public CloudinaryUploadResultRes UploadProfilePictureThumbnail(IFormFile file,
             string tempFolderPath)
@@ -44,7 +46,8 @@ namespace AddressBook.Services
                     new EagerTransformation().Width(200).Height(200).Gravity("faces").Crop("thumb")
                 }
             };
-            Cloudinary cloudinary = new Cloudinary(CloudinaryUrl);
+            Cloudinary cloudinary = new Cloudinary(new Account(
+                CloudName, APIKey, APISecret));
             var result = cloudinary.Upload(uploadParams);
 
             File.Delete(imagePath);
@@ -64,7 +67,8 @@ namespace AddressBook.Services
                 File = new FileDescription(imagePath),
                 Folder = CloudinaryFolders.General
             };
-            Cloudinary cloudinary = new Cloudinary(CloudinaryUrl);
+            Cloudinary cloudinary = new Cloudinary(new Account(
+                CloudName, APIKey, APISecret));
             var result = cloudinary.Upload(uploadParams);
 
             File.Delete(imagePath);
