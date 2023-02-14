@@ -20,7 +20,7 @@ import { Field, Formik } from "formik";
 import { AlertBox } from "../../utility/Alerts";
 import { ContactEmailReqEdit } from "../../dtos/ContactEmail";
 import { EmailLabelRes } from "../../dtos/EmailLabel";
-import { ContactEmailApi } from "../../api/contactEmail";
+import { ContactEmailApi } from "../../api/contactEmailApi";
 import EmailLabelDropdown from "../../dropdowns/EmailLabelDropdown";
 import ContactHeader from "./ContactHeader";
 

@@ -26,7 +26,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
-import { ContactEmailApi } from "../../api/contactEmail";
+import { ContactEmailApi } from "../../api/contactEmailApi";
 import { ContactEmailRes } from "../../dtos/ContactEmail";
 import { AlertBox } from "../../utility/Alerts";
 import ContactHeader from "./ContactHeader";

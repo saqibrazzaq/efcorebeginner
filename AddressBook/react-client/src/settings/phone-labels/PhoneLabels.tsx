@@ -32,7 +32,7 @@ import DeleteIcon from "../../components/icons/DeleteIcon";
 import { EmailLabelRes } from "../../dtos/EmailLabel";
 import { EmailLabelApi } from "../../api/emailLabelApi";
 import { PhoneLabelRes } from "../../dtos/PhoneLabel";
-import { PhoneLabelApi } from "../../api/phoneLabel";
+import { PhoneLabelApi } from "../../api/phoneLabelApi";
 
 const PhoneLabels = () => {
   const location = useLocation();

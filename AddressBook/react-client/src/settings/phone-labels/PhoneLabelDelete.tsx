@@ -26,9 +26,9 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams, Link as RouteLink, useNavigate } from "react-router-dom";
-import { ContactPhoneApi } from "../../api/contactPhone";
+import { ContactPhoneApi } from "../../api/contactPhoneApi";
 import { EmailLabelApi } from "../../api/emailLabelApi";
-import { PhoneLabelApi } from "../../api/phoneLabel";
+import { PhoneLabelApi } from "../../api/phoneLabelApi";
 import { EmailLabelRes } from "../../dtos/EmailLabel";
 import { PhoneLabelRes } from "../../dtos/PhoneLabel";
 import { AlertBox } from "../../utility/Alerts";

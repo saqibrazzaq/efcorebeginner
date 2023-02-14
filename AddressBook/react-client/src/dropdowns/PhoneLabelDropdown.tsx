@@ -1,6 +1,6 @@
 import { Select } from 'chakra-react-select';
 import React, { useEffect, useState } from 'react'
-import { PhoneLabelApi } from '../api/phoneLabel';
+import { PhoneLabelApi } from '../api/phoneLabelApi';
 import { PhoneLabelReqSearch, PhoneLabelRes } from '../dtos/PhoneLabel';
 
 interface PhoneLabelDropdownParams {

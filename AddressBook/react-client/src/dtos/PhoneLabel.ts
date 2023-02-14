@@ -15,7 +15,7 @@ export class PhoneLabelReqSearch extends PagedReq {
     {
       pageNumber = 1,
       pageSize = Common.DEFAULT_PAGE_SIZE,
-      orderBy,
+      orderBy = "",
       searchText = "",
     }: PagedReq,
     {}

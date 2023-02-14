@@ -21,7 +21,7 @@ import { AlertBox } from "../../utility/Alerts";
 import { EmailLabelReqEdit } from "../../dtos/EmailLabel";
 import { EmailLabelApi } from "../../api/emailLabelApi";
 import { PhoneLabelReqEdit } from "../../dtos/PhoneLabel";
-import { PhoneLabelApi } from "../../api/phoneLabel";
+import { PhoneLabelApi } from "../../api/phoneLabelApi";
 
 const PhoneLabelEdit = () => {
   const params = useParams();

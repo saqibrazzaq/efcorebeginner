@@ -19,7 +19,7 @@ import * as Yup from "yup";
 import { Field, Formik } from "formik";
 import { AlertBox } from "../../utility/Alerts";
 import { ContactPhoneReqEdit } from "../../dtos/ContactPhone";
-import { ContactPhoneApi } from "../../api/contactPhone";
+import { ContactPhoneApi } from "../../api/contactPhoneApi";
 import CountryDropdown from "../../dropdowns/CountryDropdown";
 import { CountryRes } from "../../dtos/Country";
 import { ContactRes } from "../../dtos/Contact";
