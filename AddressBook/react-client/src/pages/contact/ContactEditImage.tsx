@@ -24,10 +24,6 @@ const ContactEditImage = () => {
   const contactId = params.contactId;
   const toast = useToast();
 
-  useEffect(() => {
-    
-  }, [contactId]);
-
   const displayHeading = () => (
     <Flex>
       <Box>

@@ -219,8 +219,7 @@ const ContactEdit = () => {
           <form onSubmit={handleSubmit}>
             <Stack spacing={4} as={Container} maxW={"3xl"}>
               <FormControl isInvalid={!!errors.pictureUrl && touched.pictureUrl}>
-                
-                <ContactHeader contactId={contactId} />
+                {contactId && <ContactHeader contactId={contactId} />}
                 <Field as={Input} id="pictureUrl" name="pictureUrl" type="hidden" />
                 <FormErrorMessage>{errors.pictureUrl}</FormErrorMessage>
               </FormControl>

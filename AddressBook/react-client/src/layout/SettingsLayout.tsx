@@ -1,7 +1,5 @@
-import { Box, Center, Flex, Square, Stack, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Center, Flex } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import { FiUsers, FiHome, FiTrendingUp } from "react-icons/fi";
 import {CgOrganisation} from 'react-icons/cg';
 import LeftSideMenu, { LinkItemProps } from "./LeftSideMenu";
 
