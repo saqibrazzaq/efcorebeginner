@@ -1,0 +1,59 @@
+version: '3.4'
+
+services:
+  api:
+    image: saqibrazzaq/addressbook_api
+    container_name: addressbook_api
+    build:
+      context: .
+      dockerfile: AddressBook/Dockerfile
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+      #- SQLSERVER=sqlserver connection string - loaded from api.env
+    env_file:
+      - api.env
+    ports:
+      - "8010:80"
+      - "8011:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    restart: always
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: addressbook_db
+    volumes:
+      - db_data:/var/opt/mssql/data
+    environment:
+      #MSSQL_SA_PASSWORD: password - loaded from db.env
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    ports:
+      - "1450:1433"
+    env_file:
+      - db.env
+    restart: always
+
+  web:
+    image: saqibrazzaq/addressbook_web
+    container_name: addressbook_web
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    build:
+      context: ./react-client
+      target: production
+    ports:
+      - "8013:80"
+      - "8014:443"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
+    restart: always
+
+volumes:
+  db_data:

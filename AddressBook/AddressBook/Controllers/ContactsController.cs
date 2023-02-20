@@ -79,6 +79,7 @@ namespace AddressBook.Controllers
         public IActionResult UpdateImage(int contactId)
         {
             var res = _contactService.UpdateImage(contactId, Request.Form.Files[0], TempFolderPath);
+            Console.WriteLine("temp folder path: " + TempFolderPath);
             return Ok(res);
         }
 
@@ -86,7 +87,7 @@ namespace AddressBook.Controllers
         {
             get
             {
-                return Path.Combine(_environment.WebRootPath, Constants.TempFolderName);
+                return Path.Combine(_environment.ContentRootPath, Constants.TempFolderName);
             }
         }
     }

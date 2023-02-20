@@ -65,7 +65,8 @@ namespace AddressBook.Extensions
                     builder
                     //.AllowAnyOrigin()
                     .WithOrigins(
-                        "http://localhost:3000")
+                        "http://localhost:3000",
+                        "http://localhost:8013")
                     .AllowCredentials()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
