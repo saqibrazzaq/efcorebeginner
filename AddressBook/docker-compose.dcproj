@@ -9,7 +9,9 @@
     <DockerServiceName>addressbook</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="api.env.sample" />
     <None Include="api.env" />
+    <None Include="db.env.sample" />
     <None Include="db.env" />
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
