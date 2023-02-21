@@ -1,0 +1,62 @@
+version: '3.4'
+
+services:
+  api:
+    image: saqibrazzaq/addressbook_api
+    container_name: addressbook_api
+    depends_on:
+      - db
+    environment:
+      VIRTUAL_HOST: addressbook-api.efcorebeginner.com
+      LETSENCRYPT_HOST: addressbook-api.efcorebeginner.com
+      LETSENCRYPT_EMAIL: "saqibrazzaq@gmail.com"
+      #- SQLSERVER= provide sqlserver connection string here OR load from api.env
+    expose:
+      - 80
+    networks:
+      - nginx-proxy
+      - addressbook_db
+    restart: always
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: addressbook_db
+    volumes:
+      - db_data:/var/opt/mssql/data
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+      #MSSQL_SA_PASSWORD: provide password here OR load from db.env
+    ports:
+      - "1433"
+    networks:
+      - addressbook_db
+    restart: always
+
+  web:
+    image: saqibrazzaq/addressbook_web
+    container_name: addressbook_web
+    environment:
+      VIRTUAL_HOST: addressbook-web.efcorebeginner.com
+      LETSENCRYPT_HOST: addressbook-web.efcorebeginner.com
+      LETSENCRYPT_EMAIL: "saqibrazzaq@gmail.com"
+      CHOKIDAR_USEPOLLING: "true"
+    expose:
+      - 80
+    depends_on:
+      - api
+    networks:
+      - nginx-proxy
+    volumes:
+      - /app/node_modules
+      - ./person_web:/app
+    restart: always
+
+volumes:
+  db_data:
+
+networks:
+  nginx-proxy:
+    external: true
+  person_db:
+    internal: true

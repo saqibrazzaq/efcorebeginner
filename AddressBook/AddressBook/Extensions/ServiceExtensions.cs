@@ -66,7 +66,9 @@ namespace AddressBook.Extensions
                     //.AllowAnyOrigin()
                     .WithOrigins(
                         "http://localhost:3000",
-                        "http://localhost:8013")
+                        "http://localhost:8013",
+                        "https://addressbook-web",
+                        "https://addressbook-web.efcorebeginner.com")
                     .AllowCredentials()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
