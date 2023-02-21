@@ -9,8 +9,11 @@ services:
     environment:
       VIRTUAL_HOST: addressbook-api.efcorebeginner.com
       LETSENCRYPT_HOST: addressbook-api.efcorebeginner.com
-      LETSENCRYPT_EMAIL: "saqibrazzaq@gmail.com"
-      #- SQLSERVER= provide sqlserver connection string here OR load from api.env
+      LETSENCRYPT_EMAIL: "youremail@gmail.com"
+      SQLSERVER=server: addressbook_db;database=AddressBook;User id=sa;Password=pwd;MultipleActiveResultSets=true;TrustServerCertificate=True;
+      CLOUDINARY_CLOUD_NAME: account-com
+      CLOUDINARY_API_KEY: 123
+      CLOUDINARY_API_SECRET: abc123xyz
     expose:
       - 80
     networks:
@@ -26,7 +29,7 @@ services:
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_PID: "Express"
-      #MSSQL_SA_PASSWORD: provide password here OR load from db.env
+      MSSQL_SA_PASSWORD: pwd
     ports:
       - "1433"
     networks:
@@ -39,8 +42,9 @@ services:
     environment:
       VIRTUAL_HOST: addressbook-web.efcorebeginner.com
       LETSENCRYPT_HOST: addressbook-web.efcorebeginner.com
-      LETSENCRYPT_EMAIL: "saqibrazzaq@gmail.com"
+      LETSENCRYPT_EMAIL: "youremail@gmail.com"
       CHOKIDAR_USEPOLLING: "true"
+      REACT_APP_API_BASE_URL: https://addressbook-api.efcorebeginner.com/api
     expose:
       - 80
     depends_on:
@@ -58,5 +62,5 @@ volumes:
 networks:
   nginx-proxy:
     external: true
-  person_db:
+  addressbook_db:
     internal: true
