@@ -25,7 +25,7 @@ const ContactsLayout = () => {
       labels.map((value) => {
         categoryNavItems.push({
           name: value.name || "",
-          href: "?labelId=" + value.labelId,
+          href: "?labelId=" + value.labelId + "&pageNumber=1",
           icon: MdLabelOutline,
         });
       });

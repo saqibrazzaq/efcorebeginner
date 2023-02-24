@@ -54,6 +54,9 @@ namespace AddressBook.Extensions
             services.AddScoped<IWebsiteLabelService, WebsiteLabelService>();
             services.AddScoped<IContactChatService, ContactChatService>();
             services.AddScoped<IChatLabelService, ChatLabelService>();
+
+            services.AddScoped<IDataResetService, DataResetService>();
+            services.AddScoped<IRandomDataGenerator, RandomDataGenerator>();
         }
 
         public static void ConfigureCors(this IServiceCollection services)
