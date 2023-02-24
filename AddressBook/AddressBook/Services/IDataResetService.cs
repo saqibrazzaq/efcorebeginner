@@ -2,6 +2,8 @@
 {
     public interface IDataResetService
     {
-        void ResetAllData();
+        void DeleteAllData();
+        void AddCountriesData();
+        void AddContactsData();
     }
 }

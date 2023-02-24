@@ -1,4 +1,9 @@
-﻿using AddressBook.Repository;
+﻿using AddressBook.Dtos;
+using AddressBook.Entities;
+using AddressBook.Repository;
+using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
+using System.Text.Json;
 
 namespace AddressBook.Services
 {
@@ -6,17 +11,22 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IRandomDataGenerator _randomDataGenerator;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IMapper _mapper;
 
-        public DataResetService(IRepositoryManager repositoryManager, 
-            IRandomDataGenerator randomDataGenerator)
+        public DataResetService(IRepositoryManager repositoryManager,
+            IRandomDataGenerator randomDataGenerator,
+            IWebHostEnvironment webHostEnvironment,
+            IMapper mapper)
         {
             _repositoryManager = repositoryManager;
             _randomDataGenerator = randomDataGenerator;
+            _webHostEnvironment = webHostEnvironment;
+            _mapper = mapper;
         }
 
-        public void ResetAllData()
+        public void DeleteAllData()
         {
-            // Delete data
             DeleteContacts();
             DeleteLabels();
             DeleteEmailLabels();
@@ -25,7 +35,25 @@ namespace AddressBook.Services
             DeleteWebsiteLabels();
             DeleteChatLabels();
 
-            // Generate data
+            DeleteCities();
+            DeleteStates();
+            DeleteTimezones();
+            DeleteTranslations();
+            DeleteCountries();
+        }
+
+        public void AddCountriesData()
+        {
+            var countries = ReadCountriesFromJson();
+            foreach (var country in countries)
+            {
+                _repositoryManager.CountryRepository.Create(country);
+            }
+            _repositoryManager.Save();
+        }
+
+        public void AddContactsData()
+        {
             AddLabels();
             AddEmailLabels();
             AddPhoneLabels();
@@ -33,6 +61,51 @@ namespace AddressBook.Services
             AddWebsiteLabels();
             AddChatLabels();
             AddContacts();
+        }
+
+        private IEnumerable<Country> ReadCountriesFromJson()
+        {
+            var rootPath = _webHostEnvironment.ContentRootPath;
+            var jsonFilePath = Path.Combine(rootPath, "ImportData", "countries+states+cities.json");
+            var jsonData = File.ReadAllText(jsonFilePath);
+            var countriesImport = JsonSerializer.Deserialize<IEnumerable<CountryImport>>(jsonData);
+            var countries = _mapper.Map<IEnumerable<Country>>(countriesImport);
+            return countries;
+        }
+
+        private void DeleteCountries()
+        {
+            var countries = _repositoryManager.CountryRepository.FindAll(true);
+            _repositoryManager.CountryRepository.DeleteMany(countries);
+            _repositoryManager.Save();
+        }
+
+        private void DeleteTranslations()
+        {
+            var translations = _repositoryManager.TranslationRepository.FindAll(true);
+            _repositoryManager.TranslationRepository.DeleteMany(translations);
+            _repositoryManager.Save();
+        }
+
+        private void DeleteTimezones()
+        {
+            var timezones = _repositoryManager.TimezoneRepository.FindAll(true);
+            _repositoryManager.TimezoneRepository.DeleteMany(timezones);
+            _repositoryManager.Save();
+        }
+
+        private void DeleteStates()
+        {
+            var states = _repositoryManager.StateRepository.FindAll(true);
+            _repositoryManager.StateRepository.DeleteMany(states);
+            _repositoryManager.Save();
+        }
+
+        private void DeleteCities()
+        {
+            var cities = _repositoryManager.CityRepository.FindAll(true);
+            _repositoryManager.CityRepository.DeleteMany(cities);
+            _repositoryManager.Save();
         }
 
         private void AddChatLabels()
@@ -132,5 +205,7 @@ namespace AddressBook.Services
             _repositoryManager.ContactRepository.DeleteMany(allContacts);
             _repositoryManager.Save();
         }
+
+        
     }
 }

@@ -15,10 +15,24 @@ namespace AddressBook.Controllers
             _dataResetService = dataResetService;
         }
 
-        [HttpDelete("all")]
-        public IActionResult ResetAllData()
+        [HttpDelete("delete-all")]
+        public IActionResult DeleteAllData()
         {
-            _dataResetService.ResetAllData();
+            _dataResetService.DeleteAllData();
+            return NoContent();
+        }
+
+        [HttpPost("add-contacts")]
+        public IActionResult AddContacts()
+        {
+            _dataResetService.AddContactsData();
+            return NoContent();
+        }
+
+        [HttpPost("add-countries")]
+        public IActionResult AddCountries()
+        {
+            _dataResetService.AddCountriesData();
             return NoContent();
         }
     }
