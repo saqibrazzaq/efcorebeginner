@@ -44,6 +44,8 @@ namespace AddressBook.Services
 
         public void AddCountriesData()
         {
+            ValidationForAddingCountries();
+
             var countries = ReadCountriesFromJson();
             foreach (var country in countries)
             {
@@ -52,8 +54,22 @@ namespace AddressBook.Services
             _repositoryManager.Save();
         }
 
+        private void ValidationForAddingCountries()
+        {
+            bool anyCountry = _repositoryManager.CountryRepository.FindAll(false).Any();
+            if (anyCountry) throw new Exception("Please delete all countries before creating default countries.");
+
+            bool anyState = _repositoryManager.StateRepository.FindAll(false).Any();
+            if (anyState) throw new Exception("Please delete all states before creating default states.");
+
+            bool anyCity = _repositoryManager.CityRepository.FindAll(false).Any();
+            if (anyCity) throw new Exception("Please delete all cities before creating default cities.");
+        }
+
         public void AddContactsData()
         {
+            ValidationForAddingContacts();
+
             AddLabels();
             AddEmailLabels();
             AddPhoneLabels();
@@ -61,6 +77,30 @@ namespace AddressBook.Services
             AddWebsiteLabels();
             AddChatLabels();
             AddContacts();
+        }
+
+        private void ValidationForAddingContacts()
+        {
+            bool anyContact = _repositoryManager.ContactRepository.FindAll(false).Any();
+            if (anyContact) throw new Exception("Contacts already exist. Please delete all data before creating default contacts.");
+
+            bool anyLabel = _repositoryManager.LabelRepository.FindAll(false).Any();
+            if (anyLabel) throw new Exception("Please delete all labels before creating default contacts.");
+
+            bool anyEmailLabel = _repositoryManager.EmailLabelRepository.FindAll(false).Any();
+            if (anyEmailLabel) throw new Exception("Please delete all email labels before creating default contacts.");
+
+            bool anyPhoneLabel = _repositoryManager.PhoneLabelRepository.FindAll(false).Any();
+            if (anyPhoneLabel) throw new Exception("Please delete all phone labels before creating default contacts.");
+
+            bool anyAddressLabel = _repositoryManager.AddressLabelRepository.FindAll(false).Any();
+            if (anyAddressLabel) throw new Exception("Please delete all address labels before creating default contacts.");
+
+            bool anyChatLabel = _repositoryManager.ChatLabelRepository.FindAll(false).Any();
+            if (anyChatLabel) throw new Exception("Please delete all chat labels before creating default contacts.");
+
+            bool anyCity = _repositoryManager.CityRepository.FindAll(false).Any();
+            if (!anyCity) throw new Exception("Please create Country, State and Cities before adding default contacts.");
         }
 
         private IEnumerable<Country> ReadCountriesFromJson()

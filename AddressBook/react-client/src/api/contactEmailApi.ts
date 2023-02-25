@@ -21,6 +21,14 @@ export const ContactEmailApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/contactEmails/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   anyEmail: async function (emailLabelId?: string) {
     if (!emailLabelId) return {};
     const response = await api.request({

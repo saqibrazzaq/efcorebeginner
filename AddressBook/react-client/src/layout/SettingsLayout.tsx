@@ -10,6 +10,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: "Address Label", icon: CgOrganisation, href: "/settings/address-labels" },
   { name: "Website Label", icon: CgOrganisation, href: "/settings/website-labels" },
   { name: "Chat Label", icon: CgOrganisation, href: "/settings/chat-labels" },
+  { name: "Reset Data", icon: CgOrganisation, href: "/settings/reset-data" },
 ];
 const SettingsLayout = () => {
   return (

@@ -78,5 +78,11 @@ namespace AddressBook.Services
             _repositoryManager.Save();
             return _mapper.Map<EmailLabelRes>(entity);
         }
+
+        public int Count()
+        {
+            return _repositoryManager.EmailLabelRepository.FindAll(false)
+                .Count();
+        }
     }
 }

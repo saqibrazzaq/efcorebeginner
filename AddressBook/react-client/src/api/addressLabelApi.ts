@@ -20,6 +20,14 @@ export const AddressLabelApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/addressLabels/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (addressLabel: AddressLabelReqEdit) {
     const response = await api.request({
       url: `/addressLabels`,

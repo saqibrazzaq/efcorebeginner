@@ -21,6 +21,14 @@ export const ContactWebsiteApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/contactWebsites/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   anyWebsite: async function (websiteLabelId?: string) {
     if (!websiteLabelId) return {};
     const response = await api.request({

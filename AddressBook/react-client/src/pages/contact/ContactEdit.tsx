@@ -133,7 +133,7 @@ const ContactEdit = () => {
       ContactApi.get(contactId)
         .then((res) => {
           setContact(res);
-          console.log(res);
+          // console.log(res);
         })
         .catch((error) => {
           setError(error.response.data.error);

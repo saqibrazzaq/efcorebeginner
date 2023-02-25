@@ -36,6 +36,13 @@ namespace AddressBook.Controllers
             return Ok(res);
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _contactLabelService.Count();
+            return Ok(res);
+        }
+
         [HttpPost]
         public IActionResult Create(ContactLabelReqEdit dto)
         {

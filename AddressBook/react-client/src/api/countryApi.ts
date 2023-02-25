@@ -20,6 +20,14 @@ export const CountryApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/countries/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (country: CountryReqEdit) {
     const response = await api.request({
       url: `/countries`,

@@ -21,6 +21,14 @@ export const ContactChatApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/contactChats/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   anyChats: async function (chatLabelId?: string) {
     if (!chatLabelId) return {};
     const response = await api.request({

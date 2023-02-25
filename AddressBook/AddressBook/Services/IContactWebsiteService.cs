@@ -12,5 +12,6 @@ namespace AddressBook.Services
         bool AnyWebsite(int websiteLabelId);
         ApiOkPagedResponse<IEnumerable<ContactWebsiteRes>, MetaData>
             Search(ContactWebsiteReqSearch dto);
+        int Count();
     }
 }

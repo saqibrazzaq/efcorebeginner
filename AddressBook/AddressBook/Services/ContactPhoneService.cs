@@ -77,5 +77,11 @@ namespace AddressBook.Services
                 false)
                 .Any();
         }
+
+        public int Count()
+        {
+            return _repositoryManager.ContactPhoneRepository.FindAll(false)
+                .Count();
+        }
     }
 }

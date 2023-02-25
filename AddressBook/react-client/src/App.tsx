@@ -49,6 +49,7 @@ import Labels from "./settings/labels/Labels";
 import PhoneLabelDelete from "./settings/phone-labels/PhoneLabelDelete";
 import PhoneLabelEdit from "./settings/phone-labels/PhoneLabelEdit";
 import PhoneLabels from "./settings/phone-labels/PhoneLabels";
+import ResetData from "./settings/reset-data/ResetData";
 import SettingsHome from "./settings/SettingsHome";
 import WebsiteLabelDelete from "./settings/website-labels/WebsiteLabelDelete";
 import WebsiteLabelEdit from "./settings/website-labels/WebsiteLabelEdit";
@@ -169,6 +170,9 @@ function App() {
               <Route path="edit" element={<ChatLabelEdit />} />
               <Route path="edit/:chatLabelId" element={<ChatLabelEdit />} />
               <Route path="delete/:chatLabelId" element={<ChatLabelDelete />} />
+            </Route>
+            <Route path="reset-data">
+              <Route index element={<ResetData />} />
             </Route>
           </Route>
         </Route>

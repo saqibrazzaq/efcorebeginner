@@ -75,5 +75,11 @@ namespace AddressBook.Services
                 false)
                 .Any();
         }
+
+        public int Count()
+        {
+            return _repositoryManager.ContactLabelRepository.FindAll(false)
+                .Count();
+        }
     }
 }

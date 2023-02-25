@@ -20,6 +20,14 @@ export const PhoneLabelApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/phoneLabels/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (phoneLabel: PhoneLabelReqEdit) {
     const response = await api.request({
       url: `/phoneLabels`,

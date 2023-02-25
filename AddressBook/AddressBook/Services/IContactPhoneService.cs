@@ -12,5 +12,6 @@ namespace AddressBook.Services
         bool AnyPhone(int phoneLabelId);
         ApiOkPagedResponse<IEnumerable<ContactPhoneRes>, MetaData>
             Search(ContactPhoneReqSearch dto);
+        int Count();
     }
 }

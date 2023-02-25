@@ -20,6 +20,14 @@ export const WebsiteLabelApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/websiteLabels/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (websiteLabel: WebsiteLabelReqEdit) {
     const response = await api.request({
       url: `/websiteLabels`,

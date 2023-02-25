@@ -11,5 +11,6 @@ namespace AddressBook.Services
         EmailLabelRes Get(int emailLabelId);
         ApiOkPagedResponse<IEnumerable<EmailLabelRes>, MetaData>
             Search(EmailLabelReqSearch dto);
+        int Count();
     }
 }

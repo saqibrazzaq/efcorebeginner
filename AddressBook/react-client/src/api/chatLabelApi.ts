@@ -20,6 +20,14 @@ export const ChatLabelApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/chatLabels/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (chatLabel: ChatLabelReqEdit) {
     const response = await api.request({
       url: `/chatLabels`,

@@ -21,6 +21,14 @@ export const ContactLabelApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/contactLabels/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   anyContact: async function (labelId?: string) {
     if (!labelId) return {};
     const response = await api.request({

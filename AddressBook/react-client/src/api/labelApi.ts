@@ -20,6 +20,14 @@ export const LabelApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/labels/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (label: LabelReqEdit) {
     const response = await api.request({
       url: `/labels`,

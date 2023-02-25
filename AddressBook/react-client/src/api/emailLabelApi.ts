@@ -20,6 +20,14 @@ export const EmailLabelApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/emailLabels/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   create: async function (emailLabel: EmailLabelReqEdit) {
     const response = await api.request({
       url: `/emailLabels`,

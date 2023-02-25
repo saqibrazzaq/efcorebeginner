@@ -21,6 +21,14 @@ export const ContactPhoneApi = {
 
     return response.data
   },
+  count: async function () {
+    const response = await api.request({
+      url: `/contactPhones/count`,
+      method: "GET",
+    })
+
+    return response.data
+  },
   anyPhone: async function (phoneLabelId?: string) {
     if (!phoneLabelId) return {};
     const response = await api.request({

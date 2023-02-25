@@ -74,5 +74,11 @@ namespace AddressBook.Services
                 false)
                 .Any();
         }
+
+        public int Count()
+        {
+            return _repositoryManager.ContactChatRepository.FindAll(false)
+                .Count();
+        }
     }
 }
