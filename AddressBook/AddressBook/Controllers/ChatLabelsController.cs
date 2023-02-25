@@ -29,6 +29,13 @@ namespace AddressBook.Controllers
             return Search(new ChatLabelReqSearch());
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _chatLabelService.Count();
+            return Ok(res);
+        }
+
         [HttpPost]
         public IActionResult Create(ChatLabelReqEdit dto)
         {

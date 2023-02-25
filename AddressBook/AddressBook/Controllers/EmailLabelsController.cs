@@ -23,6 +23,13 @@ namespace AddressBook.Controllers
             return Ok(res);
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _emailLabelService.Count();
+            return Ok(res);
+        }
+
         [HttpGet]
         public IActionResult Default()
         {

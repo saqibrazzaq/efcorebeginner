@@ -44,6 +44,13 @@ namespace AddressBook.Controllers
             return Ok(res);
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _contactPhoneService.Count();
+            return Ok(res);
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] ContactPhoneReqEdit dto)
         {

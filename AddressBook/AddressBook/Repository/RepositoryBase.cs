@@ -29,9 +29,9 @@ namespace AddressBook.Repository
             _context.Set<T>().Remove(entity);
         }
 
-        public void DeleteMany(IEnumerable<T> entities)
+        public void DeleteMany()
         {
-            _context.Set<T>().RemoveRange(entities);
+            _context.Set<T>().ExecuteDelete();
         }
 
         public IQueryable<T> FindAll(bool trackChanges)

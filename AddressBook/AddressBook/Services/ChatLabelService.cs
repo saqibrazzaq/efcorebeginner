@@ -77,5 +77,11 @@ namespace AddressBook.Services
             _repositoryManager.Save();
             return _mapper.Map<ChatLabelRes>(entity);
         }
+
+        public int Count()
+        {
+            return _repositoryManager.ChatLabelRepository.FindAll(false)
+                .Count();
+        }
     }
 }

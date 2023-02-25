@@ -36,6 +36,13 @@ namespace AddressBook.Controllers
             return Ok(res);
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _contactAddressService.Count();
+            return Ok(res);
+        }
+
         [HttpGet("{contactAddressId}")]
         public IActionResult Get(int contactAddressId)
         {

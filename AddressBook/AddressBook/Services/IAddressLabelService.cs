@@ -11,5 +11,6 @@ namespace AddressBook.Services
         AddressLabelRes Get(int addressLabelId);
         ApiOkPagedResponse<IEnumerable<AddressLabelRes>, MetaData>
             Search(AddressLabelReqSearch dto);
+        int Count();
     }
 }

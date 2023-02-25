@@ -115,36 +115,36 @@ namespace AddressBook.Services
 
         private void DeleteCountries()
         {
-            var countries = _repositoryManager.CountryRepository.FindAll(true);
-            _repositoryManager.CountryRepository.DeleteMany(countries);
+            //var countries = _repositoryManager.CountryRepository.FindAll(true);
+            _repositoryManager.CountryRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteTranslations()
         {
-            var translations = _repositoryManager.TranslationRepository.FindAll(true);
-            _repositoryManager.TranslationRepository.DeleteMany(translations);
+            //var translations = _repositoryManager.TranslationRepository.FindAll(true);
+            _repositoryManager.TranslationRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteTimezones()
         {
-            var timezones = _repositoryManager.TimezoneRepository.FindAll(true);
-            _repositoryManager.TimezoneRepository.DeleteMany(timezones);
+            //var timezones = _repositoryManager.TimezoneRepository.FindAll(true);
+            _repositoryManager.TimezoneRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteStates()
         {
-            var states = _repositoryManager.StateRepository.FindAll(true);
-            _repositoryManager.StateRepository.DeleteMany(states);
+            //var states = _repositoryManager.StateRepository.FindAll(true);
+            _repositoryManager.StateRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteCities()
         {
-            var cities = _repositoryManager.CityRepository.FindAll(true);
-            _repositoryManager.CityRepository.DeleteMany(cities);
+            //var cities = _repositoryManager.CityRepository.FindAll(true);
+            _repositoryManager.CityRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
@@ -185,36 +185,36 @@ namespace AddressBook.Services
 
         private void DeleteChatLabels()
         {
-            var chatLabels = _repositoryManager.ChatLabelRepository.FindAll(true);
-            _repositoryManager.ChatLabelRepository.DeleteMany(chatLabels);
+            //var chatLabels = _repositoryManager.ChatLabelRepository.FindAll(true);
+            _repositoryManager.ChatLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteWebsiteLabels()
         {
-            var websiteLabels = _repositoryManager.WebsiteLabelRepository.FindAll(true);
-            _repositoryManager.WebsiteLabelRepository.DeleteMany(websiteLabels);
+            //var websiteLabels = _repositoryManager.WebsiteLabelRepository.FindAll(true);
+            _repositoryManager.WebsiteLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteAddressLabels()
         {
-            var addressLabels = _repositoryManager.AddressLabelRepository.FindAll(true);
-            _repositoryManager.AddressLabelRepository.DeleteMany(addressLabels);
+            //var addressLabels = _repositoryManager.AddressLabelRepository.FindAll(true);
+            _repositoryManager.AddressLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeletePhoneLabels()
         {
-            var phoneLabels = _repositoryManager.PhoneLabelRepository.FindAll(true);
-            _repositoryManager.PhoneLabelRepository.DeleteMany(phoneLabels);
+            //var phoneLabels = _repositoryManager.PhoneLabelRepository.FindAll(true);
+            _repositoryManager.PhoneLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteEmailLabels()
         {
-            var emailLabels = _repositoryManager.EmailLabelRepository.FindAll(true);
-            _repositoryManager.EmailLabelRepository.DeleteMany(emailLabels);
+            //var emailLabels = _repositoryManager.EmailLabelRepository.FindAll(true);
+            _repositoryManager.EmailLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
@@ -227,8 +227,8 @@ namespace AddressBook.Services
 
         private void DeleteLabels()
         {
-            var allLabels = _repositoryManager.LabelRepository.FindAll(true);
-            _repositoryManager.LabelRepository.DeleteMany(allLabels);
+            //var allLabels = _repositoryManager.LabelRepository.FindAll(true);
+            _repositoryManager.LabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
@@ -241,8 +241,8 @@ namespace AddressBook.Services
 
         private void DeleteContacts()
         {
-            var allContacts = _repositoryManager.ContactRepository.FindAll(true);
-            _repositoryManager.ContactRepository.DeleteMany(allContacts);
+            //var allContacts = _repositoryManager.ContactRepository.FindAll(true);
+            _repositoryManager.ContactRepository.DeleteMany();
             _repositoryManager.Save();
         }
 

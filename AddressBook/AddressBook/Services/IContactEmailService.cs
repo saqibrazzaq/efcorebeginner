@@ -12,5 +12,6 @@ namespace AddressBook.Services
         bool AnyEmail(int emailLabelId);
         ApiOkPagedResponse<IEnumerable<ContactEmailRes>, MetaData>
             Search(ContactEmailReqSearch dto);
+        int Count();
     }
 }

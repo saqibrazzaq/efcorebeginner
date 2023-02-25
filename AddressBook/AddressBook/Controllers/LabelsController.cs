@@ -29,6 +29,13 @@ namespace AddressBook.Controllers
             return Search(new LabelReqSearch());
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _labelService.Count();
+            return Ok(res);
+        }
+
         [HttpPost]
         public IActionResult Create(LabelReqEdit dto)
         {

@@ -173,6 +173,7 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
+      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -214,6 +215,7 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
+      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({

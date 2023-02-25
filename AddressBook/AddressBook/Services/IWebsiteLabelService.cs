@@ -11,5 +11,6 @@ namespace AddressBook.Services
         WebsiteLabelRes Get(int websiteLabelId);
         ApiOkPagedResponse<IEnumerable<WebsiteLabelRes>, MetaData>
             Search(WebsiteLabelReqSearch dto);
+        int Count();
     }
 }

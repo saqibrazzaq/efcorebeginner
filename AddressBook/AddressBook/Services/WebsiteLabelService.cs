@@ -77,5 +77,11 @@ namespace AddressBook.Services
             _repositoryManager.Save();
             return _mapper.Map<WebsiteLabelRes>(entity);
         }
+
+        public int Count()
+        {
+            return _repositoryManager.WebsiteLabelRepository.FindAll(false)
+                .Count();
+        }
     }
 }

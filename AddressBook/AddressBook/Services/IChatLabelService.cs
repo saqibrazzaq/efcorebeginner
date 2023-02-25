@@ -11,5 +11,6 @@ namespace AddressBook.Services
         ChatLabelRes Get(int chatLabelId);
         ApiOkPagedResponse<IEnumerable<ChatLabelRes>, MetaData>
             Search(ChatLabelReqSearch dto);
+        int Count();
     }
 }

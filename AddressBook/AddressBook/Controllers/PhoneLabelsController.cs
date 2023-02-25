@@ -29,6 +29,13 @@ namespace AddressBook.Controllers
             return Search(new PhoneLabelReqSearch());
         }
 
+        [HttpGet("count")]
+        public IActionResult Count()
+        {
+            var res = _phoneLabelService.Count();
+            return Ok(res);
+        }
+
         [HttpGet("{phoneLabelId}")]
         public IActionResult Get(int phoneLabelId)
         {
