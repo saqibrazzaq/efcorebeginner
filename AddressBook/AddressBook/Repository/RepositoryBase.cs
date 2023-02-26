@@ -32,6 +32,24 @@ namespace AddressBook.Repository
         public void DeleteMany()
         {
             _context.Set<T>().ExecuteDelete();
+
+            _context.Database.ExecuteSqlRaw($"DBCC CHECKIDENT('{GetTableName<T>()}',RESEED, 0);");
+        }
+
+        private string GetTableName<T>() where T : class
+        {
+            // We need dbcontext to access the models
+            var models = _context.Model;
+
+            // Get all the entity types information
+            var entityTypes = models.GetEntityTypes();
+
+            // T is Name of class
+            var entityTypeOfT = entityTypes.First(t => t.ClrType == typeof(T));
+
+            var tableNameAnnotation = entityTypeOfT.GetAnnotation("Relational:TableName");
+            var TableName = tableNameAnnotation.Value.ToString();
+            return TableName;
         }
 
         public IQueryable<T> FindAll(bool trackChanges)

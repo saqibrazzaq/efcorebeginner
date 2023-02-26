@@ -102,6 +102,7 @@ const Contacts = () => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               updateSearchParams("searchText", searchText);
+              updateSearchParams("pageNumber", "1");
             }
           }}
         />
@@ -111,6 +112,7 @@ const Contacts = () => {
           colorScheme={"blue"}
           onClick={() => {
             updateSearchParams("searchText", searchText);
+            updateSearchParams("pageNumber", "1");
           }}
         >
           Search
@@ -135,7 +137,7 @@ const Contacts = () => {
           {pagedRes?.pagedList?.map((item) => (
             <Tr key={item.contactId}>
               <Td onClick={() => navigate("/contacts/edit/" + item.contactId)}>
-                <Avatar size={"sm"} src={item.pictureUrl} />
+                <Avatar size={"xs"} src={item.pictureUrl} />
               </Td>
               <Td onClick={() => navigate("/contacts/edit/" + item.contactId)}>
                 {item.firstName + " " + item.lastName}
@@ -187,7 +189,7 @@ const Contacts = () => {
 
   return (
     <Box width={"100%"} p={4}>
-      <Stack spacing={4} as={Container} maxW={"3xl"}>
+      <Stack spacing={4} as={Container} maxW={"4xl"}>
         {showHeading()}
         {displaySearchBar()}
         {showContacts()}

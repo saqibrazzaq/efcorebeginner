@@ -124,6 +124,7 @@ const Cities = () => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               updateSearchParams("searchText", searchText);
+              updateSearchParams("pageNumber", "1");
             }
           }}
         />
@@ -133,6 +134,7 @@ const Cities = () => {
           colorScheme={"blue"}
           onClick={() => {
             updateSearchParams("searchText", searchText);
+            updateSearchParams("pageNumber", "1");
           }}
         >
           Search
@@ -143,25 +145,25 @@ const Cities = () => {
 
   const showCities = () => (
     <TableContainer>
-      <Table variant="simple">
+      <Table variant="simple" size={"sm"}>
         <Thead>
           <Tr>
-            <Th>Id</Th>
             <Th>Name</Th>
+            <Th>State, Country</Th>
             <Th></Th>
           </Tr>
         </Thead>
         <Tbody>
           {pagedRes?.pagedList?.map((item) => (
             <Tr key={item.cityId}>
-              <Td>{item.cityId}</Td>
               <Td>{item.name}</Td>
+              <Td>{item.state?.name}, {item.state?.country?.name}</Td>
               <Td>
                 <Link mr={2} as={RouteLink} to={"/cities/edit/" + item.stateId + "/" + item.cityId}>
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/cities/delete/" + item.cityId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>

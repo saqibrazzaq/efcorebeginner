@@ -1,13 +1,18 @@
 import { IconButton, Tooltip } from '@chakra-ui/react';
 import { BiWorld } from "react-icons/bi";
 
-const TimezoneIcon = () => {
+interface IconProps {
+  size?: string;
+  fontSize?: string;
+}
+
+const TimezoneIcon = ({size = "sm", fontSize = "18"}: IconProps) => {
   return (
     <Tooltip label="Time Zone">
       <IconButton
         variant="outline"
-        size="sm"
-        fontSize="18px"
+        size={size}
+        fontSize={fontSize}
         colorScheme="blue"
         icon={<BiWorld />}
         aria-label="Time Zone"

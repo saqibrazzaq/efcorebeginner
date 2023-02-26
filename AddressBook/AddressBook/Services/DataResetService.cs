@@ -234,7 +234,7 @@ namespace AddressBook.Services
 
         private void AddContacts()
         {
-            var contacts = _randomDataGenerator.GenerateContacts(50);
+            var contacts = _randomDataGenerator.GenerateContacts(130000);
             _repositoryManager.ContactRepository.CreateMany(contacts);
             _repositoryManager.Save();
         }

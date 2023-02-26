@@ -100,6 +100,7 @@ const Countries = () => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               updateSearchParams("searchText", searchText);
+              updateSearchParams("pageNumber", "1");
             }
           }}
         />
@@ -109,6 +110,7 @@ const Countries = () => {
           colorScheme={"blue"}
           onClick={() => {
             updateSearchParams("searchText", searchText);
+            updateSearchParams("pageNumber", "1");
           }}
         >
           Search
@@ -119,45 +121,47 @@ const Countries = () => {
 
   const showCountries = () => (
     <TableContainer>
-      <Table variant="simple">
+      <Table variant="simple" size={"sm"}>
         <Thead>
           <Tr>
-            <Th>Id</Th>
             <Th>Name</Th>
             <Th>Code</Th>
+            <Th>Phone Code</Th>
+            <Th>Capital</Th>
             <Th></Th>
           </Tr>
         </Thead>
         <Tbody>
           {pagedRes?.pagedList?.map((item) => (
             <Tr key={item.countryId}>
-              <Td>{item.countryId}</Td>
               <Td>{item.name}</Td>
               <Td>{item.iso3}</Td>
+              <Td>{item.phoneCode}</Td>
+              <Td>{item.capital}</Td>
               <Td>
                 <Link
                   mr={2}
                   as={RouteLink}
                   to={"/timezones?countryId=" + item.countryId}
                 >
-                  <TimezoneIcon />
+                  <TimezoneIcon size="xs" fontSize="15" />
                 </Link>
                 <Link
                   mr={2}
                   as={RouteLink}
                   to={"/translations?countryId=" + item.countryId}
                 >
-                  <TranslationIcon />
+                  <TranslationIcon size="xs" fontSize="15" />
                 </Link>
                 <Link
                   mr={2}
                   as={RouteLink}
                   to={"/countries/edit/" + item.countryId}
                 >
-                  <UpdateIcon />
+                  <UpdateIcon size="xs" fontSize="15" />
                 </Link>
                 <Link as={RouteLink} to={"/countries/delete/" + item.countryId}>
-                  <DeleteIcon />
+                  <DeleteIcon size="xs" fontSize="15" />
                 </Link>
               </Td>
             </Tr>
