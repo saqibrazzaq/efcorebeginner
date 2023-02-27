@@ -19,13 +19,13 @@ const ContactsLayout = () => {
       let labels: LabelRes[] = res.pagedList;
       let categoryNavItems: Array<LinkItemProps> = [{
         name: "All Contacts",
-        href: "/contacts?labelId=&pageNumber=1",
+        href: "/contacts?labelId=&pageNumber=1&searchText=",
         icon: MdLabelOutline,
       }];
       labels.map((value) => {
         categoryNavItems.push({
           name: value.name || "",
-          href: "/contacts?labelId=" + value.labelId + "&pageNumber=1",
+          href: "/contacts?labelId=" + value.labelId + "&pageNumber=1&searchText=",
           icon: MdLabelOutline,
         });
       });

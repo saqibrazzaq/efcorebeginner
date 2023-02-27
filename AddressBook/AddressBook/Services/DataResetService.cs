@@ -76,29 +76,11 @@ namespace AddressBook.Services
             AddAddressLabels();
             AddWebsiteLabels();
             AddChatLabels();
-            AddContacts();
+            AddContacts(5000);
         }
 
         private void ValidationForAddingContacts()
         {
-            bool anyContact = _repositoryManager.ContactRepository.FindAll(false).Any();
-            if (anyContact) throw new Exception("Contacts already exist. Please delete all data before creating default contacts.");
-
-            bool anyLabel = _repositoryManager.LabelRepository.FindAll(false).Any();
-            if (anyLabel) throw new Exception("Please delete all labels before creating default contacts.");
-
-            bool anyEmailLabel = _repositoryManager.EmailLabelRepository.FindAll(false).Any();
-            if (anyEmailLabel) throw new Exception("Please delete all email labels before creating default contacts.");
-
-            bool anyPhoneLabel = _repositoryManager.PhoneLabelRepository.FindAll(false).Any();
-            if (anyPhoneLabel) throw new Exception("Please delete all phone labels before creating default contacts.");
-
-            bool anyAddressLabel = _repositoryManager.AddressLabelRepository.FindAll(false).Any();
-            if (anyAddressLabel) throw new Exception("Please delete all address labels before creating default contacts.");
-
-            bool anyChatLabel = _repositoryManager.ChatLabelRepository.FindAll(false).Any();
-            if (anyChatLabel) throw new Exception("Please delete all chat labels before creating default contacts.");
-
             bool anyCity = _repositoryManager.CityRepository.FindAll(false).Any();
             if (!anyCity) throw new Exception("Please create Country, State and Cities before adding default contacts.");
         }
@@ -115,133 +97,145 @@ namespace AddressBook.Services
 
         private void DeleteCountries()
         {
-            //var countries = _repositoryManager.CountryRepository.FindAll(true);
             _repositoryManager.CountryRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteTranslations()
         {
-            //var translations = _repositoryManager.TranslationRepository.FindAll(true);
             _repositoryManager.TranslationRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteTimezones()
         {
-            //var timezones = _repositoryManager.TimezoneRepository.FindAll(true);
             _repositoryManager.TimezoneRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteStates()
         {
-            //var states = _repositoryManager.StateRepository.FindAll(true);
             _repositoryManager.StateRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteCities()
         {
-            //var cities = _repositoryManager.CityRepository.FindAll(true);
             _repositoryManager.CityRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void AddChatLabels()
         {
-            var chatLabels = _randomDataGenerator.GenerateChatLabels();
-            _repositoryManager.ChatLabelRepository.CreateMany(chatLabels);
-            _repositoryManager.Save();
+            bool anyChatLabel = _repositoryManager.ChatLabelRepository.FindAll(false).Any();
+            if (!anyChatLabel)
+            {
+                var chatLabels = _randomDataGenerator.GenerateChatLabels();
+                _repositoryManager.ChatLabelRepository.CreateMany(chatLabels);
+                _repositoryManager.Save();
+            }
         }
 
         private void AddWebsiteLabels()
         {
-            var websiteLabels = _randomDataGenerator.GenerateWebsiteLabels();
-            _repositoryManager.WebsiteLabelRepository.CreateMany(websiteLabels);
-            _repositoryManager.Save();
+            bool anyWebsiteLabel = _repositoryManager.WebsiteLabelRepository.FindAll(false).Any();
+            if (!anyWebsiteLabel)
+            {
+                var websiteLabels = _randomDataGenerator.GenerateWebsiteLabels();
+                _repositoryManager.WebsiteLabelRepository.CreateMany(websiteLabels);
+                _repositoryManager.Save();
+            }   
         }
 
         private void AddAddressLabels()
         {
-            var addressLabels = _randomDataGenerator.GenerateAddressLabels();
-            _repositoryManager.AddressLabelRepository.CreateMany(addressLabels);
-            _repositoryManager.Save();
+            bool anyAddressLabel = _repositoryManager.AddressLabelRepository.FindAll(false).Any();
+            if (!anyAddressLabel)
+            {
+                var addressLabels = _randomDataGenerator.GenerateAddressLabels();
+                _repositoryManager.AddressLabelRepository.CreateMany(addressLabels);
+                _repositoryManager.Save();
+            }
         }
 
         private void AddPhoneLabels()
         {
-            var phoneLabels = _randomDataGenerator.GeneratePhoneLabels();
-            _repositoryManager.PhoneLabelRepository.CreateMany(phoneLabels);
-            _repositoryManager.Save();
+            bool anyPhoneLabel = _repositoryManager.PhoneLabelRepository.FindAll(false).Any();
+            if (!anyPhoneLabel)
+            {
+                var phoneLabels = _randomDataGenerator.GeneratePhoneLabels();
+                _repositoryManager.PhoneLabelRepository.CreateMany(phoneLabels);
+                _repositoryManager.Save();
+            }
         }
 
         private void AddEmailLabels()
         {
-            var emailLabels = _randomDataGenerator.GenerateEmailLabels();
-            _repositoryManager.EmailLabelRepository.CreateMany(emailLabels);
-            _repositoryManager.Save();
+            bool anyEmailLabel = _repositoryManager.EmailLabelRepository.FindAll(false).Any();
+            if (!anyEmailLabel)
+            {
+                var emailLabels = _randomDataGenerator.GenerateEmailLabels();
+                _repositoryManager.EmailLabelRepository.CreateMany(emailLabels);
+                _repositoryManager.Save();
+            }
         }
 
         private void DeleteChatLabels()
         {
-            //var chatLabels = _repositoryManager.ChatLabelRepository.FindAll(true);
             _repositoryManager.ChatLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteWebsiteLabels()
         {
-            //var websiteLabels = _repositoryManager.WebsiteLabelRepository.FindAll(true);
             _repositoryManager.WebsiteLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteAddressLabels()
         {
-            //var addressLabels = _repositoryManager.AddressLabelRepository.FindAll(true);
             _repositoryManager.AddressLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeletePhoneLabels()
         {
-            //var phoneLabels = _repositoryManager.PhoneLabelRepository.FindAll(true);
             _repositoryManager.PhoneLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void DeleteEmailLabels()
         {
-            //var emailLabels = _repositoryManager.EmailLabelRepository.FindAll(true);
             _repositoryManager.EmailLabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
         private void AddLabels()
         {
-            var labels = _randomDataGenerator.GenerateLabels();
-            _repositoryManager.LabelRepository.CreateMany(labels);
-            _repositoryManager.Save();
+            bool anyLabel = _repositoryManager.LabelRepository.FindAll(false).Any();
+            if (!anyLabel)
+            {
+                var labels = _randomDataGenerator.GenerateLabels();
+                _repositoryManager.LabelRepository.CreateMany(labels);
+                _repositoryManager.Save();
+            }
         }
 
         private void DeleteLabels()
         {
-            //var allLabels = _repositoryManager.LabelRepository.FindAll(true);
             _repositoryManager.LabelRepository.DeleteMany();
             _repositoryManager.Save();
         }
 
-        private void AddContacts()
+        private void AddContacts(int numberOfContacts)
         {
-            var contacts = _randomDataGenerator.GenerateContacts(130000);
+            var contacts = _randomDataGenerator.GenerateContacts(numberOfContacts);
             _repositoryManager.ContactRepository.CreateMany(contacts);
             _repositoryManager.Save();
         }
 
         private void DeleteContacts()
         {
-            //var allContacts = _repositoryManager.ContactRepository.FindAll(true);
             _repositoryManager.ContactRepository.DeleteMany();
             _repositoryManager.Save();
         }

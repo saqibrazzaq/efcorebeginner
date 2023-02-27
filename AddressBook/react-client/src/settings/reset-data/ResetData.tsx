@@ -80,23 +80,8 @@ const ResetData = () => {
 
   const loadSummary = () => {
     loadCountryCount();
-    loadStateCount();
-    loadCityCount();
-
     loadContactCount();
-    loadContactLabelCount();
-    loadContactEmailCount();
-    loadContactPhoneCount();
-    loadContactAddressCount();
-    loadContactWebsiteCount();
-    loadContactChatCount();
-
     loadLabelCount();
-    loadEmailLabelCount();
-    loadPhoneLabelCount();
-    loadAddressLabelCount();
-    loadWebsiteLabelCount();
-    loadChatLabelCount();
   }
 
   const loadChatLabelCount = () => {
@@ -104,23 +89,23 @@ const ResetData = () => {
   }
 
   const loadWebsiteLabelCount = () => {
-    WebsiteLabelApi.count().then(res => setWebsiteLabelCount(res));
+    WebsiteLabelApi.count().then(res => {setWebsiteLabelCount(res); loadChatLabelCount();});
   }
 
   const loadAddressLabelCount = () => {
-    AddressLabelApi.count().then(res => setAddressLabelCount(res));
+    AddressLabelApi.count().then(res => {setAddressLabelCount(res); loadWebsiteLabelCount();});
   }
 
   const loadPhoneLabelCount = () => {
-    PhoneLabelApi.count().then(res => setPhoneLabelCount(res));
+    PhoneLabelApi.count().then(res => {setPhoneLabelCount(res); loadAddressLabelCount();});
   }
 
   const loadEmailLabelCount = () => {
-    EmailLabelApi.count().then(res => setEmailLabelCount(res));
+    EmailLabelApi.count().then(res => {setEmailLabelCount(res); loadPhoneLabelCount();});
   }
 
   const loadLabelCount = () => {
-    LabelApi.count().then(res => setLabelCount(res));
+    LabelApi.count().then(res => {setLabelCount(res); loadEmailLabelCount();});
   }
 
   const loadContactChatCount = () => {
@@ -128,23 +113,23 @@ const ResetData = () => {
   }
 
   const loadContactWebsiteCount = () => {
-    ContactWebsiteApi.count().then(res => setContactWebsiteCount(res));
+    ContactWebsiteApi.count().then(res => {setContactWebsiteCount(res); loadContactChatCount();});
   }
 
   const loadContactAddressCount = () => {
-    ContactAddressApi.count().then(res => setContactAddressCount(res));
+    ContactAddressApi.count().then(res => {setContactAddressCount(res); loadContactWebsiteCount();});
   }
 
   const loadContactPhoneCount = () => {
-    ContactPhoneApi.count().then(res => setContactPhoneCount(res));
+    ContactPhoneApi.count().then(res => {setContactPhoneCount(res); loadContactAddressCount();});
   }
 
   const loadCountryCount = () => {
-    CountryApi.count().then(res => setCountryCount(res));
+    CountryApi.count().then(res => {setCountryCount(res); loadStateCount();});
   }
 
   const loadStateCount = () => {
-    StateApi.count().then(res => setStateCount(res));
+    StateApi.count().then(res => {setStateCount(res); loadCityCount();});
   }
 
   const loadCityCount = () => {
@@ -152,15 +137,15 @@ const ResetData = () => {
   }
 
   const loadContactCount = () => {
-    ContactApi.count().then(res => setContactCount(res));
+    ContactApi.count().then(res => {setContactCount(res); loadContactLabelCount();});
   }
 
   const loadContactLabelCount = () => {
-    ContactLabelApi.count().then(res => setContactLabelCount(res));
+    ContactLabelApi.count().then(res => {setContactLabelCount(res); loadContactEmailCount();});
   }
 
   const loadContactEmailCount = () => {
-    ContactEmailApi.count().then(res => setContactEmailCount(res));
+    ContactEmailApi.count().then(res => {setContactEmailCount(res); loadContactPhoneCount();});
   }
 
   const deleteAllData = () => {

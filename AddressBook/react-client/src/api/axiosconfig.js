@@ -6,6 +6,15 @@ export const api = axios.create({
 
 api.interceptors.response.use(
   (res) => {
+    // Calculate response time
+    const currentTime = new Date().getTime()      
+    const startTime = res.config.headers['request-startTime']      
+    res.headers['request-duration'] = currentTime - startTime   
+
+    console.log(millisToMinutesAndSeconds(res.headers['request-duration']) + 
+      " - " + res.request.responseURL)
+    // console.log(res)
+    // console.log(millisToMinutesAndSeconds(res.headers['request-duration']));
     return res;
   },
   async (err) => {
@@ -18,10 +27,21 @@ api.interceptors.response.use(
 
 api.interceptors.request.use(
   (config) => {
-    
+    config.headers['request-startTime'] = new Date().getTime();
     return config;
   },
   (error) => {
     return Promise.reject(error);
   }
 );
+
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+
+  return (
+    seconds == 60 ?
+    (minutes+1) + ":00" :
+    minutes + ":" + (seconds < 10 ? "0" : "") + seconds
+  );
+}
