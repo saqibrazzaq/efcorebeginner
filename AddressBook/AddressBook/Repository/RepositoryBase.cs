@@ -29,7 +29,7 @@ namespace AddressBook.Repository
             _context.Set<T>().Remove(entity);
         }
 
-        public void DeleteMany()
+        public void DeleteAll()
         {
             _context.Set<T>().ExecuteDelete();
 

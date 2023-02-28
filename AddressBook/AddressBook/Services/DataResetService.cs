@@ -27,19 +27,19 @@ namespace AddressBook.Services
 
         public void DeleteAllData()
         {
-            DeleteContacts();
-            DeleteLabels();
-            DeleteEmailLabels();
-            DeletePhoneLabels();
-            DeleteAddressLabels();
-            DeleteWebsiteLabels();
-            DeleteChatLabels();
+            _repositoryManager.ContactRepository.DeleteAll();
+            _repositoryManager.LabelRepository.DeleteAll();
+            _repositoryManager.EmailLabelRepository.DeleteAll();
+            _repositoryManager.PhoneLabelRepository.DeleteAll();
+            _repositoryManager.AddressLabelRepository.DeleteAll();
+            _repositoryManager.WebsiteLabelRepository.DeleteAll();
+            _repositoryManager.ChatLabelRepository.DeleteAll();
 
-            DeleteCities();
-            DeleteStates();
-            DeleteTimezones();
-            DeleteTranslations();
-            DeleteCountries();
+            _repositoryManager.CityRepository.DeleteAll();
+            _repositoryManager.StateRepository.DeleteAll();
+            _repositoryManager.TimezoneRepository.DeleteAll();
+            _repositoryManager.TranslationRepository.DeleteAll();
+            _repositoryManager.CountryRepository.DeleteAll();
         }
 
         public void AddCountriesData()
@@ -93,36 +93,6 @@ namespace AddressBook.Services
             var countriesImport = JsonSerializer.Deserialize<IEnumerable<CountryImport>>(jsonData);
             var countries = _mapper.Map<IEnumerable<Country>>(countriesImport);
             return countries;
-        }
-
-        private void DeleteCountries()
-        {
-            _repositoryManager.CountryRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
-        private void DeleteTranslations()
-        {
-            _repositoryManager.TranslationRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
-        private void DeleteTimezones()
-        {
-            _repositoryManager.TimezoneRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
-        private void DeleteStates()
-        {
-            _repositoryManager.StateRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
-        private void DeleteCities()
-        {
-            _repositoryManager.CityRepository.DeleteMany();
-            _repositoryManager.Save();
         }
 
         private void AddChatLabels()
@@ -180,36 +150,6 @@ namespace AddressBook.Services
             }
         }
 
-        private void DeleteChatLabels()
-        {
-            _repositoryManager.ChatLabelRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
-        private void DeleteWebsiteLabels()
-        {
-            _repositoryManager.WebsiteLabelRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
-        private void DeleteAddressLabels()
-        {
-            _repositoryManager.AddressLabelRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
-        private void DeletePhoneLabels()
-        {
-            _repositoryManager.PhoneLabelRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
-        private void DeleteEmailLabels()
-        {
-            _repositoryManager.EmailLabelRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
         private void AddLabels()
         {
             bool anyLabel = _repositoryManager.LabelRepository.FindAll(false).Any();
@@ -221,22 +161,10 @@ namespace AddressBook.Services
             }
         }
 
-        private void DeleteLabels()
-        {
-            _repositoryManager.LabelRepository.DeleteMany();
-            _repositoryManager.Save();
-        }
-
         private void AddContacts(int numberOfContacts)
         {
             var contacts = _randomDataGenerator.GenerateContacts(numberOfContacts);
             _repositoryManager.ContactRepository.CreateMany(contacts);
-            _repositoryManager.Save();
-        }
-
-        private void DeleteContacts()
-        {
-            _repositoryManager.ContactRepository.DeleteMany();
             _repositoryManager.Save();
         }
 

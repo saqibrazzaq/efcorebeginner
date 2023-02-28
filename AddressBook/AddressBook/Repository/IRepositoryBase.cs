@@ -13,7 +13,7 @@ namespace AddressBook.Repository
             );
         void Create(T entity);
         void Delete(T entity);
-        void DeleteMany();
+        void DeleteAll();
         void CreateMany(IEnumerable<T> entities);
     }
 }
