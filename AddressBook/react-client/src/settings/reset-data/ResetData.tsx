@@ -173,11 +173,12 @@ const ResetData = () => {
     await deleteContacts();
     await deleteLabels();
     await deleteCountries();
+    await loadSummary();
   }
 
   const deleteLabels = async () => {
     setError("")
-    ResetDataApi.deleteLabels().then(res => {
+    await ResetDataApi.deleteLabels().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -185,7 +186,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -199,7 +199,7 @@ const ResetData = () => {
 
   const deleteContactChats = async () => {
     setError("")
-    ResetDataApi.deleteContactChats().then(res => {
+    await ResetDataApi.deleteContactChats().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -207,7 +207,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -221,7 +220,7 @@ const ResetData = () => {
 
   const deleteContactWebsites = async () => {
     setError("")
-    ResetDataApi.deleteContactWebsites().then(res => {
+    await ResetDataApi.deleteContactWebsites().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -229,7 +228,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -243,7 +241,7 @@ const ResetData = () => {
 
   const deleteContactAddresses = async () => {
     setError("")
-    ResetDataApi.deleteContactAddresses().then(res => {
+    await ResetDataApi.deleteContactAddresses().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -251,7 +249,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -265,7 +262,7 @@ const ResetData = () => {
 
   const deleteContactPhones = async () => {
     setError("")
-    ResetDataApi.deleteContactPhones().then(res => {
+    await ResetDataApi.deleteContactPhones().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -273,7 +270,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -287,7 +283,7 @@ const ResetData = () => {
 
   const deleteContactEmails = async () => {
     setError("")
-    ResetDataApi.deleteContactEmails().then(res => {
+    await ResetDataApi.deleteContactEmails().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -295,7 +291,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -309,7 +304,7 @@ const ResetData = () => {
 
   const deleteContactLabels = async () => {
     setError("")
-    ResetDataApi.deleteContactLabels().then(res => {
+    await ResetDataApi.deleteContactLabels().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -317,7 +312,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -331,7 +325,7 @@ const ResetData = () => {
 
   const deleteContacts = async () => {
     setError("")
-    ResetDataApi.deleteContacts().then(res => {
+    await ResetDataApi.deleteContacts().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -339,7 +333,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -353,7 +346,7 @@ const ResetData = () => {
 
   const deleteCountries = async () => {
     setError("")
-    ResetDataApi.deleteCountries().then(res => {
+    await ResetDataApi.deleteCountries().then(res => {
       onClose();
       toast({
         title: "Success",
@@ -361,7 +354,6 @@ const ResetData = () => {
         status: "success",
         position: "bottom-right",
       });
-      loadSummary();
     }).catch(error => {
       setError(error.response.data.error);
       toast({
@@ -373,9 +365,9 @@ const ResetData = () => {
     })
   }
 
-  const createCountries = () => {
+  const createCountries = async () => {
     setError("");
-    ResetDataApi.createCountries().then(res => {
+    await ResetDataApi.createCountries().then(res => {
       toast({
         title: "Success",
         description: "Default countries created successfully.",
@@ -394,9 +386,9 @@ const ResetData = () => {
     })
   }
 
-  const createContacts = () => {
+  const createContacts = async () => {
     setError("");
-    ResetDataApi.createContacts().then(res => {
+    await ResetDataApi.createContacts().then(res => {
       toast({
         title: "Success",
         description: "Default contacts created successfully.",

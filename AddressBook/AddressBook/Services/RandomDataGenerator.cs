@@ -79,61 +79,6 @@ namespace AddressBook.Services
             return contacts;
         }
 
-        private IEnumerable<ContactLabel> GetContactLabels(List<int> labelIds)
-        {
-            var labelGen = new Faker<ContactLabel>();
-            if (labelIds.Any()) { labelGen.RuleFor(x => x.LabelId, b => b.PickRandom(labelIds)); }
-            var labels = labelGen.Generate(1);
-            return labels;
-        }
-
-        private IEnumerable<ContactAddress> GetContactAddresses(IEnumerable<int> addressLabelIds,
-            IEnumerable<int> cityIds)
-        {
-            var addressGen = new Faker<ContactAddress>()
-                .RuleFor(x => x.Line1, b => b.Address.StreetAddress());
-            if (cityIds.Any()) { addressGen.RuleFor(x => x.CityId, b => b.PickRandom(cityIds)); }
-            if (addressLabelIds.Any()) { addressGen.RuleFor(x => x.AddressLabelId, b => b.PickRandom(addressLabelIds)); }
-            var addresses = addressGen.Generate(1);
-            return addresses;
-        }
-
-        private IEnumerable<ContactWebsite> GetContactWebsites(Contact c, IEnumerable<int> websiteLabelIds)
-        {
-            var websiteGen = new Faker<ContactWebsite>()
-                .RuleFor(x => x.Website, b => c.FirstName + "." + c.LastName + ".com");
-            if (websiteLabelIds.Any()) { websiteGen.RuleFor(x => x.WebsiteLabelId, b => b.PickRandom(websiteLabelIds)); }
-            var websites = websiteGen.Generate(1);
-            return websites;
-        }
-
-        private IEnumerable<ContactChat> GetContactChats(Contact c, IEnumerable<int> chatLabelIds)
-        {
-            var chatGen = new Faker<ContactChat>()
-                .RuleFor(x => x.Chat, b => c.FirstName + "." + c.LastName);
-            if (chatLabelIds.Any()) { chatGen.RuleFor(x => x.ChatLabelId, b => b.PickRandom(chatLabelIds)); }
-            var chats = chatGen.Generate(1);
-            return chats;
-        }
-
-        private IEnumerable<ContactEmail> GetContactEmails(Contact c, IEnumerable<int> emailLabelIds)
-        {
-            var emailGen = new Faker<ContactEmail>()
-                .RuleFor(x => x.Email, b => c.FirstName + "." + c.LastName + "@gmail.com");
-            if (emailLabelIds.Any()) { emailGen.RuleFor(x => x.EmailLabelId, b => b.PickRandom(emailLabelIds)); }
-            var emails = emailGen.Generate(1);
-            return emails;
-        }
-
-        private IEnumerable<ContactPhone> GetContactPhones(IEnumerable<int> phoneLabelIds)
-        {
-            var phoneGen = new Faker<ContactPhone>()
-                .RuleFor(x => x.Phone, b => b.Phone.PhoneNumber());
-            if (phoneLabelIds.Any()) { phoneGen.RuleFor(x => x.PhoneLabelId, b => b.PickRandom(phoneLabelIds)); }
-            var phones = phoneGen.Generate(1);
-            return phones;
-        }
-
         public IEnumerable<Label> GenerateLabels()
         {
             return new List<Label>() 
