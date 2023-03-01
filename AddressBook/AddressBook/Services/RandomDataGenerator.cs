@@ -41,12 +41,40 @@ namespace AddressBook.Services
                 .RuleFor(x => x.PictureUrl, "")
                 .RuleFor(x => x.Notes, "")
                 .RuleFor(x => x.CloudinaryId, "")
-                .RuleFor(x => x.ContactPhones, (_, e) => { return GetContactPhones(phoneLabelIds); })
-                .RuleFor(x => x.ContactEmails, (_, e) => { return GetContactEmails(e, emailLabelIds); })
-                .RuleFor(x => x.ContactChats, (_, e) => { return GetContactChats(e, chatLabelIds); })
-                .RuleFor(x => x.ContactWebsites, (_, e) => { return GetContactWebsites(e, websiteLabelIds); })
-                .RuleFor(x => x.ContactAddresses, (_, e) => { return GetContactAddresses(addressLabelIds, cityIds); })
-                .RuleFor(x => x.ContactLabels, (_, e) => { return GetContactLabels(labelIds); });
+                .RuleFor(x => x.ContactPhones, b => new List<ContactPhone>() { new ContactPhone()
+                {
+                    Phone = b.Phone.PhoneNumber(),
+                    PhoneLabelId = phoneLabelIds.Any() ? b.PickRandom(phoneLabelIds) : null
+                } })
+                .RuleFor(x => x.ContactEmails, b => new List<ContactEmail>() { new ContactEmail()
+                {
+                    Email = b.Name.FirstName() + "." + b.Name.LastName() + "@gmail.com",
+                    EmailLabelId = emailLabelIds.Any() ? b.PickRandom(emailLabelIds) : null
+                }
+                })
+                .RuleFor(x => x.ContactChats, b => new List<ContactChat>() { new ContactChat()
+                {
+                    Chat = b.Name.FirstName(),
+                    ChatLabelId = chatLabelIds.Any() ? b.PickRandom(chatLabelIds) : null
+                }
+                })
+                .RuleFor(x => x.ContactWebsites, b => new List<ContactWebsite>() { new ContactWebsite()
+                {
+                    Website = b.Name.FullName() + ".com",
+                    WebsiteLabelId = websiteLabelIds.Any() ? b.PickRandom(websiteLabelIds) : null
+                }
+                })
+                .RuleFor(x => x.ContactAddresses, b => new List<ContactAddress>() { new ContactAddress()
+                {
+                    Line1 = b.Address.StreetAddress(),
+                    CityId = cityIds.Any() ? b.PickRandom(cityIds) : null,
+                    AddressLabelId = addressLabelIds.Any() ? b.PickRandom(addressLabelIds) : null
+                }
+                })
+                .RuleFor(x => x.ContactLabels, b => new List<ContactLabel>() 
+                { 
+                    new ContactLabel() { LabelId = b.PickRandom(labelIds)} 
+                });
             var contacts = contactGen.Generate(number);
             return contacts;
         }

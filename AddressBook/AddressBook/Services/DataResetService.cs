@@ -76,7 +76,7 @@ namespace AddressBook.Services
             AddAddressLabels();
             AddWebsiteLabels();
             AddChatLabels();
-            AddContacts(5000);
+            AddContacts(130000);
         }
 
         private void ValidationForAddingContacts()
