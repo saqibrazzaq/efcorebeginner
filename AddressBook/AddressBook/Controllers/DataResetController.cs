@@ -15,10 +15,66 @@ namespace AddressBook.Controllers
             _dataResetService = dataResetService;
         }
 
-        [HttpDelete("delete-all")]
-        public IActionResult DeleteAllData()
+        [HttpDelete("delete-countries")]
+        public IActionResult DeleteCountries()
         {
-            _dataResetService.DeleteAllData();
+            _dataResetService.DeleteCountries();
+            return NoContent();
+        }
+
+        [HttpDelete("delete-labels")]
+        public IActionResult DeleteLabels()
+        {
+            _dataResetService.DeleteLabels();
+            return NoContent();
+        }
+
+        [HttpDelete("delete-contacts")]
+        public IActionResult DeleteContacts()
+        {
+            _dataResetService.DeleteContacts();
+            return NoContent();
+        }
+
+        [HttpDelete("delete-contact-labels")]
+        public IActionResult DeleteContactLabels()
+        {
+            _dataResetService.DeleteContactLabels();
+            return NoContent();
+        }
+
+        [HttpDelete("delete-contact-emails")]
+        public IActionResult DeleteContactEmails()
+        {
+            _dataResetService.DeleteContactEmails();
+            return NoContent();
+        }
+
+        [HttpDelete("delete-contact-phones")]
+        public IActionResult DeleteContactPhones()
+        {
+            _dataResetService.DeleteContactPhones();
+            return NoContent();
+        }
+
+        [HttpDelete("delete-contact-addresses")]
+        public IActionResult DeleteContactAddresses()
+        {
+            _dataResetService.DeleteContactAddresses();
+            return NoContent();
+        }
+
+        [HttpDelete("delete-contact-websites")]
+        public IActionResult DeleteContactWebsites()
+        {
+            _dataResetService.DeleteContactWebsites();
+            return NoContent();
+        }
+
+        [HttpDelete("delete-contact-chats")]
+        public IActionResult DeleteContactChats()
+        {
+            _dataResetService.DeleteContactChats();
             return NoContent();
         }
 

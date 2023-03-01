@@ -14,7 +14,7 @@ const LinkItems: Array<LinkItemProps> = [
 ];
 const SettingsLayout = () => {
   return (
-    <Flex width={"3xl"} mt="2">
+    <Flex width={"4xl"} mt="2">
       <Box w="250px">
         <LeftSideMenu menuHeading="Settings" menuItems={LinkItems} />
       </Box>

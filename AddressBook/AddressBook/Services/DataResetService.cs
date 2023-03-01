@@ -25,16 +25,66 @@ namespace AddressBook.Services
             _mapper = mapper;
         }
 
-        public void DeleteAllData()
+        public void AddContactsData()
+        {
+            ValidationForAddingContacts();
+
+            AddLabels();
+            AddEmailLabels();
+            AddPhoneLabels();
+            AddAddressLabels();
+            AddWebsiteLabels();
+            AddChatLabels();
+            AddContacts(25000);
+        }
+
+        public void DeleteContacts()
         {
             _repositoryManager.ContactRepository.DeleteAll();
+        }
+
+        public void DeleteContactLabels()
+        {
+            _repositoryManager.ContactLabelRepository.DeleteAll();
+        }
+
+        public void DeleteContactEmails()
+        {
+            _repositoryManager.ContactEmailRepository.DeleteAll();
+        }
+
+        public void DeleteContactPhones()
+        {
+            _repositoryManager.ContactPhoneRepository.DeleteAll();
+        }
+
+        public void DeleteContactAddresses()
+        {
+            _repositoryManager.ContactAddressRepository.DeleteAll();
+        }
+
+        public void DeleteContactWebsites()
+        {
+            _repositoryManager.ContactWebsiteRepository.DeleteAll();
+        }
+
+        public void DeleteContactChats()
+        {
+            _repositoryManager.ContactChatRepository.DeleteAll();
+        }
+
+        public void DeleteLabels()
+        {
             _repositoryManager.LabelRepository.DeleteAll();
             _repositoryManager.EmailLabelRepository.DeleteAll();
             _repositoryManager.PhoneLabelRepository.DeleteAll();
             _repositoryManager.AddressLabelRepository.DeleteAll();
             _repositoryManager.WebsiteLabelRepository.DeleteAll();
             _repositoryManager.ChatLabelRepository.DeleteAll();
+        }
 
+        public void DeleteCountries()
+        {
             _repositoryManager.CityRepository.DeleteAll();
             _repositoryManager.StateRepository.DeleteAll();
             _repositoryManager.TimezoneRepository.DeleteAll();
@@ -64,19 +114,6 @@ namespace AddressBook.Services
 
             bool anyCity = _repositoryManager.CityRepository.FindAll(false).Any();
             if (anyCity) throw new Exception("Please delete all cities before creating default cities.");
-        }
-
-        public void AddContactsData()
-        {
-            ValidationForAddingContacts();
-
-            AddLabels();
-            AddEmailLabels();
-            AddPhoneLabels();
-            AddAddressLabels();
-            AddWebsiteLabels();
-            AddChatLabels();
-            AddContacts(130000);
         }
 
         private void ValidationForAddingContacts()

@@ -78,83 +78,110 @@ const ResetData = () => {
     loadSummary();
   }, []);
 
-  const loadSummary = () => {
-    loadCountryCount();
-    loadContactCount();
-    loadLabelCount();
+  const loadSummary = async () => {
+    await loadCountryCount();
+    await loadStateCount();
+    await loadCityCount();
+
+    await loadContactCount();
+    await loadContactChatCount();
+    await loadContactWebsiteCount();
+    await loadContactAddressCount();
+    await loadContactEmailCount();
+    await loadContactPhoneCount();
+    await loadContactLabelCount();
+
+    await loadLabelCount();
+    await loadChatLabelCount();
+    await loadWebsiteLabelCount();
+    await loadAddressLabelCount();
+    await loadPhoneLabelCount();
+    await loadEmailLabelCount();
   }
 
-  const loadChatLabelCount = () => {
-    ChatLabelApi.count().then(res => setChatLabelCount(res));
+  const loadChatLabelCount = async () => {
+    await ChatLabelApi.count().then(res => setChatLabelCount(res));
   }
 
-  const loadWebsiteLabelCount = () => {
-    WebsiteLabelApi.count().then(res => {setWebsiteLabelCount(res); loadChatLabelCount();});
+  const loadWebsiteLabelCount = async () => {
+    await WebsiteLabelApi.count().then(res => {setWebsiteLabelCount(res); });
   }
 
-  const loadAddressLabelCount = () => {
-    AddressLabelApi.count().then(res => {setAddressLabelCount(res); loadWebsiteLabelCount();});
+  const loadAddressLabelCount = async () => {
+    await AddressLabelApi.count().then(res => {setAddressLabelCount(res); });
   }
 
-  const loadPhoneLabelCount = () => {
-    PhoneLabelApi.count().then(res => {setPhoneLabelCount(res); loadAddressLabelCount();});
+  const loadPhoneLabelCount = async () => {
+    await PhoneLabelApi.count().then(res => {setPhoneLabelCount(res); });
   }
 
-  const loadEmailLabelCount = () => {
-    EmailLabelApi.count().then(res => {setEmailLabelCount(res); loadPhoneLabelCount();});
+  const loadEmailLabelCount = async () => {
+    await EmailLabelApi.count().then(res => {setEmailLabelCount(res); });
   }
 
-  const loadLabelCount = () => {
-    LabelApi.count().then(res => {setLabelCount(res); loadEmailLabelCount();});
+  const loadLabelCount = async () => {
+    await LabelApi.count().then(res => {setLabelCount(res); });
   }
 
-  const loadContactChatCount = () => {
-    ContactChatApi.count().then(res => setContactChatCount(res));
+  const loadContactChatCount = async () => {
+    await ContactChatApi.count().then(res => setContactChatCount(res));
   }
 
-  const loadContactWebsiteCount = () => {
-    ContactWebsiteApi.count().then(res => {setContactWebsiteCount(res); loadContactChatCount();});
+  const loadContactWebsiteCount = async () => {
+    await  ContactWebsiteApi.count().then(res => {setContactWebsiteCount(res); });
   }
 
-  const loadContactAddressCount = () => {
-    ContactAddressApi.count().then(res => {setContactAddressCount(res); loadContactWebsiteCount();});
+  const loadContactAddressCount = async () => {
+    await ContactAddressApi.count().then(res => {setContactAddressCount(res); });
   }
 
-  const loadContactPhoneCount = () => {
-    ContactPhoneApi.count().then(res => {setContactPhoneCount(res); loadContactAddressCount();});
+  const loadContactPhoneCount = async () => {
+    await ContactPhoneApi.count().then(res => {setContactPhoneCount(res); });
   }
 
-  const loadCountryCount = () => {
-    CountryApi.count().then(res => {setCountryCount(res); loadStateCount();});
+  const loadCountryCount = async () => {
+    await CountryApi.count().then(res => {setCountryCount(res); });
   }
 
-  const loadStateCount = () => {
-    StateApi.count().then(res => {setStateCount(res); loadCityCount();});
+  const loadStateCount = async () => {
+    await StateApi.count().then(res => {setStateCount(res); });
   }
 
-  const loadCityCount = () => {
-    CityApi.count().then(res => setCityCount(res));
+  const loadCityCount = async () => {
+    await CityApi.count().then(res => setCityCount(res));
   }
 
-  const loadContactCount = () => {
-    ContactApi.count().then(res => {setContactCount(res); loadContactLabelCount();});
+  const loadContactCount = async () => {
+    await ContactApi.count().then(res => {setContactCount(res); });
   }
 
-  const loadContactLabelCount = () => {
-    ContactLabelApi.count().then(res => {setContactLabelCount(res); loadContactEmailCount();});
+  const loadContactLabelCount = async () => {
+    await ContactLabelApi.count().then(res => {setContactLabelCount(res); });
   }
 
-  const loadContactEmailCount = () => {
-    ContactEmailApi.count().then(res => {setContactEmailCount(res); loadContactPhoneCount();});
+  const loadContactEmailCount = async () => {
+    await ContactEmailApi.count().then(res => {setContactEmailCount(res); });
   }
 
-  const deleteAllData = () => {
+  const deleteAllData = async () => {
+    await deleteContactLabels();
+    await deleteContactEmails();
+    await deleteContactPhones();
+    await deleteContactAddresses();
+    await deleteContactWebsites();
+    await deleteContactChats();
+    await deleteContacts();
+    await deleteLabels();
+    await deleteCountries();
+  }
+
+  const deleteLabels = async () => {
     setError("")
-    ResetDataApi.deleteAllData().then(res => {
+    ResetDataApi.deleteLabels().then(res => {
       onClose();
       toast({
         title: "Success",
-        description: "All data deleted successfully.",
+        description: "All labels deleted successfully.",
         status: "success",
         position: "bottom-right",
       });
@@ -162,7 +189,183 @@ const ResetData = () => {
     }).catch(error => {
       setError(error.response.data.error);
       toast({
-        title: "Error deleting all data",
+        title: "Error deleting all labels",
+        description: error.response.data.error,
+        status: "error",
+        position: "bottom-right",
+      });
+    })
+  }
+
+  const deleteContactChats = async () => {
+    setError("")
+    ResetDataApi.deleteContactChats().then(res => {
+      onClose();
+      toast({
+        title: "Success",
+        description: "All contact chats deleted successfully.",
+        status: "success",
+        position: "bottom-right",
+      });
+      loadSummary();
+    }).catch(error => {
+      setError(error.response.data.error);
+      toast({
+        title: "Error deleting all contact chats",
+        description: error.response.data.error,
+        status: "error",
+        position: "bottom-right",
+      });
+    })
+  }
+
+  const deleteContactWebsites = async () => {
+    setError("")
+    ResetDataApi.deleteContactWebsites().then(res => {
+      onClose();
+      toast({
+        title: "Success",
+        description: "All contact websites deleted successfully.",
+        status: "success",
+        position: "bottom-right",
+      });
+      loadSummary();
+    }).catch(error => {
+      setError(error.response.data.error);
+      toast({
+        title: "Error deleting all contact websites",
+        description: error.response.data.error,
+        status: "error",
+        position: "bottom-right",
+      });
+    })
+  }
+
+  const deleteContactAddresses = async () => {
+    setError("")
+    ResetDataApi.deleteContactAddresses().then(res => {
+      onClose();
+      toast({
+        title: "Success",
+        description: "All contact addresses deleted successfully.",
+        status: "success",
+        position: "bottom-right",
+      });
+      loadSummary();
+    }).catch(error => {
+      setError(error.response.data.error);
+      toast({
+        title: "Error deleting all contact addresses",
+        description: error.response.data.error,
+        status: "error",
+        position: "bottom-right",
+      });
+    })
+  }
+
+  const deleteContactPhones = async () => {
+    setError("")
+    ResetDataApi.deleteContactPhones().then(res => {
+      onClose();
+      toast({
+        title: "Success",
+        description: "All contact phones deleted successfully.",
+        status: "success",
+        position: "bottom-right",
+      });
+      loadSummary();
+    }).catch(error => {
+      setError(error.response.data.error);
+      toast({
+        title: "Error deleting all contact phones",
+        description: error.response.data.error,
+        status: "error",
+        position: "bottom-right",
+      });
+    })
+  }
+
+  const deleteContactEmails = async () => {
+    setError("")
+    ResetDataApi.deleteContactEmails().then(res => {
+      onClose();
+      toast({
+        title: "Success",
+        description: "All contact emails deleted successfully.",
+        status: "success",
+        position: "bottom-right",
+      });
+      loadSummary();
+    }).catch(error => {
+      setError(error.response.data.error);
+      toast({
+        title: "Error deleting all contact emails",
+        description: error.response.data.error,
+        status: "error",
+        position: "bottom-right",
+      });
+    })
+  }
+
+  const deleteContactLabels = async () => {
+    setError("")
+    ResetDataApi.deleteContactLabels().then(res => {
+      onClose();
+      toast({
+        title: "Success",
+        description: "All contact labels deleted successfully.",
+        status: "success",
+        position: "bottom-right",
+      });
+      loadSummary();
+    }).catch(error => {
+      setError(error.response.data.error);
+      toast({
+        title: "Error deleting all contact labels",
+        description: error.response.data.error,
+        status: "error",
+        position: "bottom-right",
+      });
+    })
+  }
+
+  const deleteContacts = async () => {
+    setError("")
+    ResetDataApi.deleteContacts().then(res => {
+      onClose();
+      toast({
+        title: "Success",
+        description: "All contacts deleted successfully.",
+        status: "success",
+        position: "bottom-right",
+      });
+      loadSummary();
+    }).catch(error => {
+      setError(error.response.data.error);
+      toast({
+        title: "Error deleting all contacts",
+        description: error.response.data.error,
+        status: "error",
+        position: "bottom-right",
+      });
+    })
+  }
+
+  const deleteCountries = async () => {
+    setError("")
+    ResetDataApi.deleteCountries().then(res => {
+      onClose();
+      toast({
+        title: "Success",
+        description: "All countries deleted successfully.",
+        status: "success",
+        position: "bottom-right",
+      });
+      loadSummary();
+    }).catch(error => {
+      setError(error.response.data.error);
+      toast({
+        title: "Error deleting all countries",
         description: error.response.data.error,
         status: "error",
         position: "bottom-right",
@@ -283,7 +486,7 @@ const ResetData = () => {
           Create Countries
         </Button>
         <Button onClick={createContacts} type="button" colorScheme={"blue"}>
-          Create Contacts
+          Create 25,000 Contacts
         </Button>
         <Button onClick={onOpen} type="button" colorScheme={"red"}>
           DELETE ALL DATA
@@ -323,7 +526,7 @@ const ResetData = () => {
 
   return (
     <Box p={4}>
-      <Stack spacing={4} as={Container} maxW={"3xl"}>
+      <Stack spacing={4} as={Container} maxW={"6xl"}>
         {displayHeading()}
         {error && <AlertBox description={error} />}
         {showSummary()}
