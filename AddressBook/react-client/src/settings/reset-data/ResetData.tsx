@@ -410,7 +410,7 @@ const ResetData = () => {
   const displayHeading = () => (
     <Flex>
       <Box>
-        <Heading fontSize={"xl"}>Delete All Data</Heading>
+        <Heading fontSize={"xl"}>Reset Data</Heading>
       </Box>
       <Spacer />
       <Box>
