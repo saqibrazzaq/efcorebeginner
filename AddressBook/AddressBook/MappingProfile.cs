@@ -82,10 +82,14 @@ namespace AddressBook
 
             // City, State, Country import
             CreateMap<CityImport, City>()
+                .ForMember(dst => dst.Latitude, opt => opt.MapFrom(src => double.Parse(src.latitude)))
+                .ForMember(dst => dst.Longitude, opt => opt.MapFrom(src => double.Parse(src.longitude)))
                 .ForMember(dst => dst.Name, opt => opt.MapFrom(src => src.name));
             CreateMap<StateImport, State>()
                 .ForMember(dst => dst.Name, opt => opt.MapFrom(src => src.name))
                 .ForMember(dst => dst.Code, opt => opt.MapFrom(src => src.state_code))
+                .ForMember(dst => dst.Latitude, opt => opt.MapFrom(src => double.Parse(src.latitude)))
+                .ForMember(dst => dst.Longitude, opt => opt.MapFrom(src => double.Parse(src.longitude)))
                 .ForMember(dst => dst.Cities, opt => opt.MapFrom(src => src.cities));
             CreateMap<CountryImport, Country>()
                 .ForMember(dst => dst.Name, opt => opt.MapFrom(src => src.name))
@@ -101,8 +105,8 @@ namespace AddressBook
                 .ForMember(dst => dst.Native, opt => opt.MapFrom(src => src.native))
                 .ForMember(dst => dst.Region, opt => opt.MapFrom(src => src.region))
                 .ForMember(dst => dst.SubRegion, opt => opt.MapFrom(src => src.subregion))
-                .ForMember(dst => dst.Latitude, opt => opt.MapFrom(src => src.latitude))
-                .ForMember(dst => dst.Longitude, opt => opt.MapFrom(src => src.longitude))
+                .ForMember(dst => dst.Latitude, opt => opt.MapFrom(src => double.Parse(src.latitude)))
+                .ForMember(dst => dst.Longitude, opt => opt.MapFrom(src => double.Parse(src.longitude)))
                 .ForMember(dst => dst.Emoji, opt => opt.MapFrom(src => src.emoji))
                 .ForMember(dst => dst.EmojiU, opt => opt.MapFrom(src => src.emojiU))
                 .ForMember(dst => dst.States, opt => opt.MapFrom(src => src.states))

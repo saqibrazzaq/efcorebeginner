@@ -1,4 +1,3 @@
-import { LabelReqEdit, LabelReqSearch } from "../dtos/Label";
 import { api } from "./axiosconfig"
 
 export const ResetDataApi = {
