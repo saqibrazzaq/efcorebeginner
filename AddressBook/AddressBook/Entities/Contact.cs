@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AddressBook.Entities
 {
     [Table("Contact")]
+    [Index(nameof(FirstName))]
     public class Contact
     {
         [Key]
