@@ -1,5 +1,4 @@
-﻿using AddressBook.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using AddressBook.Common.Paging;
 
@@ -11,7 +10,7 @@ namespace AddressBook.Dtos
         public string? Phone { get; set; }
 
         public int? CountryId { get; set; }
-        public Country? Country { get; set; }
+        public CountryRes? Country { get; set; }
 
         public int ContactId { get; set; }
         public ContactRes? Contact { get; set; }

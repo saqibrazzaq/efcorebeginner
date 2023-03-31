@@ -1,5 +1,4 @@
-﻿using AddressBook.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using AddressBook.Common.Paging;
 
@@ -15,10 +14,10 @@ namespace AddressBook.Dtos
 
         // Foreign keys
         public int? CountryId { get; set; }
-        public Country? Country { get; set; }
+        public CountryRes? Country { get; set; }
 
         // Child tables
-        public ICollection<City>? Cities { get; set; }
+        public ICollection<CityRes>? Cities { get; set; }
     }
 
     public class StateReqEdit

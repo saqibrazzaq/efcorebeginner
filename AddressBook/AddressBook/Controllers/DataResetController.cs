@@ -9,10 +9,12 @@ namespace AddressBook.Controllers
     public class DataResetController : ControllerBase
     {
         private readonly IDataResetService _dataResetService;
-
-        public DataResetController(IDataResetService dataResetService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public DataResetController(IDataResetService dataResetService, 
+            IWebHostEnvironment webHostEnvironment)
         {
             _dataResetService = dataResetService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpDelete("delete-countries")]
@@ -88,7 +90,7 @@ namespace AddressBook.Controllers
         [HttpPost("add-countries")]
         public IActionResult AddCountries()
         {
-            _dataResetService.AddCountriesData();
+            _dataResetService.AddCountriesData(_webHostEnvironment.ContentRootPath);
             return NoContent();
         }
     }

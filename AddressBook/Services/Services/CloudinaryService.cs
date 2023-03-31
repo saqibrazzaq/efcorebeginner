@@ -2,6 +2,7 @@
 using AddressBook.Dtos;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
 
 namespace AddressBook.Services
 {

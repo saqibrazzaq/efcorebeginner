@@ -11,7 +11,7 @@
         void DeleteContactWebsites();
         void DeleteContactChats();
         void DeleteLabels();
-        void AddCountriesData();
+        void AddCountriesData(string rootPath);
         void AddContactsData();
     }
 }

@@ -2,7 +2,6 @@
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
-using Microsoft.AspNetCore.Hosting;
 using System.Text.Json;
 
 namespace AddressBook.Services
@@ -11,17 +10,14 @@ namespace AddressBook.Services
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IRandomDataGenerator _randomDataGenerator;
-        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IMapper _mapper;
 
         public DataResetService(IRepositoryManager repositoryManager,
             IRandomDataGenerator randomDataGenerator,
-            IWebHostEnvironment webHostEnvironment,
             IMapper mapper)
         {
             _repositoryManager = repositoryManager;
             _randomDataGenerator = randomDataGenerator;
-            _webHostEnvironment = webHostEnvironment;
             _mapper = mapper;
         }
 
@@ -92,11 +88,11 @@ namespace AddressBook.Services
             _repositoryManager.CountryRepository.DeleteAll();
         }
 
-        public void AddCountriesData()
+        public void AddCountriesData(string rootPath)
         {
             ValidationForAddingCountries();
 
-            var countries = ReadCountriesFromJson();
+            var countries = ReadCountriesFromJson(rootPath);
             foreach (var country in countries)
             {
                 _repositoryManager.CountryRepository.Create(country);
@@ -122,9 +118,8 @@ namespace AddressBook.Services
             if (!anyCity) throw new Exception("Please create Country, State and Cities before adding default contacts.");
         }
 
-        private IEnumerable<Country> ReadCountriesFromJson()
+        private IEnumerable<Country> ReadCountriesFromJson(string rootPath)
         {
-            var rootPath = _webHostEnvironment.ContentRootPath;
             var jsonFilePath = Path.Combine(rootPath, "ImportData", "countries+states+cities.json");
             var jsonData = File.ReadAllText(jsonFilePath);
             var countriesImport = JsonSerializer.Deserialize<IEnumerable<CountryImport>>(jsonData);

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using AddressBook.Entities;
 using AddressBook.Common.Paging;
 
 namespace AddressBook.Dtos

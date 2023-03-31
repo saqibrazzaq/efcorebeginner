@@ -3,7 +3,6 @@ using AddressBook.Dtos;
 using AddressBook.Entities;
 using AddressBook.Repository;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AddressBook.Services
 {

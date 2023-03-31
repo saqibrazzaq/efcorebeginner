@@ -1,5 +1,4 @@
 ﻿using AddressBook.Common.Paging;
-using AddressBook.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace AddressBook.Dtos

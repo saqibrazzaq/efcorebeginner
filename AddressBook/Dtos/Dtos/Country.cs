@@ -1,5 +1,4 @@
 ﻿using AddressBook.Common.Paging;
-using AddressBook.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace AddressBook.Dtos
@@ -26,9 +25,9 @@ namespace AddressBook.Dtos
         public string? EmojiU { get; set; }
 
 
-        public IEnumerable<Timezone>? Timezones { get; set; }
-        public IEnumerable<Translation>? Translations { get; set; }
-        public IEnumerable<State>? States { get; set; }
+        public IEnumerable<TimezoneRes>? Timezones { get; set; }
+        public IEnumerable<TranslationRes>? Translations { get; set; }
+        public IEnumerable<StateRes>? States { get; set; }
     }
 
     public class CountryReqEdit
