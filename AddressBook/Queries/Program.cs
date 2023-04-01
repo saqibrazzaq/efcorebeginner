@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Queries;
+using Queries.Queries;
 using System.Security.Cryptography.X509Certificates;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -19,7 +20,7 @@ var builder = new HostBuilder()
                   services.AddDbContext<AppDbContext>(x => x.UseSqlServer(
                     SecretUtility.SqlServer));
                   services.AddTransient<MyApplication>();
-                  //Console.WriteLine(SecretUtility.SqlServer);
+                  services.AddTransient<OneTable>();
               })
               .UseConsoleLifetime();
 
@@ -39,5 +40,6 @@ using (var serviceScope = app.Services.CreateScope())
     catch (Exception ex)
     {
         Console.WriteLine("Error Occured");
+        Console.WriteLine(ex.ToString());
     }
 }

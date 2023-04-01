@@ -1,4 +1,5 @@
 ﻿using AddressBook.Data;
+using Queries.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,22 @@ namespace Queries
 {
     public class MyApplication
     {
-        private readonly AppDbContext _db;
+        private readonly OneTable _oneTable;
 
-        public MyApplication(AppDbContext db)
+        public MyApplication(OneTable oneTable)
         {
-            _db = db;
+            _oneTable = oneTable;
         }
 
         internal async Task Run()
         {
-            Console.WriteLine("Total Contacts: " + _db.Contacts?.Count());
+            RunOneTable();
+        }
+
+        private void RunOneTable()
+        {
+            //_oneTable.SelectAll();
+            _oneTable.SelectAllSort();
         }
     }
 }
