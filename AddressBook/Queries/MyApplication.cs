@@ -25,7 +25,12 @@ namespace Queries
         private void RunOneTable()
         {
             //_oneTable.SelectAll();
-            _oneTable.SelectAllSort();
+            //_oneTable.SelectAllSort();
+            //_oneTable.SelectSpecificColumn();
+            //_oneTable.SelectSpecificColumnInClass();
+            //_oneTable.SelectWithWhereCondition("uni");
+            _oneTable.Search("uni", 20, 20);
+            //_oneTable.SelectOne();
         }
     }
 }
